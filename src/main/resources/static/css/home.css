@@ -1,0 +1,87 @@
+@charset "utf-8";
+/* CSS Document */
+
+/* Inbox-widget */
+.inbox-widget .inbox-item {
+    border-bottom: 1px solid #f1f1f1;
+    overflow: hidden;
+    padding: 10px 0;
+    position: relative;
+}
+
+    .inbox-widget .inbox-item .inbox-item-img {
+        display: block;
+        float: left;
+        margin: 0px;
+        margin-left: 8px;
+        width: 40px;
+    }
+
+    .inbox-widget .inbox-item img {
+        width: 40px;
+    }
+
+    .inbox-widget .inbox-item .inbox-item-author {
+        color: #333333;
+        display: block;
+        margin: 3px 0;
+    }
+
+    .inbox-widget .inbox-item .inbox-item-text {
+        color: #a0a0a0;
+        display: block;
+        font-size: 12px;
+        margin: 0;
+    }
+
+    .inbox-widget .inbox-item .inbox-item-date {
+        color: #a9a9a9;
+        font-size: 11px;
+        position: absolute;
+        right: 7px;
+        top: 2px;
+    }
+
+    .inbox-widget .inbox-item .inbox-item-rtgo {
+        color: #a9a9a9;
+        font-size: 11px;
+        position: absolute;
+        right: 7px;
+        top: 14px;
+    }
+
+.inbox-item-img i {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    vertical-align: text-middle;
+    padding-top: 5px;
+    text-align: center;
+    color: #fff;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+    .inbox-item-img i.glyphicon-heart {
+        background: #F66;
+    }
+      .inbox-item-img i.glyphicon-share-alt {
+        background: #F66;
+    }
+ .inbox-item-img i.glyphicon-user {
+        background: #F66;
+    }
+    .inbox-item-img i.glyphicon-map-marker {
+        background: #f90;
+    }
+
+    .inbox-item-img i.glyphicon-pencil {
+        background: #69c;
+    }
+
+    .inbox-item-img i.glyphicon-comment {
+        background: #669;
+    }
+ .inbox-item-img i.glyphicon-picture {
+        background: #669;
+    }

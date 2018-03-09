@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>个人资料</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/iconflower/font-flower.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <!-- 轮播 CSS -->
+    <link href="static/css/bootstrap/owl.theme.css" rel="stylesheet">
+    <link rel="stylesheet" href="static/css/bootstrap/owl.carousel.css">
+    <style>
+        strong {
+            width: 200px;
+        }
+
+        .js-self-show i {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 25px;
+            background: #fe8775;
+        }
+
+        .lv-icon2 span {
+            display: block;
+            background: url(static/images/icon.png) no-repeat;
+            background-size: 200px 200px;
+        }
+
+        .lv-icon2 span {
+            width: 20px;
+            height: 20px;
+            background-position: -20px 0;
+            margin: 12px 0 0 10px;
+        }
+
+        .footerbar a {
+            color: #fff;
+        }
+
+        .col-xs-2 {
+            width: 20%;
+        }
+        .verify-status {
+            color: #fe8775 !important;
+        }
+    </style>
+</head>
+<body>
+<!--开始页面加载-->
+<div id="">
+    <!--start topbar-->
+
+    <div class="topbar row">
+        <div class="col-xs-3 lv-icon">
+            <span></span>
+        </div>
+        <div id="trueName" class="col-xs-6 bar-title" style="font-size: 20px">
+
+        </div>
+        <div class="col-xs-3 js-edit-info">
+            <a class="text-white" href="profile.html"><i class="fa fa-edit"></i>编辑</a>
+        </div>
+    </div>
+    <!--end topbar-->
+
+    <div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!--大图轮播-->
+                    <div id="avatar_list" class="owl-carousel owl-theme" style="opacity: 1; display: block;">
+
+                    </div>
+                    <!--轮播图结束-->
+                    <div class="row selfinfo  pro-widget-rimg js-pointinfo" id="verifyArea">
+                        <div class="col-xs-7">
+                            完善资料后能获得&nbsp;<i class="nc nc-xianhua"></i>
+                        </div>
+                        <div class="col-xs-5 text-right">
+                            <span class="selfinfodu">身份认证 0%</span>
+                        </div>
+                    </div>
+
+                    <div class="card-box row text-center selfcheck js-checkinfo">
+                        <div class="col-xs-2">
+                            <a href="javascript:;" id="verify-people">
+                                <i class="fa fa-street-view"></i>
+                                <br>
+                                真人认证
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="javascript:;" id="verify-identity">
+                                <i class="fa fa-credit-card-alt"></i>
+                                <br>
+                                身份认证
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="javascript:;" id="verify-education">
+                                <i class="fa fa-graduation-cap"></i>
+                                <br>
+                                学历认证
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="javascript:;" id="verify-car">
+                                <i class="fa fa-car"></i>
+                                <br>
+                                车辆认证
+                            </a>
+                        </div>
+                        <div class="col-xs-2">
+                            <a href="javascript:;" id="verify-house">
+                                <i class="fa fa-university"></i>
+                                <br>
+                                房产认证
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row font-13 js-self-show">
+                        <div class="col-xs-12">
+                            <div class="panel-group js-accordion">
+                                <div class="panel panel-default">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#js-accordion" href="#js-prod-list"
+                                               aria-expanded="true" class="">基本信息
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="js-prod-list" class="panel-collapse collapse in" aria-expanded="true">
+                                        <div class="panel-body">
+                                            <div class="text-left">
+                                                <p class="text-muted">
+                                                    <i class="fa fa-map-marker text-white"></i>
+                                                    <strong>籍贯 :</strong>
+                                                    <span id="address">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-birthday-cake text-white"></i>
+                                                    <strong>出生 :</strong>
+                                                    <span id="age">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-arrows-v text-white"></i>
+                                                    <strong>身高 :</strong>
+                                                    <span id="height">---</span>&nbsp;cm
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-balance-scale text-white"></i>
+                                                    <strong>体重 :</strong>
+                                                    <span id="weight">---</span>&nbsp;kg
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-graduation-cap text-white"></i>
+                                                    <strong>学历 :</strong>
+                                                    <span id="education">---</span>
+                                                </p>
+                                                <p id="p1" class="text-muted">
+                                                    <i class="fa fa-shopping-bag text-white"></i>
+                                                    <strong>单位 :</strong>
+                                                    <span id="workUnit">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-paper-plane-o text-white"></i>
+                                                    <strong>职位 :</strong>
+                                                    <span id="workPosition">---</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default js-otherinfo">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#js-accordion3" href="#js-prod-list3"
+                                               aria-expanded="true" class="">其它信息
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="js-prod-list3" class="panel-collapse collapse in" aria-expanded="true">
+                                        <div class="panel-body">
+                                            <div class="text-left">
+                                                <p id="psw" class="text-muted">
+                                                    <i class="fa fa-home text-white"></i>
+                                                    <strong>常住地址 :</strong>
+                                                    <span id="live_address">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-star-o text-white"></i>
+                                                    <strong>星座 :</strong>
+                                                    <span id="constellation">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-paper-plane-o text-white"></i>
+                                                    <strong>职业 :</strong>
+                                                    <span id="profession">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-car text-white"></i>
+                                                    <strong>有车 :</strong>
+                                                    <span id="hasCar">无</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-university text-white"></i>
+                                                    <strong>有房 :</strong>
+                                                    <span id="hasHouse">无</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-cny text-white"></i>
+                                                    <strong>年收入 :</strong>
+                                                    <span id="yearIncome">---</span>
+                                                </p>
+
+                                                <p class="text-muted">
+                                                    <i class="fa fa-venus-mars text-white"></i>
+                                                    <strong>婚姻状况 :</strong>
+                                                    <span id="maritalStatus">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-hand-peace-o text-white"></i>
+                                                    <strong>兴趣爱好 :</strong>
+                                                    <span id="interest">---</span>
+                                                </p>
+                                                <p class="text-muted">
+                                                    <i class="fa fa-comment text-white"></i>
+                                                    <strong>自我介绍 :</strong>
+                                                    <span id="selfIntroduction">---</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="panel panel-default js-metainfo">
+                                    <div class="panel-heading">
+                                        <h4 class="panel-title">
+                                            <a data-toggle="collapse" data-parent="#js-accordion2" href="#js-prod-list2"
+                                               aria-expanded="true" class="">择偶信息
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="js-prod-list2" class="panel-collapse collapse in" aria-expanded="true">
+                                        <div class="panel-body">
+                                            <div class="text-left">
+                                                <p class="text-muted ">
+                                                    <i class="fa fa-birthday-cake text-white"></i>
+                                                    <strong>年龄 :</strong>
+                                                    <span id="mate_age">年---年</span>
+                                                </p>
+                                                <p class="text-muted ">
+                                                    <i class="fa fa-arrows-v text-white"></i>
+                                                    <strong>身高 :</strong>
+                                                    <span id="mate_height">---cm</span>
+                                                </p>
+                                                <p class="text-muted ">
+                                                    <i class="fa fa-venus-mars text-white"></i>
+                                                    <strong>可接受状况 :</strong>
+                                                    <span id="mate_status">---</span>
+                                                </p>
+                                                <p class="text-muted ">
+                                                    <i class="fa fa-graduation-cap text-white"></i>
+                                                    <strong>学历 :</strong>
+                                                    <span id="mate_education">---以上</span>
+                                                </p>
+                                                <p class="text-muted ">
+                                                    <i class="fa fa-meh-o text-white"></i>
+                                                    <strong>不接受生肖 :</strong>
+                                                    <span id="mate_sign">---</span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- jQuery轮播 -->
+<script src="static/js/bootstrap/owl.carousel.min.js"></script>
+<script>
+
+    var id = GET["id"];
+
+    $(function () {
+
+        if (!id) {
+
+            $.api("getUserInfoAll", {"userId":0}, getUserInfoAllCallback, "user");
+        } else {
+
+            $('.js-edit-info').addClass("hide");
+            $.api("getUserInfoAll", {"userId":id}, getUserInfoAllCallback, "user");
+        }
+
+        function getUserInfoAllCallback(ret) {
+            if (ret.status === "SUCCESS") {
+                var userInfoMessage = ret.data.userInfo;
+                var userMetaInfo = ret.data.userMetaInfo;
+                var userVerifyInfo = ret.data.userVerifyInfo;
+                var userInfoOtherMessage = ret.data.userInfoOtherMessage;
+                var userInfoOther = ret.data.userInfoOtherMessage.userInfoOther;
+
+                var image = "";
+
+                $.each(userInfoMessage.avatar, function (index, item) {
+                    image += '<img alt="" class="img-preview-list" src=\"' + item.fileHost + "/" + item.fileName + item.fileType + '\">';
+                });
+
+                $('#avatar_list').append(image);
+
+                //初始化轮播控件
+                InitScriptScroll();
+
+                $(".selfinfodu").text("身份认证 " + userVerifyInfo.verifyPercent + "%");
+                $("#verifyArea").removeClass("pro-widget-rimg").addClass("pro-widget-" + userVerifyInfo.verifyLevel + "img");
+
+                if (userVerifyInfo.car === 1) {
+                    $("#verify-car").addClass("verify-status");
+                }
+                if (userVerifyInfo.education === 1) {
+                    $("#verify-education").addClass("verify-status");
+                }
+                if (userVerifyInfo.house === 1) {
+                    $("#verify-house").addClass("verify-status");
+                }
+                if (userVerifyInfo.identity === 1) {
+                    $("#verify-identity").addClass("verify-status");
+                }
+                if (userVerifyInfo.people === 1) {
+                    $("#verify-people").addClass("verify-status");
+                }
+
+                //基本信息
+                $('#trueName').html(userInfoMessage.trueName);
+                $('#address').text(userInfoMessage.province + "-" + userInfoMessage.city);
+                $('#age').text(userInfoMessage.birth);
+                $('#height').text(userInfoMessage.height);
+                $('#education').text(userInfoMessage.education);
+                $('#workUnit').text(userInfoOther.workUnit);
+                $('#workPosition').text(userInfoOther.workPosition);
+
+                if (userInfoOther.weight != 0) {
+                    $('#weight').text(userInfoOther.weight);
+                }
+
+                //其他信息
+                if (userInfoOtherMessage.province != null) {
+                    $('#live_address').text(userInfoOtherMessage.province + "-" + userInfoOtherMessage.city + "-" + userInfoOtherMessage.area);
+                }
+
+                if (userInfoOtherMessage.constellation != null) {
+                    $('#constellation').text(userInfoOtherMessage.constellation);
+                }
+                if (userInfoOtherMessage.profession != null) {
+                    $('#profession').text(userInfoOtherMessage.profession);
+                }
+                if (userInfoOtherMessage.income != null) {
+                    $('#yearIncome').text(userInfoOtherMessage.income);
+                }
+                if (userInfoOtherMessage.income != null) {
+                    $('#maritalStatus').text(userInfoOtherMessage.maritalStatus);
+                }
+
+                userInfoOther.hasCar === 1 ? $('#hasCar').text("有") : $('#hasCar').text("无");
+                userInfoOther.hasCar === 1 ? $('#hasHouse').text("有") : $('#hasHouse').text("无");
+
+                $('#interest').text(userInfoOther.interest);
+                $('#selfIntroduction').text(userInfoOther.selfIntroduction);
+
+                //择偶信息
+                var ageRange = userMetaInfo.mateInfo.ageRange.split("-");
+                var heightRange = userMetaInfo.mateInfo.heightRange.split("-");
+                var maritalStatusValue = userMetaInfo.maritalStatusValue;
+                var educationValue = userMetaInfo.educationValue;
+                var refuseZodiac = userMetaInfo.mateInfo.refuseZodiac;
+
+                if (maritalStatusValue != null && educationValue != null && refuseZodiac != null && ageRange != undefined && heightRange != undefined) {
+                    $('#mate_age').text(ageRange[0]+"年---"+ageRange[1]+"年");
+                    $('#mate_height').text(heightRange[0]+"---"+heightRange[1]+"cm");
+                    $('#mate_status').text(userMetaInfo.maritalStatusValue);
+                    $('#mate_education').text(userMetaInfo.educationValue+"以上");
+                    $('#mate_sign').text(userMetaInfo.mateInfo.refuseZodiac);
+                }
+            }
+        }
+    });
+
+    //初始化首页轮播
+    var InitScriptScroll = function () {
+        if ($('.owl-carousel').length > 0) {
+            $('.owl-carousel').owlCarousel({
+                items: 1,
+                autoPlay: true,
+                slideSpeed: 1500,
+                lazyEffect: true,
+                lazyLoad: true,
+                pagination: true,
+                itemsMobile: [479, 1],
+                itemsMobile: [968, 1],
+                autoHeight: true
+            });
+        }
+    };
+
+</script>
+
+</body>
+</html>

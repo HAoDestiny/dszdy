@@ -1,0 +1,10 @@
+@charset "utf-8";
+/* CSS Document */
+
+#choose-a-province, #choose-a-school{margin-bottom:5px;border:1px solid #C3C3C3;}
+#choose-a-province a{display:inline-block;height:18px;line-height:18px;color:#005EAC;text-decoration:none;font-size:9pt;font-family:Tahoma, Verdana, STHeiTi, simsun, sans-serif;margin:2px 5px;padding:1px;text-align:center;}
+#choose-a-province a:hover{text-decoration:underline;cursor:pointer;}
+#choose-a-province .choosen{background:#005EAC;color:white;}
+#choose-a-school{overflow-x:hidden;overflow-y:auto;height:200px;}
+#choose-a-school a{height:18px;line-height:18px;color:#005EAC;text-decoration:none;font-size:9pt;font-family:Tahoma, Verdana, STHeiTi, simsun, sans-serif;float:left;width:140px;margin:4px 0px;padding-left:5px;background:url(/love/wap/images/dian.gif) no-repeat 0 9px;}
+#choose-a-school a:hover{background:#005EAC;color:#fff;} 

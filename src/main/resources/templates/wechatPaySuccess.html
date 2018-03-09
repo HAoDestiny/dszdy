@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>微信支付成功</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="static/css/wechatpay.css">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+</head>
+
+<body>
+
+<div class="zfcg_box ">
+    <div class="all_w">
+        <img src="static/images/cg_03.jpg" > 支付成功
+    </div>
+</div>
+<div class="cgzf_info">
+    <div class="wenx_xx">
+        <div class="mz">单身总动员</div>
+        <div class="wxzf_price">￥0.00</div>
+    </div>
+
+    <div class="spxx_shop">
+        <div class=" mlr_pm">
+
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td>商   品</td>
+                    <td align="right" id="orderName"></td>
+                </tr>
+                <tr>
+                    <td>交易时间</td>
+                    <td align="right" id="createTime"></td>
+                </tr>
+                <tr>
+                    <td>当前状态</td>
+                    <td align="right">已支付</td>
+                </tr>
+                <tr>
+                    <td>交易单号</td>
+                    <td align="right" id="orderId"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<a href="javascript:window.location.href='home.html';" class="ljzf_but all_w">返回首页</a>
+<div class="wzxfcgde_tb"><img src="static/images/cg_07.jpg" ></div>
+</body>
+<script>
+    var orderId;
+    $(function () {
+        orderId = GET["orderid"];
+        if (orderId !== undefined && orderId !== "") {
+            $.api("getOrderInfo", {"orderId":orderId}, function (ret) {
+                if (ret.status === "SUCCESS") {
+                    $('.wxzf_price').html("￥" + priceFormat(ret.data.orderFee));
+                    $('#orderName').html(ret.data.orderName);
+                    $('#createTime').html(dszdy.UI.formatTimestampLongHex(ret.data.createTime));
+                    $('#orderId').html(ret.data.orderId);
+                }
+            }, "goods");
+        }
+
+    });
+
+    function priceFormat(fee) {
+        return parseFloat(fee).toFixed(2);
+    }
+</script>
+</html>

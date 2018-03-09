@@ -1,0 +1,76 @@
+ 
+/**/
+.imui_swiper { width: 100%;position:relative; overflow:hidden;}
+.imui_swiper .swiper-slide img {width:100%;display:block;}
+.imui_swiper .swiper-pagination{ position:absolute;}
+
+
+.imui_swiper_app{ padding-bottom:5px; width: 100%;position:relative; overflow:hidden;}
+.imui_swiper_app li{ float:left; width:20%; text-align:center}
+.imui_swiper_app li a{ display:block}
+.imui_swiper_app li img{ width:48px;}
+.imui_swiper_app li p{ height:30px; line-height:30px; overflow:hidden; }
+.imui_swiper_app li span{ display:inline-block; width:40px; height:40px; padding:4px; line-height:40px; overflow:hidden; text-align:center;-moz-border-radius:20px; -webkit-border-radius:20px; border-radius:20px;}
+
+
+
+.imui_swiper_app .swiper-pagination{ position:static; padding-top:0px;}
+.imui_swiper_app .swiper-pagination-bullet-active{ background:#f60}
+ 
+
+.imui_smilies div.b_f { width: 100%; overflow:hidden; position:relative}
+.imui_smilies div.b_f .swiper-pagination{ position:absolute; bottom:5px;}
+.imui_smilies div.b_f .swiper-pagination-bullet-active{ background:#f60}
+ 
+
+/*--------------------Show Page--------------------*/
+
+.showpagearea{ width:100%; height:100%; position:fixed; right:0; top:0px; background:#eee; z-index:1010;}
+.showpagearea .imui_header{ z-index:1020;}
+
+.showpagearea .body_main{
+	padding:0;
+	overflow-y:scroll;
+	position:absolute;
+	left:0px;
+	top:50px;
+	width:100%;
+	height:-moz-calc(100% - 0px);
+	height:-webkit-calc(100% - 0px);
+	height:calc(100% - 0px);
+	
+}
+
+.showpage_in{
+	-webkit-animation: cut-in .4s forwards; 
+	animation: cut-in .4s forwards;	
+}
+.showpage_out{
+	-webkit-animation: cut-out .4s forwards; 
+	animation: cut-out .4s forwards;	
+}
+
+.showpage_show{
+	-webkit-animation: a .4s forwards; 
+	animation: a .4s forwards;	
+}
+
+.showpagearea .imui_icon_back:before{
+  content: '\e641';
+}
+ 
+
+/*pics*/
+.cis_date_pics{}
+.cis_date_pics li img{ display:block; width:100%; margin-bottom:10px;}
+
+.cis_date_viewpic{ background:#282828;}
+.showpagearea .cis_date_viewpic{ top:0px;}
+
+.cis_date_swiper { width:100%; height:100%; overflow:hidden;}
+.cis_date_swiper .swiper-slide img { max-height:100%;max-width: 100%;  }
+.cis_date_swiper .swiper-pagination{ position:absolute; color:#fff; bottom:0px; height:40px; line-height:40px; font-size:15px; }
+
+.cis_date_pic_footer{ height:50px; background:#232323; position:fixed; width:100%; left:0px; bottom:0px;}
+.cis_date_pic_footer a{ display:block; text-align:center; line-height:50px;}
+.cis_date_pic_footer a i{color:#fff; font-size:24px}

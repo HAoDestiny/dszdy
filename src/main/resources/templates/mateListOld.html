@@ -1,0 +1,636 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+<title>爱情对对碰活动 找对象</title>
+<meta name="description" content="爱情对对碰活动 找对象" />
+<link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/responsive.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+<script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript">
+var siteID=2,ltSite=1;var ltNavPage=-1;
+</script>
+
+    <link href="static/css/list.css" rel="stylesheet" />
+    <link href="static/css/jqpagination.css" rel="stylesheet" />
+    <script src="static/js/jquery.jqpagination.js"></script>
+    <link href="static/css/search-all.css" rel="stylesheet" />
+    <style>
+        .ajax_tips {
+            background-color: rgb(220, 220, 220);
+        }
+
+        .footerbar a {
+            color: #fff;
+        }
+    </style>
+    <script>
+        var protype = GET["sid"];
+        var proseries = GET["id"];
+        function onClickJump(str) {
+            var scrollPos;
+            if (typeof window.pageYOffset != 'undefined') {
+                scrollPos = window.pageYOffset;
+            } else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {
+                scrollPos = document.documentElement.scrollTop;
+            } else if (typeof document.body != 'undefined') {
+                scrollPos = document.body.scrollTop;
+            }
+            $("#scrollPosid").val(scrollPos);
+            window.location.href = "userExpandProfile.html?id=" + proseries + "&sid=6&UserID=" + str;
+        }
+
+
+
+        var pointIds = '';
+        var topChaKan = '';
+        var CompanyCheck = '0';
+        pointIds = pointIds.split(',');
+        if ('SUCCESS' != "SUCCESS") {
+            isStop = true;
+        }
+
+        //window.onload = function () {
+        //    var pagehtml = $("#pageHtmlid").val();
+        //    if (pagehtml != null && pagehtml != "") {
+        //        var html = $("#product-list").html();
+        //        $("#product-list").html(html + pagehtml);
+        //        isproduct = true;
+        //    }
+
+        //    if (!isproduct && !isStop) {
+        //        user_query_user_list();
+        //    }
+        //    if (isStop) {
+        //        $(".ajax_tips").html("没有数据");
+        //    }
+        //    var scrollPosVal = $("#scrollPosid").val();
+        //    if (scrollPosVal != null && scrollPosVal != "") {
+        //        $("html, body").stop().animate({ scrollTop: parseInt(scrollPosVal) }, 100);
+        //    }
+        //    var totalPage = $("#totalPage").val();
+        //    var pageStar = $("#pageStartid").val();
+        //    if (pageStar != null && pageStar != "") {
+        //        start = pageStar;
+        //        if (parseInt(start) >= parseInt(totalPage))
+        //            $(".ajax_tips").css("display", "none");
+        //        status = 1;
+        //    }
+        //    isproduct = false;
+        //}
+
+        function user_query_user_list() {
+            return;
+            loadingcss3_open();
+            loading = true;
+            $.api("webuser_query_jingzhunuser_list", [parseInt($("#pageStartid").val()), CompanyCheck, proseries], _callback, "user_acitve");
+            function _callback(data) {
+                loadingcss3_close();
+                loading = false;
+                if (data == null || data == "" || data[0] != "SUCCESS") {
+                    loadingcss3_close()
+                    $(".ajax_tips").html("没有数据");
+                    return false;
+                }
+                start = parseInt($("#pageStartid").val()) + 1;
+                status = 1;
+                data = data[1];
+                var str = '';
+                for (var i = 0; i < data.Rows.Count; i++) {
+                    var tr_obj = data.Rows[i];
+                    var userid = tr_obj["USERID"];
+                    //if (pointIds.length > 0 && $.inArray(userid + "", pointIds) > -1) {
+                    //    str += '<div class="col-xs-6  col-md-3"><div class="thumbnail"><a href="javascript:onClickJump(' + userid + ')" class="js-select-itinfo" data-id="' + userid + '"><div class="of">' +
+                    //          '<img src="' + tr_obj["UserPic"].replace(".jpg", "_1.jpg").replace(".jpeg", "_1.jpeg") + '" class="img-responsive lazy" alt="' + tr_obj["TrueName"] + '"></div> </a>' +
+                    //          '<div class="caption"><p class="title"><span>' + tr_obj["Age"] + '&nbsp;' + tr_obj["UHeight"] + 'cm</span>' +
+                    //          '<span class="pull-right">' + (tr_obj["Pcaname"] == null ? "" : tr_obj["Pcaname"].replace("福田区", "")) + '</span></p><p class="text-center">' +
+                    //         //'<button class="btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-like" data-id="' + userid + '" type="button">' +
+                    //         //'<i class="fa fa-heart m-r-5"></i><span>喜欢</span></button>' +
+                    //         '<button class="btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection" data-id="' + userid + '" type="button">' +
+                    //         '<i class="fa fa-heart m-r-5"></i><span>喜欢</span></button></p></div></div></div>';
+                    //}
+                    //else {
+                    //    str += '<div class="col-xs-6  col-md-3"><div class="thumbnail"><a href="javascript:onClickJump(' + userid + ')"  class="js-select-itinfo" data-id="' + userid + '"><div class="of">' +
+                    //          '<img src="' + tr_obj["UserPic"].replace(".jpg", "_1.jpg").replace(".jpeg", "_1.jpeg") + '" class="img-responsive lazy" alt="' + tr_obj["TrueName"] + '"></div> </a>' +
+                    //          '<div class="caption"><p class="title"><span>' + tr_obj["Age"] + '&nbsp;' + tr_obj["UHeight"] + 'cm</span>' +
+                    //          '<span class="pull-right">' + (tr_obj["Pcaname"] == null ? "" : tr_obj["Pcaname"].replace("福田区", "")) + '</span></p><p class="text-center">' +
+                    //         //'<button class="btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-like" data-id="' + userid + '" type="button">' +
+                    //         //'<i class="fa fa-heart m-r-5"></i><span>喜欢</span></button>'+
+                    //         '<button class="btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection" data-id="' + userid + '" type="button">' +
+                    //         '<i class="fa fa-heart m-r-5"></i><span>喜欢</span></button></p></div></div></div>';
+                    //}
+
+
+                    str += ' <div class="col-xs-6">' +
+                    '<div class="feed dataItem">' +
+                        '<div class="feed-bd">' +
+                            '<div class="images ui-img-list image-popup row">' +
+                                '<figure class="col-xs-12 item"><a href="javascript:onClickJump(' + userid + ')" class="js-select-itinfo" data-id="' + userid + '"><span class="img  loaded" style="background-image: url(' + tr_obj["UserPic"].replace(".jpg", "_1.jpg").replace(".jpeg", "_1.jpeg") + ');"></span></a></figure>' +
+                            '</div>' +
+                            '<div class="actions js_actions">' +
+                              '<p class="title"><span>' + tr_obj["Age"] + '&nbsp;' + tr_obj["UHeight"] + 'cm</span>&nbsp;' +
+                              '' + (tr_obj["Pcaname"] == null ? "" : tr_obj["Pcaname"].replace("福田区", "")) + '</p><p class="text-center">' +
+                             '<button class="btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection" data-id="' + userid + '" type="button">' +
+                             '<i class="fa fa-heart m-r-5"></i><span>喜欢</span></button></p>' +
+                           ' </div>' +
+                        '</div> ' +
+                    '</div>' +
+                '</div>';
+                }
+
+
+                var html = $(".product-list").html();
+                $(".product-list").html(html + str);
+                var totalPage = $("#totalPage").val();
+                if (start == totalPage || start > totalPage || data.Rows.Count < 20) {
+                    $(".ajax_tips").css("display", "none");
+                } else {
+                    $(".ajax_tips").html("下拉加载更多...");
+                    a = 1;
+                }
+                if ($("#pageHtmlid")) {
+                    var pageHtml = $("#pageHtmlid").val();
+                    $("#pageHtmlid").val(pageHtml + str.trim());
+                }
+                if ($("#pageStartid")) {
+                    $("#pageStartid").val(start);
+                }
+            }
+        }
+    </script>
+
+    <script>
+
+        function loadingcss3_open() {
+            $(".fixedloading").addClass("loadingcss3");
+            $(".fixedloading").fadeIn(300);
+            $(".fixedloadingbg").fadeIn(300);
+        };
+        function loadingcss3_close() {
+            $(".fixedloading").removeClass("loadingcss3");
+            $(".fixedloading").fadeOut(300);
+            $(".fixedloadingbg").fadeOut(300);
+        };
+    </script>
+</head>
+<body>
+    <div id="wrapper">
+        <input type="hidden" id="pageHtmlid">
+        <input type="hidden" id="pageStartid" value="0">
+        <!--start topbar-->
+        <div class="topbar row">
+            <div class="col-xs-2 lv-icon ">
+                <span></span>
+            </div>
+            <div class="col-xs-8 bar-title">
+                爱情缘分墙
+            </div>
+        </div>
+        <!--end topbar-->
+        <div class="content-page">
+            <div class="content">
+                <!--列表-->
+                <div class="row product-list" style="padding-bottom: 30px">
+                    <div class="col-xs-12">
+                        <ul id="searchSort20" class="new-search-tab bdr-bom">
+                             <li class="new-change-eleven new-sort-price " id="uheight"><span class="J_ping arrow-up">身高</span></li> <li class="new-change-eleven new-sort-price " id="age"><span class="J_ping arrow-up">年龄</span></li> <li class="new-change-eleven new-sort-price " id="education"><span class="J_ping arrow-up">学历</span></li>
+                            
+                        </ul>
+                    </div>
+                    
+                    <script>
+                        dszdy.UI.loadingReview()
+                    </script>
+                    <div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(8614)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/06/19/490489860_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;165cm</span>&nbsp;湖北省黄冈</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='8614' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1493)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/12/29/217379756_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>31&nbsp;155cm</span>&nbsp;湖北省荆州</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1493' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(10929)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/08/11/837449874_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>28&nbsp;160cm</span>&nbsp;湖南省怀化</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='10929' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(9958)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/08/07/708644997_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>24&nbsp;160cm</span>&nbsp;湖北省黄石</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='9958' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1545)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/12/14/491992248_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;158cm</span>&nbsp;湖北省黄冈</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1545' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(11249)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/08/15/297125313_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>30&nbsp;160cm</span>&nbsp;湖北省黄冈</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='11249' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(9370)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/08/19/412570144_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;160cm</span>&nbsp;湖南省永州</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='9370' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(2203)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/05/14/950461434.png);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;160cm</span>&nbsp;湖北省</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='2203' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(10451)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/08/09/794089527_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;160cm</span>&nbsp;湖南省娄底</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='10451' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(6863)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/02/15/335683859_1.jpeg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>25&nbsp;165cm</span>&nbsp;广东省深圳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='6863' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(9206)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/07/24/849586343_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>26&nbsp;166cm</span>&nbsp;湖南省永州</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='9206' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1129)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/08/25/956509709_1.jpeg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>31&nbsp;158cm</span>&nbsp;广东省深圳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1129' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(12284)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/10/10/637226219_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>31&nbsp;157cm</span>&nbsp;湖南省益阳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='12284' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(8991)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/07/09/483795319_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;162cm</span>&nbsp;湖北省</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='8991' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(12287)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/10/10/557529682_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>31&nbsp;150cm</span>&nbsp;广东省深圳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='12287' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1306)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/12/27/804549254_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>28&nbsp;168cm</span>&nbsp;湖南省邵阳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1306' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1270)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2017/10/10/826873021_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>30&nbsp;160cm</span>&nbsp;湖北省武汉</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1270' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(2225)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/10/13/942641059_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>28&nbsp;155cm</span>&nbsp;湖南省娄底</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='2225' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1753)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/09/01/585315486_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>31&nbsp;160cm</span>&nbsp;湖南省益阳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1753' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div><div class='col-xs-6'>
+                        <div class='feed dataItem'>
+                            <div class='feed-bd'>
+                                <div class='images ui-img-list image-popup row'>
+                                    <figure class='col-xs-12 item'><a href='javascript:onClickJump(1958)' class='js-select-itinfo' data-id='1790'><span class='img  loaded' style='background-image: url(/img/model/2016/12/27/807182139_1.jpg);'></span></a></figure>
+                                </div>
+                                <div class='actions js_actions'>
+                                    <p class='title'><span>29&nbsp;154cm</span>&nbsp;广东省深圳</p>
+                                    <p class='text-center'>
+                                        <button class='btn btn-xs btn-pink btn-rounded waves-effect waves-light js-add-collection' data-id='1958' type='button'><i class='fa fa-heart m-r-5'></i><span>喜欢</span></button></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <script>
+                        dszdy.UI.loadingReview(false)
+                    </script>
+                    <div class="col-xs-12">
+                        
+                        <div class="gigantic pagination">
+                            <a href="#" class="first" data-action="first">首页</a>
+                            <a href="#" class="previous" data-action="previous">上页</a>
+                            <input type="text" readonly data-max-page="40" />
+                            <a href="#" class="next" data-action="next">下页</a>
+                            <a href="#" class="last" data-action="last">末页</a>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footerbar">
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-md waves-effect waves-light js-my-select" role="button" href="mateLike.html">我选择的</a>
+                <a class="btn btn-md waves-effect waves-light js-my-selectcollect" role="button" href="mateLikeCollect.html" style="border-left: 1px solid #ffffff;">我喜欢的</a>
+                <a class="btn btn-md waves-effect waves-ligh js-huxuan-select" role="button" href="mateLike.html?s=2&id=1001&sid=6" style="border-left: 1px solid #ffffff;">互选结果</a>
+            </div>
+        </div>
+        <input type="hidden" id="scrollPosid">
+        <input type="hidden" id="totalPage" value="179">
+        <input type="hidden" id="startid" value="1">
+        <input type="hidden" id="startPriceid" value="">
+        <input type="hidden" id="endPriceid" value="">
+        <input type="hidden" id="typeIdid" value="">
+        <!--go-top-->
+        <div class="bottom-to-top" id="indexToTop"><i class="glyphicon glyphicon-circle-arrow-up text-gray"></i></div>
+    </div>
+
+    <!--手机屏幕滚动到底部自动加载-->
+    <script src="static/js/jquery.scrollpage.js"></script>
+    <script>
+        var Point = '0';
+        $(".js-my-select").on("click", function () {
+            window.location.href = "/love/wap/metallike.aspx?s=0&id=" + proseries + "&sid=" + protype
+        });
+        $(".js-my-selectcollect").on("click", function () {
+            window.location.href = "/love/wap/metallikecollect.aspx?s=0&id=" + proseries + "&sid=" + protype
+        });
+        $(".js-huxuan-select").on("click", function () {
+            window.location.href = "/love/wap/metallike.aspx?s=2&id=" + proseries + "&sid=" + protype
+        });
+        $(".product-list").delegate(".js-add-like", "click", function () {
+            var obj = $(this);
+            var id = obj.attr("data-id");
+            user_vote(id);
+        });
+        function user_vote(userid) {
+            swal({ title: "是否选择", text: "", showCancelButton: true, closeOnConfirm: true, cancelButtonText: "取消", confirmButtonColor: "#fe8775", confirmButtonText: "确定" }, function () {
+                $.api("add_love_userId", [userid, protype, proseries, 0], bind_love_userIdCallBack, "user_acitve");
+                function bind_love_userIdCallBack(data) {
+                    if (data[0] == "SUCCESS") {
+                        dszdy.UI.Tip("提交成功");
+                    }
+                    else {
+                        dszdy.UI.Tip(data[0]);
+                    }
+                }
+            });
+        }
+        //喜欢
+        $(".product-list").delegate(".js-add-collection", "click", function () {
+            var obj = $(this);
+            var id = obj.attr("data-id");
+            user_collection(id);
+        });
+        function user_collection(userid) {
+            //swal({ title: "是否喜欢", text: "", showCancelButton: true, closeOnConfirm: true, cancelButtonText: "取消", confirmButtonColor: "#fe8775", confirmButtonText: "确定" }, function () {
+            $.api("addcollection_love_userId", [userid, protype, proseries, 0], bind_love_userIdCallBack, "user_acitve");
+            function bind_love_userIdCallBack(data) {
+                if (data[0] == "SUCCESS") {
+                    dszdy.UI.Tip("喜欢成功");
+                }
+                else {
+                    dszdy.UI.Tip(data[0]);
+                }
+            }
+            //});
+        }
+
+        $(".product-list").delegate(".js-add-like-point", "click", function () {
+            var obj = $(this);
+            var id = obj.attr("data-id");
+            swal({ title: "将花费" + Point + "个种子", text: "", showCancelButton: true, closeOnConfirm: false, cancelButtonText: "取消", confirmButtonColor: "#fe8775", confirmButtonText: "确定" }, function () {
+                user_pay_point(id, obj);
+            });
+        });
+        function user_pay_point(id, t) {
+            var s = t;
+            $.api("add_love_userid_bypoint", [id, protype, proseries, 1], add_love_userid_bypointCallBack, "user_acitve");
+            function add_love_userid_bypointCallBack(data) {
+                if (data[0] == "SUCCESS") {
+                    swal.close();
+                    var url = data[1];
+                    var lurl = data[2];
+                    s.html("<i class=\"fa fa-heart m-r-5\"></i>" + s.text().replace("点击查看", "喜欢")).removeClass("btn-inverse").removeClass("js-add-like-point").addClass("btn-pink").addClass("js-add-like").removeAttr("style");
+                    s.parent().parent().parent().find("a").attr("href", lurl + "&id=" + proseries + "&sid=" + protype)
+                    s.parent().parent().parent().find("img").attr("src", url)
+                }
+                else if (data[0] == "种子不足") {
+                    swal({ title: "", html: true, text: "<span>您的种子不足" + Point + "个，无法查看!<a href='/love/wap/invite.aspx' class='btn btn-xs btn-danger  waves-effect waves-light'>点击赚取种子</a></span>", showConfirmButton: false });
+                }
+                else {
+                    swal(data[0]);
+                }
+            }
+        }
+        $(document).ready(function () {
+            var pagenum = 1;
+            if (GET["page"] != "undefined" && GET["page"] != undefined) {
+                pagenum = parseInt(GET["page"])
+            }
+            var max = parseInt(7);
+            if (max > 0) {
+                var $sort = '';
+                var $order = 'asc';
+                $('.pagination').jqPagination({
+                    link_string: '/?page={page_number}',
+                    max_page: parseInt(7),
+                    current_page: pagenum,
+                    page_string: '第{current_page}页,共{max_page}页',
+                    paged: function (page) {
+                        window.location.href = "/love/wap/metalist.aspx?s=2&id=" + proseries + "&sid=" + protype + "&page=" + page + "&sort=" + $sort + "&order=" + $order;
+                    }
+                });
+            }
+            $(".new-change-eleven").on("click", function () {
+                var sortby = $(this).attr("id");
+                var order = "asc";
+                if ($(this).children().hasClass("arrow-up")) {
+                    order = "asc";
+                } else {
+                    order = "desc";
+                }
+                window.location.href = "/love/wap/metalist.aspx?s=2&id=" + GET["id"] + "&sid=" + GET["sid"] + "&page=1&sort=" + sortby + "&order=" + order;
+            });
+
+            function SortClick() {
+                $("#searchSort20").find("li").removeClass("active");
+            }
+
+        });
+    </script>
+</body>
+</html>
+<script>
+    var sex = '1';
+    if (sex == "0") {
+        $(".topbar,.footerbar").attr("style", "background-color:#3ad4ca");
+    }
+</script>
+

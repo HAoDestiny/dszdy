@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>个人资料</title>
+    <link href="static/css/mobiscroll.custom-2.16.1.min.css" rel="stylesheet"/>
+    <link href="static/css/common.css" rel="stylesheet"/>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <!--日期-->
+    <style>
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            font-size: 12px;
+        }
+
+        input:-moz-placeholder, textarea:-moz-placeholder {
+            font-size: 12px;
+        }
+
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            font-size: 12px;
+        }
+
+        input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            font-size: 12px;
+        }
+
+        .inforList li {
+            margin: 0 0px 0 0px;
+            font: 13px/50px microsoft yahei;
+        }
+    </style>
+    <script src="static/js/bootstrap/mobiscroll.custom-2.16.1.min.js"></script>
+</head>
+<body>
+<div class="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            注册资料
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+
+        <div class="panel-body">
+            <form id="form-reginfo1">
+                <div class="registerOneBtnClass" id="reglistregisteronebtn">
+                    <p>
+                        <br/>
+                        <br/>
+                    </p>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;请填写真实的个人信息，一旦注册将不可以修改</p>
+                    <div class="row" style="margin-bottom: 20px; margin-top: 20px; text-align: center">
+                        <div class="col-xs-6">
+                            <div class="radio radio-inline radio-pink p-t-0 js-nv">
+                                <input type="radio" id="womsex" value="0" name="sex">
+                                <label for="womsex">女<i class="xznv fa fa-venus"></i></label>
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div class="radio radio-inline radio-primary p-t-0 js-nan">
+                                <input type="radio" id="mensex" value="1" name="sex">
+                                <label for="mensex">男<i class="xznan fa fa-mars"></i></label>
+                            </div>
+                        </div>
+
+                    </div>
+                    <ul class="inforList list1 div-reginfo">
+                        <li class="name hide">微信
+                            <input type="text" name="WeiXin" id="WeiXin" maxlength="25" placeholder="方便客服通知活动,此项不公开"
+                                   data-role="none" class="form-control"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i></li>
+                        <li class="name">姓名
+                            <input type="text" name="TrueName" id="TrueName" maxlength="16" placeholder="请填写"
+                                   data-role="none" class="form-control"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i>
+                        </li>
+                        <li>出生年月
+                            <input type="text" name="BirthDate" readonly="" placeholder="请选择" data-role="none"
+                                   class="form-control"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i></li>
+                        <li class="area">户籍
+                            <div class="row pull-right">
+                                <div class="col-xs-6">
+                                    <select name="Province" id="Province" data-role="none" class="js_province dw-hsel"
+                                            tabindex="-1"></select>
+                                    <input type="text" name="input_Province" id="input_Province"
+                                           class="hide form-control"/>
+                                </div>
+                                <div class="col-xs-6">
+                                    <select name="City" id="City" data-role="none" class="js_city dw-hsel"
+                                            tabindex="-1"></select>
+                                    <input type="text" name="input_City" id="input_City" class="hide form-control"/>
+                                </div>
+                                <div class="hide">
+                                    <select class="hide" name="Area" id="Area"></select>
+                                </div>
+                            </div>
+                            <i class="fa fa-circle-thin fa-tip-cirl i-jiguan"></i></li>
+                        <li>身高
+                            <select id="UHeight" name="UHeight" data-role="none" class="dw-hsel" tabindex="-1">
+                                <option value="-1">请选择</option>
+
+
+                                <option value="144">144cm</option>
+
+
+                                <option value="145">145cm</option>
+
+
+                                <option value="146">146cm</option>
+
+
+                                <option value="147">147cm</option>
+
+
+                                <option value="148">148cm</option>
+
+
+                                <option value="149">149cm</option>
+
+
+                                <option value="150">150cm</option>
+
+
+                                <option value="151">151cm</option>
+
+
+                                <option value="152">152cm</option>
+
+
+                                <option value="153">153cm</option>
+
+
+                                <option value="154">154cm</option>
+
+
+                                <option value="155">155cm</option>
+
+
+                                <option value="156">156cm</option>
+
+
+                                <option value="157">157cm</option>
+
+
+                                <option value="158">158cm</option>
+
+
+                                <option value="159">159cm</option>
+
+
+                                <option value="160">160cm</option>
+
+
+                                <option value="161">161cm</option>
+
+
+                                <option value="162">162cm</option>
+
+
+                                <option value="163">163cm</option>
+
+
+                                <option value="164">164cm</option>
+
+
+                                <option value="165">165cm</option>
+
+
+                                <option value="166">166cm</option>
+
+
+                                <option value="167">167cm</option>
+
+
+                                <option value="168">168cm</option>
+
+
+                                <option value="169">169cm</option>
+
+                                <option value="170" selected="selected">170cm</option>
+
+
+                                <option value="171">171cm</option>
+
+
+                                <option value="172">172cm</option>
+
+
+                                <option value="173">173cm</option>
+
+
+                                <option value="174">174cm</option>
+
+
+                                <option value="175">175cm</option>
+
+
+                                <option value="176">176cm</option>
+
+
+                                <option value="177">177cm</option>
+
+
+                                <option value="178">178cm</option>
+
+
+                                <option value="179">179cm</option>
+
+
+                                <option value="180">180cm</option>
+
+
+                                <option value="181">181cm</option>
+
+
+                                <option value="182">182cm</option>
+
+
+                                <option value="183">183cm</option>
+
+
+                                <option value="184">184cm</option>
+
+
+                                <option value="185">185cm</option>
+
+
+                                <option value="186">186cm</option>
+
+
+                                <option value="187">187cm</option>
+
+
+                                <option value="188">188cm</option>
+
+
+                                <option value="189">189cm</option>
+
+
+                                <option value="190">190cm</option>
+
+
+                                <option value="191">191cm</option>
+
+
+                                <option value="192">192cm</option>
+
+
+                                <option value="193">193cm</option>
+
+
+                                <option value="194">194cm</option>
+
+
+                                <option value="195">195cm</option>
+
+
+                                <option value="196">196cm</option>
+
+
+                                <option value="197">197cm</option>
+
+
+                                <option value="198">198cm</option>
+
+
+                                <option value="199">199cm</option>
+
+
+                                <option value="200">200cm</option>
+
+
+                                <option value="201">201cm</option>
+
+
+                                <option value="202">202cm</option>
+
+
+                                <option value="203">203cm</option>
+
+
+                                <option value="204">204cm</option>
+
+
+                                <option value="205">205cm</option>
+
+
+                                <option value="206">206cm</option>
+
+
+                                <option value="207">207cm</option>
+
+
+                                <option value="208">208cm</option>
+
+
+                                <option value="209">209cm</option>
+
+
+                                <option value="210">210cm</option>
+
+                            </select>
+                            <input type="text" class="form-control hide" name="input_UHeight" id="input_UHeight"/>
+
+                            <i class="fa fa-circle-thin fa-tip-cirl i-uheight"></i></li>
+                        <li class="hide">体重
+                            <select id="UWeight" name="UWeight" data-role="none" class="dw-hsel" tabindex="-1">
+                                <option value="-1">请选择</option>
+
+
+                                <option value="44">44kg</option>
+
+
+                                <option value="45">45kg</option>
+
+
+                                <option value="46">46kg</option>
+
+
+                                <option value="47">47kg</option>
+
+
+                                <option value="48">48kg</option>
+
+
+                                <option value="49">49kg</option>
+
+
+                                <option value="50">50kg</option>
+
+
+                                <option value="51">51kg</option>
+
+
+                                <option value="52">52kg</option>
+
+
+                                <option value="53">53kg</option>
+
+
+                                <option value="54">54kg</option>
+
+
+                                <option value="55">55kg</option>
+
+
+                                <option value="56">56kg</option>
+
+
+                                <option value="57">57kg</option>
+
+
+                                <option value="58">58kg</option>
+
+
+                                <option value="59">59kg</option>
+
+
+                                <option value="60">60kg</option>
+
+
+                                <option value="61">61kg</option>
+
+
+                                <option value="62">62kg</option>
+
+
+                                <option value="63">63kg</option>
+
+
+                                <option value="64">64kg</option>
+
+                                <option value="65" selected="selected">65kg</option>
+
+
+                                <option value="66">66kg</option>
+
+
+                                <option value="67">67kg</option>
+
+
+                                <option value="68">68kg</option>
+
+
+                                <option value="69">69kg</option>
+
+
+                                <option value="70">70kg</option>
+
+
+                                <option value="71">71kg</option>
+
+
+                                <option value="72">72kg</option>
+
+
+                                <option value="73">73kg</option>
+
+
+                                <option value="74">74kg</option>
+
+
+                                <option value="75">75kg</option>
+
+
+                                <option value="76">76kg</option>
+
+
+                                <option value="77">77kg</option>
+
+
+                                <option value="78">78kg</option>
+
+
+                                <option value="79">79kg</option>
+
+
+                                <option value="80">80kg</option>
+
+
+                                <option value="81">81kg</option>
+
+
+                                <option value="82">82kg</option>
+
+
+                                <option value="83">83kg</option>
+
+
+                                <option value="84">84kg</option>
+
+
+                                <option value="85">85kg</option>
+
+
+                                <option value="86">86kg</option>
+
+
+                                <option value="87">87kg</option>
+
+
+                                <option value="88">88kg</option>
+
+
+                                <option value="89">89kg</option>
+
+
+                                <option value="90">90kg</option>
+
+
+                                <option value="91">91kg</option>
+
+
+                                <option value="92">92kg</option>
+
+
+                                <option value="93">93kg</option>
+
+
+                                <option value="94">94kg</option>
+
+
+                                <option value="95">95kg</option>
+
+
+                                <option value="96">96kg</option>
+
+
+                                <option value="97">97kg</option>
+
+
+                                <option value="98">98kg</option>
+
+
+                                <option value="99">99kg</option>
+
+
+                                <option value="100">100kg</option>
+
+
+                                <option value="101">101kg</option>
+
+
+                                <option value="102">102kg</option>
+
+
+                                <option value="103">103kg</option>
+
+
+                                <option value="104">104kg</option>
+
+
+                                <option value="105">105kg</option>
+
+
+                                <option value="106">106kg</option>
+
+
+                                <option value="107">107kg</option>
+
+
+                                <option value="108">108kg</option>
+
+
+                                <option value="109">109kg</option>
+
+
+                                <option value="110">110kg</option>
+
+
+                                <option value="111">111kg</option>
+
+
+                                <option value="112">112kg</option>
+
+
+                                <option value="113">113kg</option>
+
+
+                                <option value="114">114kg</option>
+
+
+                                <option value="115">115kg</option>
+
+
+                                <option value="116">116kg</option>
+
+
+                                <option value="117">117kg</option>
+
+
+                                <option value="118">118kg</option>
+
+
+                                <option value="119">119kg</option>
+
+
+                                <option value="120">120kg</option>
+
+
+                                <option value="121">121kg</option>
+
+
+                                <option value="122">122kg</option>
+
+
+                                <option value="123">123kg</option>
+
+
+                                <option value="124">124kg</option>
+
+
+                                <option value="125">125kg</option>
+
+
+                                <option value="126">126kg</option>
+
+
+                                <option value="127">127kg</option>
+
+
+                                <option value="128">128kg</option>
+
+
+                                <option value="129">129kg</option>
+
+
+                                <option value="130">130kg</option>
+
+
+                                <option value="131">131kg</option>
+
+
+                                <option value="132">132kg</option>
+
+
+                                <option value="133">133kg</option>
+
+
+                                <option value="134">134kg</option>
+
+
+                                <option value="135">135kg</option>
+
+
+                                <option value="136">136kg</option>
+
+
+                                <option value="137">137kg</option>
+
+
+                                <option value="138">138kg</option>
+
+
+                                <option value="139">139kg</option>
+
+
+                                <option value="140">140kg</option>
+
+
+                                <option value="141">141kg</option>
+
+
+                                <option value="142">142kg</option>
+
+
+                                <option value="143">143kg</option>
+
+
+                                <option value="144">144kg</option>
+
+
+                                <option value="145">145kg</option>
+
+
+                                <option value="146">146kg</option>
+
+
+                                <option value="147">147kg</option>
+
+
+                                <option value="148">148kg</option>
+
+
+                                <option value="149">149kg</option>
+
+                            </select>
+                            <input type="text" class="form-control hide" name="input_UWeight" id="input_UWeight"/>
+
+                            <i class="fa fa-circle-thin fa-tip-cirl i-uheight"></i></li>
+                        <li class="name hide">公司
+                            <input class="form-control" type="text" id="Company" name="Company" placeholder="公司全称"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i></li>
+                        <li class="name hide">职位
+                            <input type="text" name="ZhiWei" id="ZhiWei" maxlength="16" placeholder="示例:软件工程开发师"
+                                   data-role="none" class="form-control"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i>
+                        </li>
+                        <li>学历
+                            <select id="Education" name="Education" data-role="none" class="js_edu dw-hsel"
+                                    tabindex="-1">
+                                <option value="-1" selected="selected">请选择</option>
+                            </select>
+                            <input class="form-control hide" type="text" id="input_Education" name="input_Education"
+                                   placeholder="学历"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i></li>
+                        <li class="hide">婚姻状况
+                            <select id="MaritalStatus" name="MaritalStatus" data-role="none" class="dw-hsel"
+                                    tabindex="-1">
+                                <option value="-1" selected="selected">请选择</option>
+                                <option value="0">单身</option>
+                                <option value="1">离异无子</option>
+                                <option value="2">离异有子跟我</option>
+                                <option value="3">离异有子跟对方</option>
+                                <option value="4">丧偶</option>
+                            </select>
+                            <input class="form-control hide" type="text" id="input_MaritalStatus"
+                                   name="input_MaritalStatus" placeholder="婚姻状况"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl"></i></li>
+                        <li class="hide">毕业院校
+                            <input class="form-control" type="text" name="SubArea" id="SubArea" placeholder="请务必填写全称"/>
+                            <i class="fa fa-circle-thin fa-tip-cirl js-subarea"></i>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-xs-12 m-t-20">
+                    <button type="button" data-id="0"
+                            class="btn btn-block btn-rounded btn-md btn-default-bg waves-effect waves-light js-reginfo1">
+                        完成
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script src="static/js/address_list.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        $("a[name='sex']").on("click", function () {
+            $("a[name='sex']").removeClass("current");
+            $(this).addClass("current");
+        });
+
+        //绑定日期控件
+        function setDate() {
+            var now = new Date();
+            $("input[name='BirthDate']").mobiscroll().date({
+                theme: 'mobiscroll',
+                lang: 'zh',
+                dateFormat: 'yy-mm-dd',
+                display: 'bottom',
+                defaultValue: new Date(now.getFullYear() - 27, 05, 01),
+                min: new Date(now.getFullYear() - 100, now.getMonth(), now.getDate()),
+                max: new Date(now.getFullYear() - 13, now.getMonth(), now.getDate())
+            });
+        }
+
+        function getInfo() {
+
+            var data = $.cookie("wechat_user_info");
+
+            if (data === null || data === undefined) {
+                initControl();
+                $('#womsex').attr("checked", true);
+            } else {
+
+                var userInfo = data.split("|");
+
+                if (userInfo[0] === "1") {
+                    $('#mensex').attr("checked", true);
+                }
+
+                else if (userInfo[0] === "2") {
+                    $('#womsex').attr("checked", true);
+                }
+
+                else {
+                    $('#womsex').attr("checked", true);
+                }
+
+                initControl(userInfo[1], userInfo[2]);
+
+            }
+
+            dszdy.Business.Configuration.getEducationList();
+        }
+
+        var updateSelect = function (className, id, value) {
+            $('#' + className).mobiscroll().select({
+                theme: 'mobiscroll', //皮肤样式
+                display: 'bottom', //显示方式
+                mode: 'scroller', //日期选择模式
+                lang: 'zh',
+                animate: 'fade',
+                defaultValue: value,
+            });
+        }
+
+        function initControl(province, city) {
+            setDate();//初始化日期控件
+            if (province !== "" && province !== undefined) {
+
+                getAddress(province, city, "0");
+            } else {
+
+                getAddress("110000", "110100", "0");//初始化地址控件
+            }
+
+            updateSelect("Education", "Education", "-1");
+            updateSelect("UHeight", "UHeight", "-1");
+            updateSelect("UWeight", "UWeight", "-1");
+            updateSelect("Profession", "Profession", "-1");
+            updateSelect("MaritalStatus", "MaritalStatus", "-1");
+        }
+
+        function getAddress(Province, City, Area) {
+            ////绑定地址下拉框
+            var prov_select = $("select[name='Province']");
+            var city_select = $("select[name='City']");
+            var area_select = $("select[name='Area']");
+            _edit_addr_selection = new address_list(prov_select, city_select, area_select,
+                {
+                    init_selection: [Province, City, Area]
+                });
+        }
+
+        $(".i-jiguan,.i-uheight").removeClass("fa-circle-thin").addClass("fa-circle").addClass("fa-tip-success");
+
+        getInfo();
+    });
+
+    $("input,select").on("change", function () {
+        if ($(this).val() == "" || $(this).val() == "-1") {
+            $(this).nextAll("i").removeClass("fa-tip-success").addClass("fa-circle-thin");
+
+        } else {
+            $(this).nextAll("i").removeClass("fa-circle-thin").addClass("fa-circle").addClass("fa-tip-success");
+        }
+    });
+
+    $("body").delegate(".js_province", "change", function () {
+        if ($("select[name='Province']").val() == "noSelect") {
+            $(".i-jiguan").removeClass("fa-tip-success").addClass("fa-circle-thin");
+
+        } else {
+            $(".i-jiguan").removeClass("fa-circle-thin").addClass("fa-circle").addClass("fa-tip-success");
+        }
+    });
+
+    $(".js-reginfo1").on("click", function () {
+        submit_edit_user();
+    });
+
+    //注册基本资料函数
+    function submit_edit_user() {
+        var pcaname = '';
+        if (_edit_addr_selection.SelectedProvinceName != null) {
+            pcaname += _edit_addr_selection.SelectedProvinceName;
+        }
+        if (_edit_addr_selection.SelectedCityName != null) {
+            pcaname += _edit_addr_selection.SelectedCityName;
+        }
+
+        if ($("input[name='TrueName']").val() == "") {
+            dszdy.UI.Tip("请填写姓名");
+            return false;
+        }
+        if ($("input[name='BirthDate']").val() == "") {
+            dszdy.UI.Tip("请选择出生日期");
+            return false;
+        }
+        if ($("select[name='UHeight']").val() == "-1") {
+            dszdy.UI.Tip("请填写身高");
+            return false;
+        }
+        if (pcaname == "") {
+            dszdy.UI.Tip("请选择籍贯");
+            return false;
+        }
+        if ($("select[name='Education']").val() == "-1") {
+            dszdy.UI.Tip("请选择学历");
+            return false;
+        }
+
+        var json = {
+            "sex":$("input[name='sex']:checked").val(),
+            "trueName":$("input[name='TrueName']").val(),
+            "birth":$("input[name='BirthDate']").val(),
+            "height":($("select[name='UHeight']").length == 0 ? $("input[name='input_UHeight']").val() : $("select[name='UHeight']").val()),
+            "provinceID":_edit_addr_selection.SelectedProvinceID,
+            "cityID":_edit_addr_selection.SelectedCityID,
+            "areaID":_edit_addr_selection.SelectedAreaID,
+            "areaID":"0",
+            "education":($("select[name='Education']").length == 0 ? $("input[name='input_Education']").val() : $("select[name='Education']").val())
+        };
+
+        dszdy.Business.User.editProfile(json);
+    }
+</script>
+</body>
+</html>

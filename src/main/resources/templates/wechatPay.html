@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.springframework.org/schema/mvc">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0, width=device-width, user-scalable=no">
+    <title>微信安全支付</title>
+    <link rel="stylesheet" type="text/css" href="static/css/wechatpay.css">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+</head>
+<body>
+<div class="wenx_xx">
+    <div class="mz">单身总动员</div>
+    <div class="wxzf_price">￥0.00</div>
+</div>
+<div class="skf_xinf" style="height: 130px;">
+    <div class="all_w"><span class="bt">收款方</span> <span class="fr">单身总动员婚介服务（广州）有限公司</span></div><br>
+    <div class="all_w"><span class="bt">商&nbsp;&nbsp;品</span> <span id="orderName" class="fr"></span></div><br>
+    <div class="all_w"><span class="bt">数&nbsp;&nbsp;量</span> <span id="goodsTotal" class="fr">0</span></div>
+</div>
+<a id="pay" href="javascript:void(0);" class="ljzf_but all_w">立即支付</a>
+</body>
+<script th:inline="javascript">
+    var orderId;
+    $(function () {
+        orderId = GET["orderid"];
+        if (orderId !== undefined && orderId !== "") {
+            $.api("getOrderInfo", {"orderId":orderId}, function (ret) {
+                if (ret.status === "SUCCESS") {
+                    $('.wxzf_price').html("￥" + priceFormat(ret.data.orderFee));
+                    $('#orderName').html(ret.data.orderName);
+                    $('#goodsTotal').html(ret.data.goodsTotal);
+                }
+            }, "goods");
+        }
+        document.querySelector('#pay').onclick = function () {
+            alert('您的微信不支持微信付款，请升级到最新版本！');
+        };
+        if (typeof WeixinJSBridge == "undefined"){
+            if( document.addEventListener ){
+                document.addEventListener('WeixinJSBridgeReady', readyPay, false);
+            }else if (document.attachEvent){
+                document.attachEvent('WeixinJSBridgeReady', readyPay);
+                document.attachEvent('onWeixinJSBridgeReady', readyPay);
+            }
+        } else {
+            readyPay();
+        }
+    });
+    function readyPay() {
+        document.querySelector('#pay').onclick = function () {
+            WeixinJSBridge.invoke(
+                'getBrandWCPayRequest', {
+                    "appId":[[${payMap.appId}]],
+                    "timeStamp":[[${payMap.timeStamp}]],
+                    "nonceStr":[[${payMap.nonceStr}]],
+                    "package":[[${payMap.package}]],
+                    "signType":[[${payMap.signType}]],
+                    "paySign":[[${payMap.paySign}]]
+                },
+                function(res){
+                    if(res.err_msg == "get_brand_wcpay_request:ok" ) {
+                        window.location.href = "wechatPaySuccess.html?orderId=" + orderId;
+                    }else if(res.err_msg == "get_brand_wcpay_request:cancel") {
+
+                    }else if(res.err_msg == "get_brand_wcpay_request:fail") {
+                        alert('支付失败');
+                        window.location.href = "wallet.html";
+                    }else {
+                        alert('未知异常:请联系客服');
+                    }
+                }
+            );
+        }
+    }
+
+    function priceFormat(fee) {
+        return parseFloat(fee).toFixed(2);
+    }
+</script>
+<!--<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>-->
+<!--<script>-->
+        <!--wx.config({-->
+            <!--debug: false,-->
+            <!--appId: [[${payMap.appId}]],-->
+            <!--timestamp: [[${payMap.timestamp}]],-->
+            <!--nonceStr: [[${payMap.nonceStr}]],-->
+            <!--signature: [[${payMap.signature}]],-->
+            <!--jsApiList: ['chooseWXPay']-->
+        <!--});-->
+        <!--wx.ready(function () {-->
+            <!--document.querySelector('#pay').onclick = function () {-->
+                <!--wx.chooseWXPay({-->
+                    <!--timestamp: [[${payMap.timestamp}]],-->
+                    <!--nonceStr: [[${payMap.nonceStr}]],-->
+                    <!--package: 'prepay_id=wx123712361782368127381236',-->
+                    <!--signType: 'MD5',-->
+                    <!--paySign: 'bd5b1933cda6e9548862944836a9b52e8c9a2b69'-->
+                <!--});-->
+            <!--};-->
+        <!--});-->
+<!--</script>-->
+</html>

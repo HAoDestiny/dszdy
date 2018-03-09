@@ -1,0 +1,35 @@
+@charset "utf-8";
+/* CSS Document */
+
+.feed-list{margin-bottom:50px}
+.feed{background-color:#fff}
+.feed,.feed-bd .img,.feed-bd .video{position:relative}
+.feed-bd .txt img{vertical-align:text-bottom}
+.feed-hd{display:-webkit-box;display:-moz-box;display:-webkit-flex;display:flex}
+.feed-hd .stime{padding:0 12px}
+.feed-hd .avatar{padding:0 12px}
+.avatar .pic{display:block;width:36px;height:36px;background-color:#eee;-webkit-border-radius:100%;-moz-border-radius:100%;border-radius:100%;background-position:50% 50%;-webkit-background-size:cover;background-size:cover;border:1px solid #ddd}
+.avatar .nan{border:1px solid rgba(29,65,236,.31)}
+.avatar .nv{border:1px solid rgba(232,31,99,.28)}
+.feed-hd .info{-webkit-box-flex:1;-moz-box-flex:1;-webkit-flex:1;flex:1}
+.feed-hd .title .username:nth-child(1):nth-last-child(2){max-width:78.5%}
+.feed-hd .title .username{display:inline-block;vertical-align:middle;height:19px;line-height:19px}
+.feed-hd .title .username,.ui-list-view .hide-txt,.ui-list-view .sub-txt{word-wrap:normal;max-width:100%;text-overflow:ellipsis;white-space:nowrap;overflow:hidden}
+.isapp,.isbrand,.isvip{float:right;padding-right:10px;height:19px;position:relative}
+.ui-icon-vip.expired{background-position:-180px 0}
+.feed-hd .info .metas{color:#707070;font-size:12px;margin:2px 0 0}
+.feed-bd{position:relative}
+.feed-bd .txt{line-height:1.333;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:30;-webkit-box-orient:vertical}
+.feed-bd .images{margin-left:-2px}
+.audio,.images,.video{margin:10px 0 0}
+.images .item{position:relative;float:left;padding:0;margin:0;border-width:0 0 2px 2px;border-style:solid;border-color:transparent;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}
+.feed-bd .img:nth-child(1),.feed-bd .video:nth-child(1),.images:nth-child(1){margin:0}
+.images .item .img{width:100%;padding-top:100%;position:relative;display:block;background-size:cover}
+.images .item .img,.qboss-banner{background-position:50% 50%;-webkit-background-size:cover}
+.feed-bd .img{margin:10px 0 0;background-color:#ccc;background-size:cover}
+.feed,.feed-bd .img,.feed-bd .video{position:relative}
+.feed-bd .views{color:#707070;font-size:14px;position:absolute;left:12px;bottom:14px}
+.feed .actions{text-align:center;padding:3px 0}
+.feed .actions .item{display:inline-block;position:relative;width:44px;height:44px;color:transparent;vertical-align:top}
+button{overflow:visible;padding:0;margin:0;border:0;background-color:transparent}
+.feed-ft{padding:10px 12px;position:relative}

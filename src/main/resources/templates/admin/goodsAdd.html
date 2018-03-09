@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>添加商品</title>
+    <link rel="stylesheet" href="/m/static/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/m/static/admin/css/alert.css">
+
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/m/static/js/validator.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/ckform.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/common.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/zh_CN.js"></script>
+
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script><!--置于jq之下-->
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        /*.input-group {*/
+        /*width: 400px;*/
+        /*margin-bottom: 15px;*/
+        /*}*/
+
+        .ajax_tips1 {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 tr th {
+            text-align: center;
+        }
+
+        .m10 tr td {
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="myTabContent" class="tab-content" style="width: 60%; margin: 50px auto">
+    <span class="input-group-addon" style="margin-top: 60px;">商品列表</span>
+    <div class="tab-pane fade in active" id="supAdmin">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>商品ID</th>
+                <th>商品名称</th>
+                <th>商品描述</th>
+                <th>商品价格</th>
+                <th>商品数量(次数)</th>
+                <th>使用期限(天)</th>
+                <th>商品类别</th>
+                <th>添加时间</th>
+                <th width="20%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content1">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+    </div>
+
+    <div class="tab-pane fade in active" id="identity" style="margin-top: 30px;">
+        <span class="input-group-addon" style="margin-top: 60px;">添加商品</span>
+        <div class="input-group" style="margin-top: 10px;">
+            <span class="input-group-addon">商品名称</span>
+            <input type="text" id="add_goodsName" class="form-control" placeholder="请输入商品名称">
+        </div>
+
+        <div class="input-group" style="margin-top: 10px;">
+            <span class="input-group-addon">商品简介</span>
+            <input type="text" id="add_goodsDesc" class="form-control" placeholder="请输入商品简介">
+        </div>
+
+        <div class="input-group" style="margin-top: 10px;">
+            <span class="input-group-addon">商品价格</span>
+            <input type="text" id="add_goodsFee" class="form-control" placeholder="请输入商品价格">
+        </div>
+
+        <div class="input-group" style="margin-top: 10px;">
+            <span class="input-group-addon">商品数量(次数)</span>
+            <input type="number" class="form-control" id="add_goodsNum" placeholder="请输入商品数量"
+                   data-parsley-required="true" data-parsley-trigger="change"/>
+        </div>
+
+
+        <div class="input-group" style="margin-top: 10px;">
+            <span class="input-group-addon">使用期限(天)</span>
+            <input type="number" class="form-control" id="add_goodsDays" placeholder="请输入商品数量"
+                   data-parsley-required="false" data-parsley-trigger="change"/>
+        </div>
+
+        <div class="input-group" style="margin-top: 10px; margin-bottom: 10px;">
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    商品类别
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a id="flowerType" onclick="goodsType('add_goodsType',1)">积分类商品(鲜花)</a></li>
+                    <li><a id="vip" onclick="goodsType('add_goodsType', 2)">会员类商品(会员卡等)</a></li>
+                </ul>
+            </div>
+            <input id="add_goodsType" name="add_goodsType" value="积分类商品(鲜花)" type="text" class="form-control" disabled>
+        </div>
+    </div>
+    <button id="add_goods" type="button" class="btn btn-success" style="width: 100px;">添加</button>
+</div>
+
+<div class="modal fade" id="update_goods">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span
+                        class="sr-only">Close</span></button>
+                <h4 class="modal-title">商品添加</h4>
+            </div>
+            <div class="modal-body">
+                <form id="update_goods_form" class="form-group" data-parsley-validate>
+
+                    <input type="hidden" name="goodsId" id="goodsId"/>
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <span class="input-group-addon">商品名称</span>
+                        <input type="text" id="goodsName" name="goodsName" class="form-control" placeholder="请输入商品名称">
+                    </div>
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <span class="input-group-addon">商品简介</span>
+                        <input type="text" id="goodsDesc" name="goodsDesc" class="form-control" placeholder="请输入商品简介">
+                    </div>
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <span class="input-group-addon">商品价格</span>
+                        <input type="text" id="goodsFee" name="goodsFee" class="form-control" placeholder="请输入商品价格">
+                    </div>
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <span class="input-group-addon">商品数量(次数)</span>
+                        <input type="number" class="form-control" id="goodsNum" name="goodsNum" placeholder="请输入商品数量"
+                               data-parsley-required="true" data-parsley-trigger="change"/>
+                    </div>
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <span class="input-group-addon">使用期限(天)</span>
+                        <input type="number" class="form-control" id="goodsDays" name="goodsDays" placeholder="请输入商品数量"
+                               data-parsley-required="false" data-parsley-trigger="change"/>
+                    </div>
+
+
+                    <div class="input-group" style="width: 300px; margin: 10px auto;">
+                        <div class="input-group-btn">
+                            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                商品类别
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><a id="flowerType" onclick="goodsType('goodsType', 1)">积分类商品(鲜花)</a></li>
+                                <li><a id="vip" onclick="goodsType('goodsType', 2)">会员类商品(会员卡等)</a></li>
+                            </ul>
+                        </div>
+                        <input id="goodsType" type="text" class="form-control" pla disabled>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                        <button id="update_goods_sub" type="button" class="btn btn-success">提交</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script src="/m/static/js/validator.js"></script>
+<script>
+
+    $(function () {
+        $('#update_goods_form').bootstrapValidator({
+            live: 'enabled',
+            message: '输入值不能为空',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                goodsName: {
+                    validators: {
+                        notEmpty: {message: '请输入商品名称'}
+                    }
+                },
+                goodsDesc: {
+                    validators: {
+                        notEmpty: {message: '请输入商品简介'}
+                    }
+                },
+                goodsFee: {
+                    validators: {
+                        notEmpty: {message: '请输入商品价格'}
+                    }
+                },
+                goodsType: {
+                    validators: {
+                        notEmpty: {message: '请选择商品类型'}
+                    }
+                },
+                goodsNum: {
+                    validators: {
+                        notEmpty: {
+                            message: '请输入商品数量'
+                        },
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            e.preventDefault();
+            update_goods();
+        });
+
+        getGoodsList();
+
+        $('#update_goods_sub').on("click", function () {
+            $("#update_goods_form").bootstrapValidator('validate');
+        });
+
+        $('#update_goods').on('hide.bs.modal', function () {
+            var goodsName = $('#goodsName').val('');
+            var goodsDesc = $('#goodsDesc').val('');
+            var goodsFee = $('#goodsFee').val('');
+            var goodsNum = $('#goodsNum').val('');
+            var goodsDays = $('#goodsDays').val();
+            var goodsType = $('#goodsType').val("");
+        });
+    });
+
+    //添加
+    $('#add_goods').on("click", function () {
+        var goodsName = $('#add_goodsName').val();
+        var goodsDesc = $('#add_goodsDesc').val();
+        var goodsFee = $('#add_goodsFee').val();
+        var goodsNum = $('#add_goodsNum').val();
+        var goodsDays = $('#add_goodsDays').val();
+        var goodsType = $('#add_goodsType').val();
+
+        if (goodsName === "") {
+            tips('请输入商品名称');
+            return;
+        }
+
+        if (goodsDesc === "") {
+            tips('请输入商品简介');
+            return;
+        }
+
+        if (goodsFee === "") {
+            tips('请输入商品价格');
+            return;
+        }
+
+        if (goodsNum === "") {
+            tips('请输入商品数量');
+            return;
+        }
+
+        if (goodsType === "") {
+            tips('请选择商品类型');
+            return;
+        }
+
+        $.api("addGoods", {
+            "goodsName": goodsName,
+            "goodsDesc": goodsDesc,
+            "goodsFee": goodsFee,
+            "goodsNum": goodsNum,
+            "goodsDays": goodsDays,
+            "goodsType": goodsTypeN(goodsType)
+        }, function (ret) {
+            tips(ret.message);
+            if (ret.status === "SUCCESS") {
+                getGoodsList();
+                $('#add_goodsName').val('');
+                $('#add_goodsDesc').val('');
+                $('#add_goodsFee').val('');
+                $('#add_goodsNum').val('');
+                $('#add_goodsDays').val('');
+                $('#add_goodsType').val('积分类商品(鲜花)');
+            }
+
+        }, "admin/goods")
+    });
+
+    //修改
+    function update_goods() {
+        var goodsId = parseInt($('#goodsId').val());
+        var goodsName = $('#goodsName').val();
+        var goodsDesc = $('#goodsDesc').val();
+        var goodsFee = $('#goodsFee').val();
+        var goodsNum = $('#goodsNum').val();
+        var goodsDays = $('#goodsDays').val();
+        var goodsType = $('#goodsType').val();
+
+        $.api("goodsOperation", {
+            "type": 1,
+            "goodsId": goodsId,
+            "goodsName": goodsName,
+            "goodsDesc": goodsDesc,
+            "goodsFee": goodsFee,
+            "goodsNum": goodsNum,
+            "goodsDays": goodsDays,
+            "goodsType": goodsTypeN(goodsType)
+        }, function (ret) {
+            tips(ret.message);
+            if (ret.status === "SUCCESS") {
+                getGoodsList();
+            }
+            $("#update_goods").modal('toggle');  //手动关闭
+        }, "admin/goods")
+    }
+
+    //操作
+    function goodsOperations(goodsId, type) {
+
+        if (type === 1) {
+            $.api("getGoodsInfo", {"goodsId": goodsId}, function (ret) {
+
+                if (ret.status === "SUCCESS") {
+                    $('.modal-title').html("商品修改");
+                    $('#goodsId').val(ret.data.id);
+                    $('#goodsName').val(ret.data.goodsName);
+                    $('#goodsDesc').val(ret.data.goodsDesc);
+                    $('#goodsFee').val(ret.data.goodsFee);
+                    $('#goodsNum').val(ret.data.goodsNum);
+                    $('#goodsDays').val(ret.data.goodsDays);
+                    ret.data.goodsType === 1 ? $('#goodsType').val("积分类商品(鲜花)") : $('#goodsType').val("会员类商品(会员卡等)");
+                }
+
+            }, "admin/goods");
+        }
+
+        if (type === 2) {
+            $.api("goodsOperation", {"type": 2, "goodsId": goodsId}, function (ret) {
+                tips(ret.message);
+                if (ret.status === "SUCCESS") {
+                    getGoodsList();
+                }
+            }, "admin/goods");
+        }
+
+    }
+
+    //列表
+    function getGoodsList() {
+        $.api("getGoodsList", {}, getGoodsListCallback, "admin/goods");
+    }
+
+    function getGoodsListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            var goodsList = ret.data;
+
+            if (goodsList !== null && goodsList.length > 0) {
+
+                var html = "";
+                var prefix = "";
+                var but = "";
+
+                $.each(goodsList, function (index, item) {
+
+                    var status = function () {
+                        if (item.deleteTag != 0) {
+                            return "";
+                        }
+                        return "正常使用";
+                    };
+
+                    var lastLoginTime = function () {
+
+                        if (item.registerTime === 0) {
+                            return "尚未登录过";
+                        }
+                        return dszdy.UI.formatTimestampLongDet(item.lastLoginTime);
+                    };
+
+                    var Type = function () {
+
+                        if (item.goodsType === 1) {
+                            return "积分类商品(鲜花)";
+                        }
+                        return "会员类商品(会员卡等)";
+                    };
+
+                    html += '<tr>' +
+                        '<td>' + item.id + '</td>' +
+                        '<td>' + item.goodsName + '</td>' +
+                        '<td>' + item.goodsDesc + '</td>' +
+                        '<td>' + item.goodsFee + ' 元</td>' +
+                        '<td>' + item.goodsNum + '</td>' +
+                        '<td>' + item.goodsDays + '</td>' +
+                        '<td>' + Type() + '</td>' +
+                        '<td>' + dszdy.UI.formatTimestampLong(item.createTime) + '</td>' +
+                        '<td class="sub">' +
+                        '<button onclick="goodsOperations(' + item.id + "," + 1 + ')" data-toggle="modal" data-target="#update_goods" class="btn btn-warning" style="margin-right: 10px;">修改</button>' +
+                        '<button id="del_goods" onclick="goodsOperations(' + item.id + "," + 2 + ')" class="btn btn-danger">删除</button>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#content1').html('');
+                $('#content1').append(html);
+                $('.ajax_tips1').hide();
+
+            }
+        }
+    }
+
+    function goodsType(id, type) {
+        if (type === 1) {
+            $('#' + id).val("积分类商品(鲜花)");
+        }
+
+        if (type === 2) {
+            $('#' + id).val("会员类商品(会员卡等)");
+        }
+    }
+
+    function goodsTypeN(str) {
+        if (str === "积分类商品(鲜花)") {
+            return 1;
+        }
+        return 2;
+    }
+
+    var M = {};
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content': tip,
+            'closeTime': 3000,
+        })
+    }
+
+    function checkNull(value, tag) {
+        if (value == null || value == "") {
+            if (tag == 1) {
+                tips("商品名称不能为空");
+                $('#goodsName').focus();
+                return;
+            }
+
+            if (tag == 2) {
+                tips("商品描述不能为空");
+                $('#goodsDesc').focus();
+                return;
+            }
+
+            if (tag == 3) {
+                tips("商品单价不能为空");
+                $('#goodsFee').focus();
+                return;
+            }
+        }
+    }
+
+</script>
+</html>

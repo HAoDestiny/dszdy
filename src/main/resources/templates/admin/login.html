@@ -1,0 +1,94 @@
+<html>
+<head>
+    <title>登录 - 单身总动员后台管理</title>
+    <link rel="stylesheet" href="/m/static/admin/css/pintuer.css">
+    <link rel="stylesheet" href="/m//static/admin/css/admin.css">
+    <link rel="stylesheet" href="/m/static/admin/css/alert.css">
+
+    <script language="javascript" type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/admin/js/pintuer.js"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/admin/js/md5.js"></script>
+</head>
+<body onkeydown="clickEnter()">
+<div class="bg"></div>
+<div class="container">
+    <div class="line bouncein">
+        <div class="xs6 xm4 xs3-move xm4-move">
+            <div style="height:150px;"></div>
+            <div class="media media-y margin-big-bottom">
+            </div>
+            <form id="login_form">
+                <div class="panel loginbox">
+                    <div class="text-center margin-big padding-big-top"><img src="/m/static/admin/img/logo.png"></div>
+                    <div class="panel-body" style="padding:30px; padding-bottom:10px; padding-top:10px;">
+                        <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input type="text" class="input input-big" id="name" name="name" placeholder="登录账号" data-validate="required:请填写账号"/>
+                                <span class="icon icon-user margin-small"></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="field field-icon-right">
+                                <input type="password" class="input input-big" id="password" name="password"
+                                       placeholder="登录密码" data-validate="required:请填写密码"/>
+                                <span class="icon icon-key margin-small"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="padding:30px;">
+                        <input id="login_btn" type="button" class="button button-block bg-main text-big input-big" value="登录">
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+<script>
+    /***
+     * 监听回车键 （添加到body onkeydown方法）
+     */
+    function clickEnter() {
+        if (event.keyCode == 13) {
+            $("#login_btn").click();
+        }
+    }
+
+    $('#login_btn').click(function () {
+
+        var mobile = $('#name').val();
+        var password = $('#password').val();
+
+        if (mobile === "") {
+            tips("账号不能为空");
+            return;
+        }
+
+        if (password === "") {
+            tips("密码不能为空");
+            return;
+        }
+
+        $.api("login", {"mobile":mobile, "password":password}, adminLoginCallback, "admin");
+    });
+
+    function adminLoginCallback(ret) {
+        tips(ret.message);
+        if (ret.status === "SUCCESS") {
+            window.localStorage.setItem("user", $('#name').val());
+            window.localStorage.setItem("pass", hex_md5($('#password').val()));
+            window.location.href = "/m/static/admin/view/index.html";
+        }
+    }
+
+    var M = {};
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content' : tip,
+            'closeTime' : 2000,
+        })
+    }
+</script>
+</html>

@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>我的择偶</title>
+    <link href="static/css/mobiscroll.custom-2.16.1.min.css" rel="stylesheet">
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <link href="static/css/common.css" rel="stylesheet">
+    <script src="static/js/bootstrap/mobiscroll.custom-2.16.1.min.js"></script>
+    <script src="static/js/syscodeapi.js"></script>
+    <style>
+        .form-control:focus {
+            border: none;
+        }
+
+        input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+            font-size: 12px;
+        }
+
+        input:-moz-placeholder, textarea:-moz-placeholder {
+            font-size: 12px;
+        }
+
+        input::-moz-placeholder, textarea::-moz-placeholder {
+            font-size: 12px;
+        }
+
+        input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+            font-size: 12px;
+        }
+
+        .inforList li input {
+            margin-right: 0px;
+        }
+
+        .liHeight span, .liAge span {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            择偶要求
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content panel-body">
+            <form id="form-regobj" action="#">
+                <div class="registerOneBtnClass" id="reglistregisteronebtn">
+                    <ul class="inforList list1">
+                        <li class="liAge">年龄范围
+                            <span>
+                                     <input type="text" id="MetaAge_dummy" value="" class="" placeholder="选择年龄范围"
+                                            readonly><ul id="MetaAge" data-role="none" style="display: none;"><li
+                                    data-val="1965">1965<ul><li data-val="1965">1965</li><li data-val="1966">1966</li><li
+                                    data-val="1967">1967</li><li data-val="1968">1968</li><li data-val="1969">1969</li><li
+                                    data-val="1970">1970</li><li data-val="1971">1971</li><li data-val="1972">1972</li><li
+                                    data-val="1973">1973</li><li data-val="1974">1974</li><li data-val="1975">1975</li><li
+                                    data-val="1976">1976</li><li data-val="1977">1977</li><li data-val="1978">1978</li><li
+                                    data-val="1979">1979</li><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1966">1966<ul><li
+                                    data-val="1966">1966</li><li data-val="1967">1967</li><li data-val="1968">1968</li><li
+                                    data-val="1969">1969</li><li data-val="1970">1970</li><li data-val="1971">1971</li><li
+                                    data-val="1972">1972</li><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1967">1967<ul><li data-val="1967">1967</li><li data-val="1968">1968</li><li
+                                    data-val="1969">1969</li><li data-val="1970">1970</li><li data-val="1971">1971</li><li
+                                    data-val="1972">1972</li><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1968">1968<ul><li data-val="1968">1968</li><li data-val="1969">1969</li><li
+                                    data-val="1970">1970</li><li data-val="1971">1971</li><li data-val="1972">1972</li><li
+                                    data-val="1973">1973</li><li data-val="1974">1974</li><li data-val="1975">1975</li><li
+                                    data-val="1976">1976</li><li data-val="1977">1977</li><li data-val="1978">1978</li><li
+                                    data-val="1979">1979</li><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1969">1969<ul><li
+                                    data-val="1969">1969</li><li data-val="1970">1970</li><li data-val="1971">1971</li><li
+                                    data-val="1972">1972</li><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1970">1970<ul><li data-val="1970">1970</li><li data-val="1971">1971</li><li
+                                    data-val="1972">1972</li><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1971">1971<ul><li data-val="1971">1971</li><li data-val="1972">1972</li><li
+                                    data-val="1973">1973</li><li data-val="1974">1974</li><li data-val="1975">1975</li><li
+                                    data-val="1976">1976</li><li data-val="1977">1977</li><li data-val="1978">1978</li><li
+                                    data-val="1979">1979</li><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1972">1972<ul><li
+                                    data-val="1972">1972</li><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1973">1973<ul><li data-val="1973">1973</li><li data-val="1974">1974</li><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1974">1974<ul><li data-val="1974">1974</li><li data-val="1975">1975</li><li
+                                    data-val="1976">1976</li><li data-val="1977">1977</li><li data-val="1978">1978</li><li
+                                    data-val="1979">1979</li><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1975">1975<ul><li
+                                    data-val="1975">1975</li><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1976">1976<ul><li data-val="1976">1976</li><li data-val="1977">1977</li><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1977">1977<ul><li data-val="1977">1977</li><li data-val="1978">1978</li><li
+                                    data-val="1979">1979</li><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1978">1978<ul><li
+                                    data-val="1978">1978</li><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1979">1979<ul><li data-val="1979">1979</li><li data-val="1980">1980</li><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1980">1980<ul><li data-val="1980">1980</li><li data-val="1981">1981</li><li
+                                    data-val="1982">1982</li><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1981">1981<ul><li
+                                    data-val="1981">1981</li><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1982">1982<ul><li data-val="1982">1982</li><li data-val="1983">1983</li><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1983">1983<ul><li data-val="1983">1983</li><li data-val="1984">1984</li><li
+                                    data-val="1985">1985</li><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1984">1984<ul><li
+                                    data-val="1984">1984</li><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1985">1985<ul><li data-val="1985">1985</li><li data-val="1986">1986</li><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1986">1986<ul><li data-val="1986">1986</li><li data-val="1987">1987</li><li
+                                    data-val="1988">1988</li><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1987">1987<ul><li
+                                    data-val="1987">1987</li><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1988">1988<ul><li data-val="1988">1988</li><li data-val="1989">1989</li><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1989">1989<ul><li data-val="1989">1989</li><li data-val="1990">1990</li><li
+                                    data-val="1991">1991</li><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1990">1990<ul><li
+                                    data-val="1990">1990</li><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1991">1991<ul><li data-val="1991">1991</li><li data-val="1992">1992</li><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1992">1992<ul><li data-val="1992">1992</li><li data-val="1993">1993</li><li
+                                    data-val="1994">1994</li><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1993">1993<ul><li
+                                    data-val="1993">1993</li><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1994">1994<ul><li data-val="1994">1994</li><li data-val="1995">1995</li><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1995">1995<ul><li data-val="1995">1995</li><li data-val="1996">1996</li><li
+                                    data-val="1997">1997</li><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1996">1996<ul><li
+                                    data-val="1996">1996</li><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1997">1997<ul><li data-val="1997">1997</li><li data-val="1998">1998</li><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="1998">1998<ul><li data-val="1998">1998</li><li data-val="1999">1999</li><li
+                                    data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li data-val="1999">1999<ul><li
+                                    data-val="1999">1999</li><li data-val="2000">2000</li><li data-val="2001">2001</li></ul></li><li
+                                    data-val="2000">2000<ul><li data-val="2000">2000</li><li
+                                    data-val="2001">2001</li></ul></li><li data-val="2001">2001<ul><li data-val="2001">2001</li></ul></li></ul>
+                                     年</span>
+                        </li>
+                        <li class="liHeight">身高
+                            <span>
+                                    <input type="text" id="MetaUHeight_dummy" value="" class="" placeholder="选择身高范围"
+                                           readonly><ul id="MetaUHeight" data-role="none" style="display: none;"><li
+                                    data-val="150">150<ul><li data-val="150">150</li><li data-val="151">151</li><li
+                                    data-val="152">152</li><li data-val="153">153</li><li data-val="154">154</li><li
+                                    data-val="155">155</li><li data-val="156">156</li><li data-val="157">157</li><li
+                                    data-val="158">158</li><li data-val="159">159</li><li data-val="160">160</li><li
+                                    data-val="161">161</li><li data-val="162">162</li><li data-val="163">163</li><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="151">151<ul><li
+                                    data-val="151">151</li><li data-val="152">152</li><li data-val="153">153</li><li
+                                    data-val="154">154</li><li data-val="155">155</li><li data-val="156">156</li><li
+                                    data-val="157">157</li><li data-val="158">158</li><li data-val="159">159</li><li
+                                    data-val="160">160</li><li data-val="161">161</li><li data-val="162">162</li><li
+                                    data-val="163">163</li><li data-val="164">164</li><li data-val="165">165</li><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="152">152<ul><li
+                                    data-val="152">152</li><li data-val="153">153</li><li data-val="154">154</li><li
+                                    data-val="155">155</li><li data-val="156">156</li><li data-val="157">157</li><li
+                                    data-val="158">158</li><li data-val="159">159</li><li data-val="160">160</li><li
+                                    data-val="161">161</li><li data-val="162">162</li><li data-val="163">163</li><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="153">153<ul><li
+                                    data-val="153">153</li><li data-val="154">154</li><li data-val="155">155</li><li
+                                    data-val="156">156</li><li data-val="157">157</li><li data-val="158">158</li><li
+                                    data-val="159">159</li><li data-val="160">160</li><li data-val="161">161</li><li
+                                    data-val="162">162</li><li data-val="163">163</li><li data-val="164">164</li><li
+                                    data-val="165">165</li><li data-val="166">166</li><li data-val="167">167</li><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="154">154<ul><li
+                                    data-val="154">154</li><li data-val="155">155</li><li data-val="156">156</li><li
+                                    data-val="157">157</li><li data-val="158">158</li><li data-val="159">159</li><li
+                                    data-val="160">160</li><li data-val="161">161</li><li data-val="162">162</li><li
+                                    data-val="163">163</li><li data-val="164">164</li><li data-val="165">165</li><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="155">155<ul><li
+                                    data-val="155">155</li><li data-val="156">156</li><li data-val="157">157</li><li
+                                    data-val="158">158</li><li data-val="159">159</li><li data-val="160">160</li><li
+                                    data-val="161">161</li><li data-val="162">162</li><li data-val="163">163</li><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="156">156<ul><li
+                                    data-val="156">156</li><li data-val="157">157</li><li data-val="158">158</li><li
+                                    data-val="159">159</li><li data-val="160">160</li><li data-val="161">161</li><li
+                                    data-val="162">162</li><li data-val="163">163</li><li data-val="164">164</li><li
+                                    data-val="165">165</li><li data-val="166">166</li><li data-val="167">167</li><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="157">157<ul><li
+                                    data-val="157">157</li><li data-val="158">158</li><li data-val="159">159</li><li
+                                    data-val="160">160</li><li data-val="161">161</li><li data-val="162">162</li><li
+                                    data-val="163">163</li><li data-val="164">164</li><li data-val="165">165</li><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="158">158<ul><li
+                                    data-val="158">158</li><li data-val="159">159</li><li data-val="160">160</li><li
+                                    data-val="161">161</li><li data-val="162">162</li><li data-val="163">163</li><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="159">159<ul><li
+                                    data-val="159">159</li><li data-val="160">160</li><li data-val="161">161</li><li
+                                    data-val="162">162</li><li data-val="163">163</li><li data-val="164">164</li><li
+                                    data-val="165">165</li><li data-val="166">166</li><li data-val="167">167</li><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="160">160<ul><li
+                                    data-val="160">160</li><li data-val="161">161</li><li data-val="162">162</li><li
+                                    data-val="163">163</li><li data-val="164">164</li><li data-val="165">165</li><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="161">161<ul><li
+                                    data-val="161">161</li><li data-val="162">162</li><li data-val="163">163</li><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="162">162<ul><li
+                                    data-val="162">162</li><li data-val="163">163</li><li data-val="164">164</li><li
+                                    data-val="165">165</li><li data-val="166">166</li><li data-val="167">167</li><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="163">163<ul><li
+                                    data-val="163">163</li><li data-val="164">164</li><li data-val="165">165</li><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="164">164<ul><li
+                                    data-val="164">164</li><li data-val="165">165</li><li data-val="166">166</li><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="165">165<ul><li
+                                    data-val="165">165</li><li data-val="166">166</li><li data-val="167">167</li><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="166">166<ul><li
+                                    data-val="166">166</li><li data-val="167">167</li><li data-val="168">168</li><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="167">167<ul><li
+                                    data-val="167">167</li><li data-val="168">168</li><li data-val="169">169</li><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="168">168<ul><li
+                                    data-val="168">168</li><li data-val="169">169</li><li data-val="170">170</li><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="169">169<ul><li
+                                    data-val="169">169</li><li data-val="170">170</li><li data-val="171">171</li><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="170">170<ul><li
+                                    data-val="170">170</li><li data-val="171">171</li><li data-val="172">172</li><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="171">171<ul><li
+                                    data-val="171">171</li><li data-val="172">172</li><li data-val="173">173</li><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="172">172<ul><li
+                                    data-val="172">172</li><li data-val="173">173</li><li data-val="174">174</li><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="173">173<ul><li
+                                    data-val="173">173</li><li data-val="174">174</li><li data-val="175">175</li><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="174">174<ul><li
+                                    data-val="174">174</li><li data-val="175">175</li><li data-val="176">176</li><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="175">175<ul><li
+                                    data-val="175">175</li><li data-val="176">176</li><li data-val="177">177</li><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="176">176<ul><li
+                                    data-val="176">176</li><li data-val="177">177</li><li data-val="178">178</li><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="177">177<ul><li
+                                    data-val="177">177</li><li data-val="178">178</li><li data-val="179">179</li><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="178">178<ul><li
+                                    data-val="178">178</li><li data-val="179">179</li><li data-val="180">180</li><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="179">179<ul><li
+                                    data-val="179">179</li><li data-val="180">180</li><li data-val="181">181</li><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="180">180<ul><li
+                                    data-val="180">180</li><li data-val="181">181</li><li data-val="182">182</li><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="181">181<ul><li
+                                    data-val="181">181</li><li data-val="182">182</li><li data-val="183">183</li><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="182">182<ul><li
+                                    data-val="182">182</li><li data-val="183">183</li><li data-val="184">184</li><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="183">183<ul><li
+                                    data-val="183">183</li><li data-val="184">184</li><li data-val="185">185</li><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="184">184<ul><li
+                                    data-val="184">184</li><li data-val="185">185</li><li data-val="186">186</li><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="185">185<ul><li
+                                    data-val="185">185</li><li data-val="186">186</li><li data-val="187">187</li><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="186">186<ul><li
+                                    data-val="186">186</li><li data-val="187">187</li><li data-val="188">188</li><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="187">187<ul><li
+                                    data-val="187">187</li><li data-val="188">188</li><li data-val="189">189</li><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="188">188<ul><li
+                                    data-val="188">188</li><li data-val="189">189</li><li data-val="190">190</li><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="189">189<ul><li
+                                    data-val="189">189</li><li data-val="190">190</li><li data-val="191">191</li><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="190">190<ul><li
+                                    data-val="190">190</li><li data-val="191">191</li><li data-val="192">192</li><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="191">191<ul><li
+                                    data-val="191">191</li><li data-val="192">192</li><li data-val="193">193</li><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="192">192<ul><li
+                                    data-val="192">192</li><li data-val="193">193</li><li data-val="194">194</li><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="193">193<ul><li
+                                    data-val="193">193</li><li data-val="194">194</li><li data-val="195">195</li><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="194">194<ul><li
+                                    data-val="194">194</li><li data-val="195">195</li><li data-val="196">196</li><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="195">195<ul><li
+                                    data-val="195">195</li><li data-val="196">196</li><li data-val="197">197</li><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="196">196<ul><li
+                                    data-val="196">196</li><li data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="197">197<ul><li
+                                    data-val="197">197</li><li data-val="198">198</li><li
+                                    data-val="199">199</li></ul></li><li data-val="198">198<ul><li
+                                    data-val="198">198</li><li data-val="199">199</li></ul></li><li data-val="199">199<ul><li
+                                    data-val="199">199</li></ul></li></ul>
+                                    厘米</span>
+                        </li>
+                        <li>学历
+                            <input type="text" id="MetaEducation_dummy"
+                                   class="mbsc-control mbsc-control-ev form-control " readonly placeholder="">
+                            <select id="MetaEducation" name="MetaEducation" class="dw-hsel" data-role="none"
+                                    data-code="-1" data-value="">
+                                <option value="-1">请选择</option>
+                            </select>
+                        </li>
+                        <li>婚姻状况
+                            <!--<input type="text" id="MetaMaritalStatus_dummy"-->
+                            <!--class="mbsc-control mbsc-control-ev form-control " readonly placeholder="">-->
+                            <select id="MetaMaritalStatus" name="MetaMaritalStatus" class="dw-hsel" data-role="none"
+                                    tabindex="-1" data-code="-1" data-value="">
+                                <option value="-1">请选择</option>
+
+                            </select>
+                        </li>
+                        <li class="name">拒绝生肖
+                            <input type="text" name="Zodiac" id="Zodiac" maxlength="16" placeholder="不接受的生肖"
+                                   data-role="none" class="form-control">
+                        </li>
+                    </ul>
+                </div>
+                <div class="form-group m-t-30  p-10">
+                    <div class="col-xs-12">
+                        <button type="button" data-id="0"
+                                class="btn btn-block btn-rounded btn-md btn-default-bg waves-effect waves-light js-regobj">
+                            完成
+                        </button>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+<script src="static/js/validator.js"></script>
+<script>
+
+    function initVal(age1, age2, heg1, heg2) {
+
+        var waimian = '<li data-val="{0}">{0}<ul>' +
+            '{1}' +
+            '</ul></li>';
+        var limian = '<li data-val="{0}">{0}</li>';
+        var treeli = '';
+        var treelist = '';
+        for (var i = 1965; i < 2002; i++) {
+            treeli = '';
+            for (var j = i; j < 2002; j++) {
+                treeli += limian.format(j, j)
+            }
+            treelist += waimian.format(i, treeli)
+        }
+
+        $('#MetaAge').empty().html(treelist);
+
+        treeli = '';
+        treelist = '';
+        for (var i = 150; i < 200; i++) {
+            treeli = '';
+            for (var j = i; j < 200; j++) {
+                treeli += limian.format(j, j)
+            }
+            treelist += waimian.format(i, treeli)
+        }
+
+        $('#MetaUHeight').empty().html(treelist);
+
+
+        $('#MetaAge').mobiscroll().treelist({
+            theme: 'mobiscroll',
+            display: 'bottom',
+            lang: 'zh',
+            labels: ['MetaAge1', 'MetaAgeEnd1'],
+            defaultValue: [age1, age2],
+            cancelText: null,
+            placeholder: '选择年龄范围',//占位提示
+            headerText: function (valueText) {
+                return "选择年龄范围";
+            },//弹出列表标题
+            formatResult: function (array) { //返回自定义格式结果
+                return array[0] + '-' + array[1];
+            },
+            onInit: function (event, inst) {
+                $("#MetaAge_dummy").val(age1 + "-" + age2);
+            }
+        });
+        $('#MetaUHeight').mobiscroll().treelist({
+            theme: 'mobiscroll',
+            display: 'bottom',
+            lang: 'zh',
+            labels: ['MetaUHeight1', 'MetaUHeightEnd2'],
+            defaultValue: [heg1, heg2],
+            cancelText: null,
+            placeholder: '选择身高范围',//占位提示
+            headerText: function (valueText) {
+                return "选择身高范围";
+            },//弹出列表标题
+            formatResult: function (array) { //返回自定义格式结果
+                return array[0] + '-' + array[1];
+            },
+            onInit: function (event, inst) {
+                $("#MetaUHeight_dummy").val(heg1 + "-" + heg2);
+            }
+        });
+    }
+
+</script>
+<script>
+    window.history.forward(1);
+    $(function () {
+
+        dszdy.Business.User.getUserMateInfoProfile();
+
+        initMaritalStatusAndEducation(); //初始化选择器
+
+//        if (GET["s"] == "1") {
+//            getInfo();
+//        }
+//        else {
+//            //取消返回键
+//            $(".topbar").empty().append('<div class="col-xs-12 bar-title">我的择偶</div>');
+//            //$("select[name='MetaAge']").val("1985");
+//            //$("select[name='MetaUHeight']").val("160");
+//            //$("select[name='MetaUHeightEnd']").val("160");
+//            //$("select[name='MetaAgeEnd']").val("1985");
+//            initVal("1985", "1985", "160", "160");
+//        }
+    });
+
+    function initMaritalStatusAndEducation() {
+        $('#MetaMaritalStatus').mobiscroll().select({
+            theme: 'mobiscroll',
+            display: 'bottom',
+            lang: 'zh',
+            onInit: function () {
+                dszdy.Business.Configuration.getMetaMaritalStatusList();
+            },
+            onSelect: function (valueText, inst) {
+                //alert(valueText); //select选中值
+                //alert(inst._tempValue); //select选中value值
+                $('#MetaMaritalStatus').attr("data-code", inst._tempValue);
+                $('#MetaMaritalStatus').attr("data-value", valueText);
+            }
+        });
+
+        $("#MetaEducation").mobiscroll().select({
+            theme: 'mobiscroll',
+            lang: 'zh',
+            display: 'bottom',
+            onInit: function () {
+                dszdy.Business.Configuration.getMetaEducationList();
+            },
+            onSelect: function (valueText, inst) {
+                //alert(valueText); //select选中值
+                //alert(inst._tempValue); //select选中value值
+                $('#MetaEducation').attr("data-code", inst._tempValue);
+                $('#MetaEducation').attr("data-value", valueText);
+            }
+        });
+    }
+</script>
+
+<script>
+    //注册择偶信息
+    function submit_edit_user_meta() {
+
+        var metaEducation = parseInt($('#MetaEducation').attr("data-code"));
+        var metaMaritalStatus = parseInt($('#MetaMaritalStatus').attr("data-code"));
+        var metaAge_dummy = $("#MetaAge_dummy").val();
+        var metaUHeight_dummy = $("#MetaUHeight_dummy").val();
+        var zodiac = $("input[name='Zodiac']").val();
+
+        if (metaAge_dummy === "") {
+            dszdy.UI.Tip("请选择最小年龄");
+            return;
+        }
+
+        if (metaUHeight_dummy === "") {
+            dszdy.UI.Tip("请选择身高");
+            return;
+        }
+
+        if (metaEducation === "" || $('#MetaEducation').attr("data-code") === "-1") {
+            dszdy.UI.Tip("请选择学历");
+            return;
+        }
+        if (metaMaritalStatus === "" || $('#MetaMaritalStatus').attr("data-code") === "-1") {
+            dszdy.UI.Tip("请选择婚姻状态");
+            return;
+        }
+        dszdy.UI.LoadImg();
+
+        // var MetaMaritalStatus = '';
+        // $("[id*='Status']:checked").each(function (i, item) {
+        //     if (0 == i) {
+        //         MetaMaritalStatus = $(item).val();
+        //     } else {
+        //         MetaMaritalStatus += ("," + $(item).val());
+        //     }
+        // });
+
+        // var splage = $("#MetaAge_dummy").val().split('-');
+        // var MetaAge = splage[0];
+        // var MetaAgeEnd = splage[1];
+        // splage = $("#MetaUHeight_dummy").val().split('-');
+        // var MetaUHeight = splage[0];
+        // var MetaUHeightEnd = splage[1];
+        // var query_list = [
+        //     MetaAge,
+        //     MetaUHeight,
+        //     $("select[name='MetaEducation']").val(),
+        //     MetaMaritalStatus,
+        //     $("input[name='Zodiac']").val(),
+        //     MetaAgeEnd,
+        //     MetaUHeightEnd
+        //
+        // ];
+
+        var param = {
+            "ageRang": metaAge_dummy,
+            "heightRang": metaUHeight_dummy,
+            "refuseZodiac": zodiac,
+            "education": metaEducation,
+            "marriageStatus": metaMaritalStatus
+        };
+
+        $.api("updateMateInfoProfile", param, edit_user_callback, "user");
+
+        function edit_user_callback(ret) {
+
+            dszdy.UI.Tip(ret.message);
+
+            if (ret.status === "SUCCESS") {
+
+                window.location.href = "home.html";
+            }
+
+//            if (id == 1) {
+//                dszdy.UI.Tip({title: "修改成功", showConfirmButton: false});
+//
+//            }
+//            else {
+//                window.location.href = "/love/wap/loadphoto.aspx?UserId=";
+//            }
+        }
+    }
+
+    //        if ($("#MetaAge_dummy").val() == "") {
+    //            dszdy.UI.Tip("请选择最小年龄");
+    //            return;
+    //        }
+    //        if ($("#MetaUHeight_dummy").val() == "") {
+    //            dszdy.UI.Tip("请选择身高");
+    //            return;
+    //        }
+    //        if ($("#MetaEducation_dummy").val() == "") {
+    //            dszdy.UI.Tip("请选择学历");
+    //            return;
+    //        }
+    //        dszdy.UI.loadingReview("正在提交...");
+    //        var splage = $("#MetaAge_dummy").val().split('-');
+    //        var MetaAge = splage[0];
+    //        var MetaAgeEnd = splage[1];
+    //        splage = $("#MetaUHeight_dummy").val().split('-');
+    //        var MetaUHeight = splage[0];
+    //        var MetaUHeightEnd = splage[1];
+    //        var query_list = [
+    //            MetaAge,
+    //            MetaUHeight,
+    //            $("select[name='MetaEducation']").val(),
+    //            $("#MetaMaritalStatus").val().toString(),
+    //            $("input[name='MetaIncome']").val(),
+    //            MetaAgeEnd,
+    //            MetaUHeightEnd
+    //
+    //        ];
+    //        $.api("webuser_edit_user_meta_info", query_list, edit_user_callback, "user_auth");
+    //
+    //        function edit_user_callback(return_data) {
+    //            dszdy.UI.loadingReview(false);
+    //            if (return_data[0] != "SUCCESS")
+    //                return dszdy.UI.Tip(return_data[0]);
+    //            var id = $(".js-regobj").attr("data-id");
+    //            dszdy.UI.Tip("修改成功");
+    //            window.location.href = "/love/wap/mylove.aspx";
+    //            //if (id == 1) {
+    //            //    swal({ title: "修改成功", showConfirmButton: false });
+    //            //    window.location.href = "/love/wap/mylove.aspx";
+    //            //}
+    //            //else {
+    //            //    window.location.href = "/love/wap/gallery.aspx?UserId=" + return_data[1];
+    //            //}
+    //        }
+    //    }
+    $('.js-regobj').on("click", function () {
+        submit_edit_user_meta();
+    });
+</script>
+
+
+</body>
+</html>
+
+

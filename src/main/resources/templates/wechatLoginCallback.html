@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>微信登录</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/binduserUI.js" charset="utf-8"></script>
+
+    <link href="static/css/common.css" rel="stylesheet" />
+    <style>
+        .BindTableStyle {
+            background-color: rgba(106, 12, 171, 0.05);
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            用户绑定(微信)
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content">
+            <form id="form-reginfo1">
+
+
+                <div class="BindTableStyle">
+                    <p class="hintText">
+                        <label for="RadioItem2">新用户注册可获取微信离线功能</label>
+                    </p>
+                </div>
+
+                <div id="RegisterUserDiv" class="registerOneBtnClass">
+                    <ul class="inforList list1">
+                        <li class="name">帐号名
+                            <input type="text" name="txtRegisterUserName" id="txtRegisterUserName" maxlength="16" placeholder="请输入你的手机号" data-role="none" />
+                        </li>
+                        <li class="name">密&nbsp;&nbsp;码
+                            <input type="password" name="txtRegisterPwd" id="txtRegisterPwd" placeholder="密码 6-12位 区分大小写" data-role="none" />
+                        </li>
+                        <li class="name">确认密码
+                            <input type="password" name="txtRegisterPwd1" id="txtRegisterPwd1" placeholder="密码 6-12位 区分大小写" data-role="none" />
+                        </li>
+                        <li class="name">
+                            <a href="javascript:;" class="btn btn-primary js-getcode">获取
+                            </a>
+                            <input type="text" name="code" id="code" placeholder="请输入短信验证码" />
+                        </li>
+                    </ul>
+                    <div class="col-xs-12 p-10">
+                        <button type="button" data-id="0" id="btn_RegisterBind" class="btn btn-block btn-lg btn-default-bg waves-effect waves-light">注册并绑定</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

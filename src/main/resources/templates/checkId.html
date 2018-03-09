@@ -1,0 +1,271 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>审核认证资料上传</title>
+<link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+<script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <style>
+        .col-xs-6 .thumbnail .of-fixhg {
+            height: 88px;
+            overflow: hidden;
+        }
+
+        #activityModalLabel {
+            font-family: microsoft yahei;
+            font-size: 13px;
+            padding-bottom: 5px;
+        }
+
+        .js-title-type {
+            padding-bottom: 5px;
+        }
+        .modal-header {
+            border-bottom: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <!--start topbar-->
+        <div class="topbar row">
+            <div class="col-xs-2 lv-icon ">
+                <span></span>
+            </div>
+            <div class="col-xs-8 bar-title">
+                审核认证资料上传
+            </div>
+        </div>
+        <!--end topbar-->
+        <div class="content-page">
+            <div class="content">
+                <div class="card-box">
+                    <div class="panel-header">
+                        <h5 class="modal-title" id="activityModalLabel"><a href="javascript:;" data-toggle="modal" data-target="#activityModal" class="iddemo text-pink"></a></h5>
+                    </div>
+                    <div class="panel-body" style="border: 1px dotted #9E9E9E;">
+                        <div class="row js-title-type"><span class="text-danger">身份证</span>或<span class="text-danger">名片</span>(注册手机号必须一致)或<span class="text-danger">单位证明</span></div>
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <img src="static/images/checkimg.jpg" id="button_upload" style="width: 100%; height: 200px" class="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="prove" style="font-size: 16px; color: #fe8775; text-align: center;margin-left: 10px;margin-right: 10px;">
+                    温馨提示<br/>
+                    <span id="refuseContent" style="margin-top: 40px;">你还没有上传资料</span><br/>
+                    (审核成功赠送10朵鲜花)
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="login-model" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel">
+        <div class="modal-dialog modal-down" role="document">
+            <div class="modal-content">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                <div class="modal-body">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 模态框（Modal） -->
+    <div class="modal fade" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                        ×
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <img src="static/images/iddemo.png" class="img-responsive js-load-img">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-pink" data-dismiss="modal">
+                        关闭
+                    </button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal -->
+    </div>
+    
+    <script src="static/js/ajaxupload.3.9.js"></script>
+    
+
+<script>
+
+    var picIndex = parseInt(GET["picindex"]);
+
+    $(function () {
+
+        proveList();
+
+        if (picIndex == 1) {
+
+            $(".js-title-type").empty().append
+            (
+                "<span class='text-danger'>身份证</span>" +
+                "或<span class='text-danger'>名片</span>" +
+                "(注册手机号必须一致)或<span class='text-danger'>单位证明</span>"
+            );
+
+            $("#activityModalLabel").html
+            (
+                "请提交您的 身份证 或 名片（注册手机号必须一致） 或 单位证明 进行身份审核。" +
+                "<a href='javascript:;' data-toggle='modal'  data-target='#activityModal' class='iddemo text-pink'>示例查看</a>"
+            );
+
+        } else if (picIndex == 2) {
+
+            $(".js-title-type").empty().append("学位证");
+
+        } else if (picIndex == 3) {
+
+            $(".js-title-type").empty().append("行驶证正面");
+
+            $("#activityModalLabel").html
+            (
+                "请上传：本人行驶证正面，清晰照片。" +
+                "<a href='javascript:;' data-toggle='modal'  data-target='#activityModal' class='iddemo text-pink'>示例查看</a>"
+            );
+
+            $(".js-load-img").attr("src", "static/images/cardemo.png");
+
+        } else if (picIndex == 4) {
+
+            $(".js-title-type").empty().append("房产证");
+
+            $("#activityModalLabel").html
+            (
+                "请上传：本人房产证内容版面，清晰照片。" +
+                "<a href='javascript:;' data-toggle='modal'  data-target='#activityModal' class='iddemo text-pink'>示例查看</a>"
+            );
+
+            $(".js-load-img").attr("src", "static/images/homedemo.png");
+        }
+
+        //单张图片上传
+        new AjaxUpload('#button_upload',
+                            {
+                                action: '/api/upload/prove?picIndex=' + picIndex,
+                                onSubmit: function (file, extension) {
+                                    dszdy.UI.loading("正在上传");
+                                    return start_upload(this, extension)
+                                },
+                                onComplete: function (file, response) {
+                                    show_img_upload_result(this, response);
+                                }
+                            });
+
+        //这里修改 支持上传图片的格式
+        function start_upload(upload_obj, extension) {
+            if (extension.toLowerCase() != "jpg" && extension.toLowerCase() != "jpeg" && extension.toLowerCase() != "png") {
+                dszdy.UI.Tip('目前只支持jpeg,png和jpg格式文件');
+                dszdy.UI.loading(false);
+                return false;
+            }
+            if ($("input[name='userfile']")[0].files[0].size > 1024 * 1024 * 4) {
+                dszdy.UI.Tip('大小不超过4M,请重新上传');
+                dszdy.UI.loading(false);
+                return false;
+            }
+        }
+
+        //单张图片上传成功的提示的信息
+        function show_img_upload_result(upload_obj, response) {
+            dszdy.UI.loading(false);
+            var obj = $.parseJSON(response.replace(/<.*?>/ig,""));
+            if (obj.status == "SUCCESS") {
+                dszdy.UI.Tip("上传成功");
+                var prove = obj.data.fileHost + "/200/200/" + obj.data.fileName + obj.data.fileType;
+                $("#button_upload").attr("src", prove);
+            }
+            else {
+                dszdy.UI.Tip(obj.message);
+            }
+        }
+
+
+        //载入时候的 图片的显示
+        function proveList() {
+
+            $.api("getUserProveList", {}, getUserProveListCallback, "user");
+
+            function getUserProveListCallback(ret) {
+                if (ret.status === "SUCCESS") {
+                    var picObj;
+                    var refuseContent = "";
+                    var proveStatus;
+
+                    if (picIndex == 1) {
+                        picObj = ret.data.identity;
+                        proveStatus = ret.data.identityStatus;
+                        refuseContent = ret.data.identityRefuse;
+
+                    }
+
+                    else if (picIndex == 2) {
+                        picObj = ret.data.education;
+                        proveStatus = ret.data.educationStatus;
+                        refuseContent = ret.data.educationRefuse;
+                    }
+
+                    else if (picIndex == 3) {
+                        picObj = ret.data.car;
+                        proveStatus = ret.data.carStatus;
+                        refuseContent = ret.data.carRefuse;
+                    }
+
+                    else if (picIndex == 4) {
+                        picObj = ret.data.house;
+                        proveStatus = ret.data.houseStatus;
+                        refuseContent = ret.data.houseRefuse;
+                    }
+
+                    else {
+                        dszdy.UI.Tip("页面初始化失败");
+                    }
+
+                    if (picObj != null && picObj != "") {
+
+                        $("#button_upload").attr("src", picObj.fileHost + "/200/200/" + picObj.fileName + picObj.fileType);
+
+                        if (proveStatus == 1) {
+                            $('#refuseContent').text("资料审核已通过");
+                        }
+
+                        if (proveStatus == 2) {
+                            $('#refuseContent').text("资料审核中");
+                        }
+
+                        if (proveStatus == 3) {
+                            $('#refuseContent').text("您的资料由于：" + refuseContent + " ,导致审核不通过，请重新上传资料进行审核！");
+                        }
+                    }
+                }
+            }
+        }
+    })
+</script>
+</body>
+</html>

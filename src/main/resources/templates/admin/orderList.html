@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/m/static/admin/css/alert.css">
+
+    <script type="text/javascript" src="/m/static/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/ckform.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/common.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sweet-alert .sa-icon.sa-custom {
+            background-size: contain;
+            border-radius: 0;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .ajax_tips1, .ajax_tips_model {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 {
+            text-align: center;
+        }
+
+        .m10 tr th {
+            text-align: center;
+        }
+
+        .m10 tr td {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div style="margin-top: 50px; width: 600px;">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" id="nicknameOrOrderId" class="form-control" placeholder="请输入会员名称或订单号">
+            <span class="input-group-btn">
+						<button class="btn btn-default" type="button" id="search">
+							搜索
+						</button>
+					</span>
+        </div>
+    </div>
+</div><br>
+
+
+<div class="tab-pane fade in active" id="identity" style="    margin-top: 30px;">
+    <span class="input-group-addon"  style="margin-top: 60px;">订单列表</span>
+    <table class="table table-bordered table-hover definewidth m10">
+        <thead>
+        <tr>
+            <th>订单ID</th>
+            <th>订单名称</th>
+            <th>订单总价</th>
+            <th>商品数量</th>
+            <th>订单用户</th>
+            <th>订单状态</th>
+            <th>下单时间</th>
+        </tr>
+        </thead>
+        <tbody id="content1">
+
+        </tbody>
+    </table>
+    <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+</div>
+
+<div id="order_page" style="text-align: center;" pagination="pagination_new" pagenumber="" totalpage="">
+
+</div>
+
+<script>
+
+    getOrderList(0);
+
+    $('#search').click(function () {
+
+        var nicknameOrOrderId = $('#nicknameOrOrderId').val();
+
+        if (nicknameOrOrderId === "") {
+            tips("请输入搜索内容");
+            return;
+        }
+
+        if (nicknameOrOrderId.length === 20) {
+            searchOrderList(1, 0, nicknameOrOrderId);
+        }
+        else {
+            searchOrderList(2, 0, nicknameOrOrderId);
+        }
+
+    });
+
+    //search
+    function searchOrderList(type, pageCode, nicknameOrOrderId) {
+        $.api("searchOrderList", {"type": type, "pageCode": pageCode, "pageSize": 10, "value":nicknameOrOrderId}, getOrderListCallback, "admin/goods");
+    }
+
+    //列表
+    function getOrderList(pageCode) {
+        $.api("getOrderList", {"pageCode": pageCode, "pageSize": 10}, getOrderListCallback, "admin/goods");
+    }
+
+    function getOrderListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            var pageCode = ret.data.page;
+            var pageTotal = ret.data.pageTotal;
+            var list = ret.data.orders;
+
+            var html = "";
+            if (list.length > 0) {
+                $.each(list, function (index, item) {
+
+                    var orderStatus = function (status) {
+                        if (status === 0)
+                            return "待支付";
+
+                        if (status === 1)
+                            return "已完成";
+                    };
+
+                    html += ' <tr>' +
+                        '<td>' + item.order.orderId + '</td>' +
+                        '<td>' + item.order.orderName + '</td>' +
+                        '<td>' + item.order.orderFee + '</td>' +
+                        '<td>' + item.order.goodsTotal + '</td>' +
+                        '<td>' + item.userName + '</td>' +
+                        '<td>' + orderStatus(item.order.orderPayStatus) + '</td>' +
+                        '<td>' + dszdy.UI.formatTimestampLongDet(item.order.createTime) + '</td>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#content1').html('');
+                $('#content1').append(html);
+                $('.ajax_tips1').hide();
+
+                page(pageCode, pageTotal);
+
+            } else {
+                $('#content1').html('');
+                $('.ajax_tips1').show();
+            }
+        }
+    }
+
+    function page(pageCode, pageTotal) {
+        $('#order_page').attr('pagenumber', pageCode + 1);
+        $('#order_page').attr('totalpage', pageTotal);
+        $('#order_page').attr('paginationMaxLength', '5');
+        initPagination($('#order_page'));
+    }
+
+    //page li onclick
+    function paginationClick(pagination_id, pageCode) {
+        if (pagination_id === "order_page") {
+            getOrderList(pageCode - 1);
+        }
+    }
+
+    var M = {};
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content': tip,
+            'closeTime': 2000,
+        })
+    }
+</script>
+</body>
+</html>

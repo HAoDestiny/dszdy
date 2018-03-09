@@ -1,0 +1,598 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/m/static/admin/css/bootstrap.css">
+    <link rel="stylesheet" href="/m/static/admin/css/alert.css">
+
+    <script type="text/javascript" src="/m/static/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.sorted.js"></script>
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script><!--置于jq之下-->
+    <script type="text/javascript" src="/m/static/admin/js/ckform.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/common.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sweet-alert .sa-icon.sa-custom {
+            background-size: contain;
+            border-radius: 0;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .ajax_tips1, .ajax_tips_model {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 {
+            text-align: center;
+        }
+
+        .m10 tr th {
+            text-align: center;
+        }
+
+        .m10 tr td {
+            text-align: center;
+        }
+
+    </style>
+</head>
+<body>
+<div style="margin-top: 50px; width: 600px;">
+    <div class="col-lg-6">
+        <div class="input-group">
+            <input type="text" id="nickname" class="form-control" placeholder="请输入会员名称">
+            <span class="input-group-btn">
+						<button class="btn btn-default" type="button" id="search">
+							搜索
+						</button>
+					</span>
+        </div><!-- /input-group -->
+    </div><!-- /.col-lg-6 -->
+</div>
+<br>
+
+
+<div class="tab-pane fade in active" id="identity" style="    margin-top: 30px;">
+    <span class="input-group-addon" style="margin-top: 60px;">会员列表</span>
+    <table class="table table-bordered table-hover definewidth m10">
+        <thead>
+        <tr>
+            <th style="width: 5%;">ID</th>
+            <th style="width: 5%;">名称</th>
+            <th style="width: 5%;">性别</th>
+            <th style="width: 8%;">生日</th>
+            <th style="width: 5%;">身高</th>
+            <th style="width: 5%;">学历</th>
+            <th style="width: 10%;">注册时间</th>
+            <th style="width: 10%;">上次登录时间</th>
+            <th style="width: 5%;">上次登录ip</th>
+            <th style="width: 14%;">会员信息</th>
+            <th style="width: 5%;">鲜花数</th>
+            <th style="width: 5%;">状态</th>
+            <th>管理操作</th>
+        </tr>
+        </thead>
+        <tbody id="content1">
+
+        </tbody>
+    </table>
+    <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+</div>
+
+<div id="user_page" style="text-align: center;" pagination="pagination_new" pagenumber="" totalpage="">
+
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    选择活动
+                </h4>
+            </div>
+            <div class="modal-body">
+                <div class="input-group" style="margin: 10px auto;">
+                    <span class="input-group-addon">开通会员</span>
+                    <div class="input-group-btn">
+                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                            会员类别
+                            <span class="caret"></span>
+                        </button>
+                        <ul id="goodsType_2" class="dropdown-menu">
+                            <!--<li><a id="flowerType" onclick="goodsType(1)">积分类商品(鲜花)</a></li>-->
+                            <!--<li><a id="vip" onclick="goodsType(2)">会员类商品(会员卡等)</a></li>-->
+                        </ul>
+                    </div>
+                    <input id="goodsTypeS" type="text" value="不为此用户开通会员" class="form-control" disabled>
+                </div>
+
+                <table class="table table-bordered table-hover definewidth m10">
+                    <thead>
+                    <tr>
+                        <th>活动ID</th>
+                        <th>活动标题</th>
+                        <th width="16%">管理操作</th>
+                    </tr>
+                    </thead>
+                    <tbody id="content_model">
+
+                    </tbody>
+                </table>
+                <div class="ajax_tips ajax_tips_model">找不到更多数据</div>
+
+                <div id="activity_page" style="text-align: center;" pagination="pagination_new" pagenumber=""
+                     totalpage="">
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<script>
+
+    var M = {};
+    var userId;
+    var goodsId = 0;
+    var pageNow = 0;
+    getUserList(0);
+
+    //详细
+    function getUserDetailed(userId) {
+
+        $.api("getUserInfoAll?id=" + userId, {}, getUserInfoAllCallback, "admin");
+    }
+
+    //操作
+    function userOperation(userId, operationType) {
+        $.api("userOperation", {"userId": userId, "operationType": operationType}, userOperationCallback, "admin");
+    }
+
+    //加入活动
+    function joinActivity(uId, activityId, type) {
+
+        if (type === 1) {
+            userId = uId;
+            if ($('#content_model').html().trim() === "") {
+                getCityActivityList();
+                getGoodsList();
+            }
+        }
+
+        if (type === 2) {
+
+            var id = 0;
+            var isAddVip = 0;
+
+            if (goodsId !== 0) {
+                id = goodsId;
+                isAddVip = 1;
+            }
+
+            $.api("joinActivity", {
+                "userId": userId,
+                "activityId": activityId,
+                "addVip": isAddVip,
+                "goodsId": id
+            }, function (ret) {
+                goodsId = 0;
+                tips(ret.message);
+                if (ret.status === "SUCCESS") {
+                    getUserList(pageNow);
+                }
+            }, "admin");
+        }
+    }
+
+    $('#search').click(function () {
+
+        var nickname = $('#nickname').val();
+
+        if (nickname === "") {
+            tips("请输入搜索名称");
+            return;
+        }
+        searchUserList(0, nickname);
+
+    });
+
+    //search
+    function searchUserList(pageCode, nickname) {
+        $.api("searchUserList", {
+            "type": 0,
+            "pageCode": pageCode,
+            "pageSize": 5,
+            "nickname": nickname
+        }, getUserListCallback, "admin");
+    }
+
+    //列表
+    function getUserList(pageCode) {
+        $.api("getUserList", {"type": 0, "pageCode": pageCode, "pageSize": 10}, getUserListCallback, "admin");
+    }
+
+    function getCityActivityList(pageCode) {
+        $.api("getCityActivityList", {'pageCode': pageCode, 'pageSize': 10}, getCityActivityListCallback, "admin");
+    }
+
+    //goodsList
+    function getGoodsList() {
+        $.api("getGoodsListByGoodsType", {'goodsType': 2}, function (ret) {
+            if (ret.status === "SUCCESS") {
+                var goodsList = ret.data;
+                var html = "";
+                if (goodsList.length > 0) {
+
+                    $.each(goodsList, function (index, item) {
+                        html += '<li><a id="goodsId_a" onclick="goodsType(\'' + item.goodsName + '\', ' + item.id + ')">' + item.goodsName + '</a></li>';
+                    });
+                }
+                $('#goodsType_2').html(html);
+
+            }
+        }, "admin/goods");
+    }
+
+    function getUserInfoAllCallback(ret) {
+
+        var alertContent = "";
+
+        if (ret.status === "SUCCESS") {
+
+            var userInfo = ret.data.userInfo;
+            var avatar = userInfo.avatar;
+            var userInfoOtherMessage = ret.data.userInfoOtherMessage;
+            var userMetaInfo = ret.data.userMetaInfo;
+
+
+            if (userInfo != null && userInfoOtherMessage != null && userMetaInfo != null) {
+
+                alertContent = '<div id="UserInfoContent">' +
+                    '<img src=\"' + avatar.fileHost + "/100/100/" + avatar.fileName + avatar.fileType + '\" class="img-circle">' +
+                    '<span class="form-control" style="width: 80px; margin: auto">' + userInfoOtherMessage.maritalStatus + '</span>' +
+                    '</div>' +
+                    '<div>' +
+                    '<div class="input-group" style="width: 200px; margin: 10px auto;">' +
+                    '<span class="input-group-addon">昵称</span>' +
+                    '<input type="text" id="nicename" value=\"' + userInfo.trueName + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group" style="width: 200px;margin: 10px auto;">' +
+                    '<span class="input-group-addon">身高</span>' +
+                    '<input type="text" id="height" value=\"' + userInfo.height + "cm" + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group" style="width: 200px; margin: 10px auto;">' +
+                    '<span class="input-group-addon">星座</span>' +
+                    '<input type="text" id="constellation" value=\"' + userInfoOtherMessage.constellation + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="width: 200px;margin: 10px auto;">' +
+                    '<span class="input-group-addon">生日</span>' +
+                    '<input type="text" id="birth" value=\"' + userInfo.birth + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="width: 500px;margin: 10px auto;">' +
+                    '<span class="input-group-addon">常住地址</span>' +
+                    '<input type="text" id="address" value=\"' + userInfoOtherMessage.province + "-" + userInfoOtherMessage.city + "-" + userInfoOtherMessage.area + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 200px;">' +
+                    '<span class="input-group-addon">学历</span>' +
+                    '<input type="text" id="activityUrl" value=\"' + userInfo.education + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 200px;">' +
+                    '<span class="input-group-addon">毕业学校</span>' +
+                    '<input type="text" id="school" value=\"' + userInfoOtherMessage.school + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 200px;">' +
+                    '<span class="input-group-addon">职业</span>' +
+                    '<input type="text" id="school" value=\"' + userInfoOtherMessage.profession + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 200px;">' +
+                    '<span class="input-group-addon">年收入</span>' +
+                    '<input type="text" id="school" value=\"' + userInfoOtherMessage.income + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 200px;">' +
+                    '<span class="input-group-addon">择偶标准</span>' +
+                    '<input type="text" id="mate" value=\"' + userMetaInfo.maritalStatusValue + '\" class="form-control">' +
+                    '</div>' +
+                    '<div class="input-group col-lg-5" style="margin: 10px auto;width: 500px;">' +
+                    '<span class="input-group-addon">兴趣爱好</span>' +
+                    '<input type="text" id="mate" value=\"' + userInfoOtherMessage.userInfoOther.interest + '\" class="form-control">' +
+                    '</div>' +
+                    '</div>';
+            }
+        }
+
+        showUserInfoDialog(alertContent);
+    }
+
+    function userOperationCallback(ret) {
+
+        tips(ret.message);
+        if (ret.status === "SUCCESS") {
+            getUserList(0);
+        }
+
+    }
+
+    function getUserListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            pageNow = ret.data.page;
+            var pageCode = ret.data.page;
+            var pageTotal = ret.data.pageTotal;
+            var list = ret.data.userInfoListPo;
+
+            var html = "";
+            var prefix = "";
+            var but = "";
+            if (list.length > 0) {
+                $.each(list, function (index, item) {
+
+                    if (item.userInfo.nickname === null || item.userInfo.nickname === '') {
+                        return true;
+                    }
+
+                    var sex = function () {
+                        if (item.userInfo.sex === 0) {
+                            return "女";
+                        }
+
+                        return "男";
+                    };
+
+                    var status = function () {
+                        if (item.deleteTag === 0) {
+                            return "正常"
+                        }
+                        return "已被封号"
+                    };
+
+                    var exp = function () {
+                        if (item.isExp === 0 && item.vipType !== "普通会员") {
+                            return item.vipType + ' (次数 ' + item.balance + ' 到期 ' + dszdy.UI.formatTimestampLongDet(item.vipExp).split(' ')[0] + ')';
+                        }
+                        if (item.isExp === 1 && item.vipType !== "普通会员") {
+                            return item.vipType + ' (次数 ' + item.balance + ' 已过期 ' + dszdy.UI.formatTimestampLongDet(item.vipExp).split(' ')[0] + ')';
+                        }
+                        if (item.isExp === 1 && item.vipType === "普通会员") {
+                            return item.vipType;
+                        }
+                    };
+
+                    var nullData = function (data) {
+                        if (data === null || data === '' || data === undefined) {
+                            return "未填写";
+                        } else {
+                            return data;
+                        }
+                    };
+
+                    prefix = ' <tr>' +
+                        '<td>' + item.userId + '</td>' +
+                        '<td>' + nullData(item.userInfo.nickname) + '</td>' +
+                        '<td>' + sex() + '</td>' +
+                        '<td>' + nullData(item.userInfo.birth) + '</td>' +
+                        '<td>' + item.userInfo.height + "cm" + '</td>' +
+                        '<td>' + nullData(item.educationValue) + '</td>' +
+                        '<td>' + dszdy.UI.formatTimestampLongDet(item.registerTime) + '</td>' +
+                        '<td>' + dszdy.UI.formatTimestampLongDet(item.lastLoginTime) + '</td>' +
+                        '<td>' + item.lastLoginIp + '</td>' +
+                        '<td>' + exp() + '</td>' +
+                        '<td>' + item.flowerTotal + '</td>' +
+                        '<td>' + status() + '</td>' +
+                        '<td class="sub">';
+
+                    if (item.deleteTag === 1) {
+
+                        but = '<button onclick="userOperation(' + item.userId + "," + 3 + ')" class="btn btn-success">解封</button>' +
+                            '</td>' +
+                            '</tr>';
+                    }
+
+                    else {
+                        but ='<button onclick="review(' + item.userId + ')" class="btn btn-success btn-sm" style="margin-right: 10px;">手动审核</button>' +
+                            '<button onclick="sendFlower(' + item.userId + ')" class="btn btn-warning btn-sm" style="margin-right: 10px;">赠送鲜花</button>' +
+                            '<button onclick="getUserDetailed(' + item.userId + ')" class="btn btn-info btn-sm" style="margin-right: 10px;">详细信息</button>' +
+                            '<button onclick="joinActivity(' + item.userId + "," + 0 + "," + 1 + ')" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="margin-right: 10px;">加入活动</button>' +
+                            '<button onclick="userOperation(' + item.userId + "," + 2 + ')" class="btn btn-danger btn-sm">封号</button>' +
+                            '</td>' +
+                            '</tr>';
+                    }
+
+                    html += prefix + but;
+                });
+
+                $('#content1').html('');
+                $('#content1').append(html);
+                $('.ajax_tips1').hide();
+
+                page(pageCode, pageTotal);
+
+            } else {
+                $('#content1').html('');
+                $('.ajax_tips1').show();
+            }
+        }
+    }
+
+    function getCityActivityListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            var pageCode = ret.data.page;
+            var pageTotal = ret.data.pageTotal;
+            var list = ret.data.data;
+
+            var html = "";
+            if (list.length > 0) {
+                $.each(list, function (index, item) {
+
+                    html += ' <tr>' +
+                        '<td>' + item.activityId + '</td>' +
+                        '<td>' + item.activityTitle + '</td>' +
+                        '<td class="sub">' +
+                        '<button onclick="joinActivity(' + item.userId + "," + item.activityId + "," + 2 + ')" class="btn btn-success" data-dismiss="modal">加入</button>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#content_model').html('');
+                $('#content_model').append(html);
+                $('.ajax_tips_model').hide();
+
+                contentPage(pageCode, pageTotal);
+
+            } else {
+                $('#content_model').html('');
+                $('.ajax_tips_model').show();
+            }
+        }
+    }
+
+    function page(pageCode, pageTotal) {
+        $('#user_page').attr('pagenumber', pageCode + 1);
+        $('#user_page').attr('totalpage', pageTotal);
+        $('#user_page').attr('paginationMaxLength', '5');
+        initPagination($('#user_page'));
+    }
+
+    function contentPage(pageCode, pageTotal) {
+        $('#activity_page').attr('pagenumber', pageCode + 1);
+        $('#activity_page').attr('totalpage', pageTotal);
+        $('#activity_page').attr('paginationMaxLength', '5');
+        initPagination($('#activity_page'));
+    }
+
+    function paginationClick(pagination_id, code){
+        //alert(pagination_id);
+        if (pagination_id === "user_page") {
+            getUserList(code - 1);
+        }
+
+        if (pagination_id === "activity_page") {
+            getCityActivityList(code - 1);
+        }
+    }
+
+    function goodsType(value, id) {
+        goodsId = id;
+        $('#goodsTypeS').val(value);
+    }
+
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content': tip,
+            'closeTime': 2000,
+        })
+    }
+
+    function review(userId) {
+        M.dialog10 = jqueryAlert({
+            'title': '确认审核',
+            'content': '您确认手动设置该用户为已审核吗？',
+            'width': "200",
+            'modal': true,
+            'contentTextAlign': 'center',
+            'animateType': 'linear',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog10.close();
+                },
+                '确定': function () {
+
+                    $.api("check", {'type': 0, 'userId': userId, 'tag': 1}, function (ret) {
+                        tips(ret.message);
+                        if (ret.status === "SUCCESS") {
+                            M.dialog10.close();
+                        }
+                    }, "admin");
+
+                }
+            }
+        })
+    }
+    
+    function showUserInfoDialog(alertContent) {
+        M.dialog9 = jqueryAlert({
+            'style': 'pc',
+            'title': '详细信息',
+            'content': alertContent,
+            'width': "800",
+            'modal': true,
+            'contentTextAlign': 'center',
+            'animateType': 'linear',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog9.close();
+                }
+            }
+        })
+    }
+
+    function sendFlower(userId) {
+        M.dialog10 = jqueryAlert({
+            'title': '赠送鲜花',
+            'content': '<p>请输入鲜花数量</p><div class="form-group"><input type="number" id="flower_content" class="form-control"/></div>',
+            'width': "200",
+            'modal': true,
+            'contentTextAlign': 'center',
+            'animateType': 'linear',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog10.close();
+                },
+                '确定': function () {
+
+                    var flowerNum = $('#flower_content').val();
+                    if (flowerNum === "") {
+                        tips('请输入鲜花数量');
+                        return;
+                    }
+
+                    $.api("sendFlower", {'type': 1, 'userId': userId, 'flowerNum': flowerNum}, function (ret) {
+                        tips(ret.message);
+                        if (ret.status === "SUCCESS") {
+                            M.dialog10.close();
+                        }
+                    }, "admin");
+
+                }
+            }
+        })
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,490 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>添加活动</title>
+    <link type="text/css" rel="stylesheet" href="/m/static/admin/css/bootstrap.css">
+    <link type="text/css" rel="stylesheet"  href="/m/static/admin/css/fileinput.min.css"/>
+    <link type="text/css" rel="stylesheet" href="/m/static/admin/css/glyphicons.css">
+    <link type="text/css" rel="stylesheet" href="/m/static/admin/css/alert.css">
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script>
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script type="text/javascript" src="/m/static/admin/js/fileinput.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/fileinput.min.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/zh.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+
+
+    <style type="text/css">
+        .ajax_tips1 {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 tr th {
+            text-align: center;
+        }
+
+        .m10 tr td {
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #eaeaea;
+        }
+    </style>
+</head>
+
+<body>
+
+<div style="margin-top: 40px; margin-left: 50px;">
+
+    <div class="input-group" style="width: 566px; ">
+        <span class="input-group-addon">活动标题</span>
+        <input type="text" id="activityTitle" name="activityTitle" onblur="checkNull(this.value, 1)" value="" class="form-control" placeholder="请输入活动标题">
+    </div>
+    <div class="input-group col-lg-5" style="display: inline-table; margin-top: 5px;">
+        <span class="input-group-addon">活动简介</span>
+        <input type="text" id="activityTag" name="activityTag" onblur="checkNull(this.value, 2)" onfocus="" class="form-control" placeholder="请输入活动简介">
+    </div>
+    <div class="input-group col-lg-5" style="margin-top: 5px;">
+        <span class="input-group-addon">活动链接</span>
+        <input type="text" id="activityUrl" name="activityUrl" onblur="checkNull(this.value, 3)" class="form-control" placeholder="请输入活动链接">
+    </div>
+    <br/>
+    <span class="input-group-addon">活动海报上传</span>
+    <div class="kv-main">
+        <br>
+        <form enctype="multipart/form-data">
+            <div class="form-group">
+                <input id="file" name="file" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="myTabContent" class="tab-content">
+    <span class="input-group-addon"  style="margin-top: 60px;">活动列表</span>
+    <div class="tab-pane fade in active" id="supAdmin">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>活动ID</th>
+                <th>活动标题</th>
+                <th>活动描述</th>
+                <th>活动链接</th>
+                <th width="18%">活动海报</th>
+                <th>创建时间</th>
+                <th>活动状态</th>
+                <th width="12%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content1">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+    </div>
+
+
+    <div id="activityPage" style="text-align: center;" pagination="pagination_new" pagenumber="" totalpage="">
+
+    </div>
+</div>
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="update_activity_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改活动
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="update_activity_form" class="form-group">
+
+                    <input type="hidden" name="activityId" id="activityId"/>
+
+                    <div class="input-group" style="width: 566px; ">
+                        <span class="input-group-addon">活动标题</span>
+                        <input type="text" id="up_activityTitle" name="up_activityTitle" onblur="checkNull(this.value, 1)" value="" class="form-control" placeholder="请输入活动标题">
+                    </div>
+                    <div class="input-group col-lg-5" style="display: inline-table;width: 566px;  margin-top: 5px;">
+                        <span class="input-group-addon">活动简介</span>
+                        <input type="text" id="up_activityTag" name="up_activityTag" onblur="checkNull(this.value, 2)" onfocus="" class="form-control" placeholder="请输入活动简介">
+                    </div>
+                    <div class="input-group col-lg-5" style="width: 566px; margin-top: 5px;">
+                        <span class="input-group-addon">活动链接</span>
+                        <input type="text" id="up_activityUrl" name="up_activityUrl" onblur="checkNull(this.value, 3)" class="form-control" placeholder="请输入活动链接">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                <button id="update_activity_sub" type="button" class="btn btn-success" >提交</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="update_activityPic_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改海报
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="kv-main">
+                    <br>
+                    <form enctype="multipart/form-data">
+                        <div class="form-group">
+                            <input id="activity_pic" data-id="" name="activity_pic" type="file" multiple class="file" data-overwrite-initial="false" data-min-file-count="1">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</body>
+
+<script src="/m/static/js/validator.js"></script>
+<script>
+
+    //更新海报
+    $(function(){
+        $('#update_activity_form').bootstrapValidator({
+            live: 'enabled',
+            message: '输入值不能为空',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                up_activityTitle: {
+                    validators: {
+                        notEmpty: { message: '请输入活动标题' }
+                    }
+                },
+                up_activityTag: {
+                    validators: {
+                        notEmpty: { message: '请输入活动简介' }
+                    }
+                },
+                up_activityUrl: {
+                    validators: {
+                        notEmpty: { message: '请输入活动链接' }
+                    }
+                }
+            }
+        }).on('success.form.bv', function (e) {
+            e.preventDefault();
+            var activityId = $('#activityId').val();
+            var activityTitle = $('#up_activityTitle').val();
+            var activityTag = $('#up_activityTag').val();
+            var activityUrl = $('#up_activityUrl').val();
+            $.api("updateCityActivity", {"activityId":activityId, "activityTitle":activityTitle, "activityTag":activityTag, "activityUrl":activityUrl}, function (ret) {
+                tips(ret.message);
+                if (ret.status === "SUCCESS") {
+                    getActivityList(0);
+                }
+                $('#update_activity_m').modal("toggle");
+            }, "admin/activity")
+        });
+
+        //启动校验
+        $('#update_activity_sub').on("click", function () {
+            $("#update_activity_form").bootstrapValidator('validate');
+        });
+    });
+
+</script>
+
+<script>
+    var pageCode;
+    $('#activity_pic').fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: '/api/admin/activity/updateActivityPic',
+        allowedFileExtensions : ['jpg', 'png','gif'],
+        showUpload: true, //是否显示上传按钮
+        showCaption: false,//是否显示标题
+        showPreview : true, //是否显示预览
+        browseClass: "btn btn-primary", //按钮样式
+        overwriteInitial: false,
+        initialCaption: "请选择上传活动海报",
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        enctype: 'multipart/form-data',
+        validateInitialCount:true,
+        maxFileSize: 1000,
+        maxFilesNum: 1,
+//        initialPreview: ["http://" + src],
+//        initialPreviewAsData: true,
+//        initialPreviewConfig: [
+//            {caption: "海报.jpg", filename: "海报", downloadUrl: "http://"+src, size: 930321, width: "200px", key: 1}
+//        ],
+        //allowedFileTypes: ['image', 'video', 'flash'],
+//        slugCallback: function(filename) {
+//            return filename.replace('(', '_').replace(']', '_');
+//        }
+        uploadExtraData: function () {
+            var activityId = $('#activity_pic').attr("data-id");
+            var data = {activityId:activityId};
+
+            return data;
+        }
+
+    }).on('filepreupload', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        console.log('File pre upload triggered');
+
+        //callback
+    }).on("fileuploaded", function (event, data, previewId, index) {
+        var message = data.response.message;
+        var status = data.response.status;
+
+        tips(message);
+        if (status === "SUCCESS") {
+            $("#update_activityPic_m").modal("hide");
+            M.dialog7.close();
+            getActivityList(pageCode);
+        }
+
+    }).on('fileerror', function(event, data, msg) {
+        tips(msg);
+    });
+
+    $("#file").fileinput({
+        language: 'zh', //设置语言
+        uploadUrl: '/api/admin/activity/upload', // you must set a valid URL here else you will get an error上传的地址
+        allowedFileExtensions : ['jpg', 'png','gif'],
+        showUpload: true, //是否显示上传按钮
+        showCaption: false,//是否显示标题
+        showPreview : true, //是否显示预览
+        browseClass: "btn btn-primary", //按钮样式
+        overwriteInitial: false,
+        initialCaption: "请选择上传活动海报",
+        maxFileCount: 1, //表示允许同时上传的最大文件个数
+        enctype: 'multipart/form-data',
+        validateInitialCount:true,
+        maxFileSize: 1000,
+        maxFilesNum: 1,
+        //allowedFileTypes: ['image', 'video', 'flash'],
+//        slugCallback: function(filename) {
+//            return filename.replace('(', '_').replace(']', '_');
+//        }
+        uploadExtraData: function () {
+            var activityTitle = $('#activityTitle').val();
+            var activityTag = $('#activityTag').val();
+            var activityUrl = $('#activityUrl').val();
+
+            var data = {activityTitle:activityTitle, activityTag:activityTag, activityUrl:activityUrl};
+
+            return data;
+        }
+
+
+    }).on('filepreupload', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        console.log('File pre upload triggered');
+
+        //callback
+    }).on("fileuploaded", function (event, data, previewId, index) {
+        var message = data.response.message;
+        var status = data.response.status;
+
+        tips(message);
+        if (status === "SUCCESS") {
+            setTimeout(function () {
+                window.location.reload();
+            }, 2000)
+        }
+
+    }).on('fileerror', function(event, data, msg) {
+        tips(msg);
+    });
+
+    getActivityList(0);
+
+    function getActivityList(pageCode) {
+        $.api("getCityActivityList", {'pageCode': pageCode, 'pageSize': 1}, getActivityListCallback, "admin");
+    }
+
+    function getActivityListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            pageCode = ret.data.page;
+            var pageTotal = ret.data.pageTotal;
+            var list = ret.data.data;
+
+            var html = "";
+            if (list.length > 0) {
+                $.each(list, function (index, item) {
+
+                    html += ' <tr>' +
+                        '<td style="text-align: center; vertical-align: middle">' + item.activityId + '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' + item.activityTitle + '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' + item.activityTag + '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">' + item.activityUrl + '</td>' +
+                        '<td style="text-align: center;"><img onclick="showImage(this.src, '+ item.activityId +')" src="' + item.activityPic.fileHost + "/" + item.activityPic.fileName + item.activityPic.fileType + '" style="width:200px; height:100px;"></td>' +
+                        '<td style="text-align: center; vertical-align: middle">' + dszdy.UI.formatTimestampLong(item.createTime)+ '</td>' +
+                        '<td style="text-align: center; vertical-align: middle">活动进行中</td>' +
+                        '<td class="sub" style="text-align: center; vertical-align: middle">' +
+                        '<button id="send_flower" onclick="sendFlower(' + item.activityId + ')" class="btn btn-primary btn-sm" style="margin-right: 4px;">赠送鲜花</button>' +
+                        '<button id="up_activity" onclick="activityOperations(' + item.activityId + "," + 1 + ')" data-toggle="modal" data-target="#update_activity_m" class="btn btn-warning btn-sm" style="margin-right: 4px;">修改</button>' +
+                        '<button id="del_activity" onclick="activityOperations(' + item.activityId + "," + 2 + ')" class="btn btn-danger btn-sm">结束</button>' +
+                        '</td>' +
+                        '</tr>';
+                });
+
+                $('#content1').html('');
+                $('#content1').append(html);
+                $('.ajax_tips1').hide();
+
+                contentPage(pageCode, pageTotal);
+
+            } else {
+                $('#content1').html('');
+                $('.ajax_tips1').show();
+            }
+        }
+    }
+
+    function activityOperations(activityId, type) {
+        if (type === 1) {
+            $.api("getCityActivityInfo", {"activityId":activityId}, function (ret) {
+                if (ret.status === "SUCCESS") {
+                    $('#activityId').val(ret.data.id);
+                    $('#up_activityTitle').val(ret.data.activityTitle);
+                    $('#up_activityTag').val(ret.data.activityTag);
+                    $('#up_activityUrl').val(ret.data.activityUrl);
+                }
+            }, "admin/activity")
+        }
+
+        if (type === 2) {
+            $.api("endCityActivity", {"activityId":activityId}, function (ret) {
+                tips(ret.message);
+                if (ret.status === "SUCCESS") {
+
+                    getActivityList(pageCode);
+                }
+            }, "admin/activity")
+        }
+    }
+
+    function contentPage(pageCode, pageTotal) {
+        $('#activityPage').attr('pagenumber', pageCode + 1);
+        $('#activityPage').attr('totalpage', pageTotal);
+        $('#activityPage').attr('paginationMaxLength', '5');
+        initPagination($('#activityPage'));
+    }
+
+    function paginationClick(pagination_id, pageCode){
+        if (pagination_id === "activityPage") {
+            getActivityList(pageCode - 1);
+        }
+    }
+
+    var M = {};
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content' : tip,
+            'closeTime' : 2000,
+        })
+    }
+
+    function checkNull(value, tag) {
+        if (value == null || value == "") {
+            if (tag == 1) {
+                tips("活动标题不能为空");
+                $('#activityTitle').focus();
+                return;
+            }
+
+            if (tag == 2) {
+                tips("活动简介不能为空");
+                $('#activityTag').focus();
+                return;
+            }
+
+            if (tag == 3) {
+                tips("活动链接不能为空");
+                $('#activityUrl').focus();
+                return;
+            }
+        }
+    }
+
+    function showImage(source, activityId) {
+        M.dialog7 = jqueryAlert({
+            'title'   : '图片',
+            'content' :  '<img src="'+ source +'">',
+            'modal'   : true,
+            'contentTextAlign' : 'left',
+            'animateType' : 'linear',
+            'buttons' :{
+                '关闭' : function(){
+                    M.dialog7.close();
+                },
+                '更改海报' : function () {
+                    $('#activity_pic').attr("data-id", activityId);
+                    $("#update_activityPic_m").modal("show");
+                }
+            }
+        })
+    }
+
+    function sendFlower(activityId) {
+        M.dialog10 = jqueryAlert({
+            'title': '赠送鲜花',
+            'content': '<p>请输入鲜花数量</p><div class="form-group"><input type="number" id="flower_content" class="form-control"/></div>',
+            'width': "200",
+            'modal': true,
+            'contentTextAlign': 'center',
+            'animateType': 'linear',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog10.close();
+                },
+                '确定': function () {
+
+                    var flowerNum = $('#flower_content').val();
+
+                    if (flowerNum === "") {
+                        tips('请输入鲜花数量');
+                        return;
+                    }
+
+                    $.api("sendFlower", {'type': 2, 'activityId': activityId, 'flowerNum':flowerNum}, function (ret) {
+                        tips(ret.message);
+                        if (ret.status === "SUCCESS") {
+                            M.dialog10.close();
+                        }
+                    }, "admin");
+
+                }
+            }
+        })
+    }
+</script>
+</html>

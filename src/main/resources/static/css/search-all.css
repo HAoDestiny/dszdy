@@ -1,0 +1,232 @@
+@charset "utf-8";
+/* CSS Document */
+
+ol, ul {
+    margin-top: 0;
+    margin-bottom: 0px;
+}
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 0;
+}
+
+html {
+    -webkit-text-size-adjust: none;
+}
+
+.bdr-b:after, .bdr-bom:after {
+    background-color: #bfbfbf;
+    position: absolute;
+    bottom: 0px;
+    left: 0;
+    width: 200%;
+    height: 1px;
+    content: '';
+    -moz-transform: scale(.5, .5);
+    -ms-transform: scale(.5, .5);
+    -webkit-transform: scale(.5, .5);
+    transform: scale(.5, .5);
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.bdr-b:before, .bdr-t:before {
+    background-color: #bfbfbf;
+    position: absolute;
+    top: -1px;
+    left: 0;
+    width: 200%;
+    height: 1px;
+    content: '';
+    -moz-transform: scale(.5, .5);
+    -ms-transform: scale(.5, .5);
+    -webkit-transform: scale(.5, .5);
+    transform: scale(.5, .5);
+    -moz-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+}
+
+.sidebar-list {
+    background: #fff;
+    position: relative;
+}
+
+.sidebar-list-grey {
+    background: #f3f5f7;
+    position: relative;
+}
+
+.sidebar-unit {
+    background: #fff;
+    padding: 0 10px 10px;
+    margin: 10px 0;
+    position: relative;
+    overflow: hidden;
+    *zoom: 1;
+}
+
+.sidebar-content a {
+    display: block;
+    text-decoration: none;
+}
+
+.sidebar-iteam {
+    position: relative;
+    font-size: 0;
+}
+
+    .sidebar-iteam .arrow {
+        background: url("images/jd-sprites.png") no-repeat;
+        background-size: 200px 200px;
+        background-position: -180px -49px;
+        width: 16px;
+        height: 16px;
+        display: block;
+        float: right;
+        margin: 13px 14px 0 8px;
+    }
+
+    .sidebar-iteam .sort-of-brand {
+        width: 35%;
+        height: 2.875rem;
+        line-height: 2.875rem;
+        font-size: .8125rem;
+        color: #252525;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: inline-block;
+    }
+
+    .sidebar-iteam span.sort-of-brand {
+        margin-left: 15px;
+        width: 42%;
+        font-size: .9375rem;
+    }
+
+    .sidebar-iteam small.sort-of-brand {
+        float: right;
+        text-align: right;
+    }
+
+    .sidebar-iteam.checked .sort-of-brand {
+        color: #f15353;
+    }
+
+    .sidebar-iteam.checked .tick {
+        display: block;
+        background: url("images/jd-sprites.png") no-repeat;
+        background-size: 200px 200px;
+        background-position: -160px -55px;
+        width: 20px;
+        height: 15px;
+        float: right;
+        margin: 14px 14px 0 4px;
+    }
+
+.show-position {
+    width: 100%;
+    background-color: #fff;
+}
+
+
+/*ÅÅÐòÑùÊ½*/
+
+
+.new-change-eleven span:after, .new-change-eleven.active span:after {
+    display: block;
+    background: url("images/jd-sprites.png?v=12") no-repeat;
+    background-size: 200px 200px;
+}
+
+.new-sort-integrative span:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 7px;
+    background-position: -10px -109px;
+    margin-left: 4px;
+}
+
+.new-sort-integrative.active span:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 7px;
+    background-position: 0 -109px;
+    margin-left: 4px;
+}
+
+.new-sort-price span:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 10px;
+    background-position: -170px -30px;
+    margin-left: 4px;
+}
+
+.new-sort-price.active span.arrow-down:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 10px;
+    background-position: -170px -15px;
+    margin-left: 4px;
+}
+
+.new-sort-price.active span.arrow-up:after {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 10px;
+    background-position: -170px 0;
+    margin-left: 4px;
+}
+
+.new-change-eleven .choose-icon {
+    background: url("images/jd-search-sprites.png") no-repeat;
+    background-size: 200px 200px;
+    background-position: -178px 3px;
+    width: 15px;
+    height: 13px;
+    display: inline-block;
+}
+
+.new-search-tab {
+    position: relative;
+    height: 40px;
+    font-size: 0;
+    width: 100%;
+    background-color: #fff;
+}
+
+.new-change-eleven {
+    width: 33.3%;
+    border-right: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    font-size: 14px;
+    text-align: center;
+    line-height: 40px;
+}
+
+    .new-change-eleven span {
+        color: #232326;
+        display: block;
+    }
+
+    .new-change-eleven.active span {
+        color: #f15353 !important;
+    }

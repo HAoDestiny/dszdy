@@ -1,0 +1,613 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>单身圈</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/iconfont/iconfont.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/zone.css" rel="stylesheet">
+    <link href="static/emoji/css/jquery.mCustomScrollbar.min.css" rel="stylesheet">
+    <link href="static/emoji/css/railscasts.css" rel="stylesheet">
+    <link href="static/emoji/css/jquery.emoji.css" rel="stylesheet">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <script>
+        var tag = 0;
+
+        window.onload = function () {
+            loadDynamic(0, 0);
+            InitTab();
+        };
+
+        function InitTab() {
+            $("#tab-hot").trigger("click");
+
+            //热门
+            $('#tab-hot').click(function () {
+                tag = 0;
+                if ($("#product-list" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    loadDynamic(0, tag);
+                }
+            });
+
+            //同乡
+            $('#tab-town').click(function () {
+                tag = 1;
+                if ($("#product-list" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    loadDynamic(0, tag);
+                }
+            });
+
+            //同校
+            $('#tab-school').click(function () {
+                tag = 2;
+                if ($("#product-list" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    loadDynamic(0, tag);
+                }
+            });
+
+            //关注
+            $('#tab-moment').click(function () {
+                tag = 3;
+                if ($("#product-list" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    loadDynamic(0, tag);
+                }
+            });
+        }
+    </script>
+
+    <style>
+        .content-page > .content {
+            padding-top: 0px;
+
+        }
+        .icon-all {
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            display: box;
+            box-orient: horizontal;
+            box-pack: center;
+            box-align: center;
+        }
+        .push-fixed, .refresh-fixed {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background: rgba(254, 135, 117, 0.73);
+            position: fixed;
+            right: 15px;
+            z-index: 10000;
+        }
+        .push-fixed i.iconfont, .refresh-fixed i.iconfont {
+            color: #fff;
+            font-size: 20px;
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .badgered-fixed {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background: rgb(255, 30, 0);
+            position: fixed;
+            right: 46px;
+            bottom: 36px;
+            z-index: 10000;
+        }
+    </style>
+
+    <link href="static/css/swiper.css" rel="stylesheet" type="text/css" charset="utf-8" media="all">
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" charset="utf-8" media="all">
+    <script language="javascript" type="text/javascript" src="static/js/swiper.min.js" charset="utf-8"></script>
+</head>
+<body>
+
+<!--开始页面加载-->
+<div id="wrapper" class="">
+
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs tabs changeTitle" style="width: 100%;">
+                <li class="tab active" style="width: 25%;">
+                    <a href="#hot" data-toggle="tab" id="tab-hot" aria-expanded="true" class="active">
+                        <span class="visible-xs">热门</span>
+                        <span class="hidden-xs">热门</span>
+                    </a>
+                </li>
+                <li class="tab" style="width: 25%;">
+                    <a href="#town" data-toggle="tab" id="tab-town" aria-expanded="false" class="">
+                        <span class="visible-xs">同城</span>
+                        <span class="hidden-xs">同城</span>
+                    </a>
+                </li>
+                <li class="tab" style="width: 25%;">
+                    <a href="#school" data-toggle="tab" id="tab-school" aria-expanded="false" class="">
+                        <span class="visible-xs">同校</span>
+                        <span class="hidden-xs">同校</span> </a>
+                </li>
+                <li class="tab" style="width: 25%;">
+                    <a href="#moment" data-toggle="tab" id="tab-moment" aria-expanded="false" class="">
+                        <span class="visible-xs">关注</span>
+                        <span class="hidden-xs">关注</span>
+                    </a>
+                </li>
+                <div class="indicator" style="right: 397px; left: 0px;"></div>
+            </ul>
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page zonecontent-page">
+        <div class="content">
+            <div class="tab-content">
+                <div class="tab-pane active" id="hot" style="display: block;">
+                    <div class="row feed-list zone">
+                        <div class="product-list0" id="product-list0" page-now="0" page-total="0">
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips0">找不到更多数据</div>
+                </div>
+                <div class="tab-pane" id="town" style="display: none;">
+                    <div class="row feed-list zone">
+                        <div class="product-list1" id="product-list1" page-now="0" page-total="0">
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+                </div>
+                <div class="tab-pane" id="school" style="display: none;">
+                    <div class="row feed-list zone">
+                        <div class="product-list2" id="product-list2" page-now="0" page-total="0">
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips2">加载更多信息...</div>
+                </div>
+                <div class="tab-pane" id="moment" style="display: none;">
+                    <div class="row feed-list zone">
+                        <div class="product-list3" id="product-list3" page-now="0" page-total="0">
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips3">加载更多信息...</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="refresh-fixed icon-all" id="icon-refresh" style="bottom: 130px;">
+        <i class="iconfont icon-shuaxin"></i>
+    </div>
+    <div class="push-fixed icon-all" id="icon-post" style="bottom: 80px;">
+        <i class="iconfont icon-luyinbi"></i>
+    </div>
+    <div class="footerbar footerbar_f">
+        <div class="btn-group btn-group-justified" style="margin-top: 5px; margin-bottom: 2px;">
+            <a class="btn btn-xs waves-effect waves-light act js-go-xzone" role="button" href="singletons.html">
+                <i class="fa fa-street-view"></i>
+                <br>
+                单身圈</a>
+            <a class="btn btn-xs  waves-effect waves-light js-go-event" role="button" href="event.html">
+                <i class="fa fa-heartbeat"></i>
+                <br>
+                活动</a>
+            <a class="btn btn-xs  waves-effect waves-light" role="button" href="home.html">
+                <i class="fa fa-user"></i>
+                <br>
+                个人中心</a>
+        </div>
+        <div class="badgered-fixed"></div>
+    </div>
+</div>
+<div id="cis_date_pics_area" class="showpagearea showpage_show hide">
+    <div class="bodyarea">
+        <div class="wrap">
+            <div class="headerarea">
+            </div>
+            <div class="mainarea">
+                <div class="body_main body_np cis_date_viewpic">
+
+                    <div class="cis_date_swiper">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="modscript">
+    <script type="text/javascript">
+        function openPopPic(obj) {
+            var id = obj.attr("data-cid");
+            var num = parseInt(obj.attr("data-num"));
+            var arrya = $("a[data-cid='" + id + "']");
+            $(".body_main").remove();
+            $(".mainarea").append('<div class="body_main body_np cis_date_viewpic"><div class="cis_date_swiper"><div class="swiper-wrapper"></div><div class="swiper-pagination"></div></div>');
+            if (arrya.length > 0) {
+                for (var i = 0; i < arrya.length; i++) {
+                    var img = arrya.eq(i).attr("data-src");
+                    $(".swiper-wrapper").append('<div class="swiper-slide">' +
+                        '<div class="swiper-zoom-container">' +
+                        '<img src="' + img + '" />' +
+                        '</div>' +
+                        '</div>');
+                }
+            }
+
+            var cis_date_pics = new Swiper('.body_main .cis_date_swiper', {
+                zoom: true,
+                initialSlide: num,
+                pagination: '.body_main  .cis_date_swiper .swiper-pagination ',
+                paginationType: 'fraction',
+                spaceBetween: 20,
+                onClick: function (swiper) {
+                    closepage('#cis_date_pics_area');
+                }
+            });
+        }
+
+        /*closepage*/
+        function closepage(id) {
+            $(id).addClass("hide");
+        }
+    </script>
+</div>
+
+<div class="modal fade" id="login-model" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel">
+    <div class="modal-dialog modal-down" role="document">
+        <div id="form-1" class="form-pop">
+            <div class="nav-wrap fixed">
+                <div class="row  ui-top-nav">
+                    <div class="col-xs-2">
+                        <a class="btn js-close" href="javascript:;"><span class="txt"
+                                                                          id="form-1-cancel">取消</span></a>
+                    </div>
+                    <div class="col-xs-8 text-center js-title-name">评论</div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-xs btn-default-bg waves-effect waves-light"
+                                onclick="SendContent()"><span class="txt">发送</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrap" style="position: relative; width: 100%; min-height: 436px;">
+                <div class="write-form j-write">
+                    <div class="write-text J_textareaWrapper">
+                        <div id="editor" class="dtextarea" contenteditable="true"></div>
+                    </div>
+                    <div class="write-plugin">
+                        <button class="item icon-emoji" id="btn" data-textoper="emoji">插入表情</button>
+                        <span class="counter" data-form="limit">600</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/dynamic.js"></script>
+<script src="static/js/notify.js"></script>
+<script src="static/emoji/script/highlight.pack.js"></script>
+<script src="static/emoji/script/jquery.mousewheel-3.0.6.min.js"></script>
+<script src="static/emoji/script/jquery.mCustomScrollbar.min.js"></script>
+<script src="static/emoji/script/jquery.emoji.min.js"></script>
+<script>
+    function onClickJump(str) {
+        getScrollPos();
+        window.location.href = "userProfile.html?id=" + str;
+    }
+
+    function getScrollPos() {
+        var scrollPos;
+        if (typeof window.pageYOffset !== 'undefined') {
+            scrollPos = window.pageYOffset;
+        } else if (typeof document.compatMode !== 'undefined' && document.compatMode !== 'BackCompat') {
+            scrollPos = document.documentElement.scrollTop;
+        } else if (typeof document.body !== 'undefined') {
+            scrollPos = document.body.scrollTop;
+        }
+        return scrollPos;
+    }
+
+</script>
+<script>
+
+    var userId;
+    var isLoading = false;
+
+    $(document).ready(function () {
+
+        $(window.document).scroll(function () {
+
+            if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+
+                var paneProductObj = $("#product-list" + tag);
+
+                var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+
+                if (panePageNow + 1 > panePageTotal)
+                    return;
+
+                isLoading = true;
+
+                paneProductObj.attr("page-now", panePageNow + 1);
+
+                loadDynamic((panePageNow + 1), tag);
+            }
+        });
+
+    });
+
+    $("#icon-refresh").click(
+        function(){
+            $('html,body').animate({scrollTop: 0}, 500);
+            loadDynamic(0, tag, 1);
+        }
+    );
+    $("#icon-post").click(
+        function (){
+            window.location.href = "postDynamic.html";
+        }
+    );
+</script>
+
+<script>
+
+    function loadDynamic(pageCode, tag, isRefresh) {
+        if (isRefresh == undefined) {
+            isRefresh = 0;
+        }
+        dszdy.UI.loadingReview();
+
+        if (tag === 3) {
+            $.api("follow", {'pageCode': pageCode, 'pageSize': 7, "tag": tag}, showCallback, "dynamic");
+        } else {
+            $.api("show", {'pageCode': pageCode, 'pageSize': 7, "tag": tag}, showCallback, "dynamic");
+        }
+
+        function showCallback(ret) {
+
+            dszdy.UI.loadingReview(false);
+
+            if (ret.status === "SUCCESS") {
+                userId = ret.data.userId;
+                $.cookie("userId", userId);
+                if (isRefresh == 1) {
+                    $("#product-list" + tag).html("");
+                }
+                show(ret.data);
+            } else {
+                $(".ajax_tips").html("找不到更多数据");
+            }
+        }
+
+        function replaceCode2Emoji(str) {
+            var patt = /\[(.*?):(.*?)\]/g;
+            return str.replace(patt, "<img class=\"emoji_icon\" src=\"static\/img\/$1\/$2.gif\">");
+        }
+
+        function show(ret) {
+            var dynamicData = ret.dynamic;
+            var paneProductObj = $("#product-list" + tag);
+
+            $.each(dynamicData, function (index, item) {
+                var html = "";
+                var images = "";
+                var commentItem = "";
+                var avatar = "";
+                var reply = "";
+                var praiseOrComment = "";
+                var age = formatAge(parseInt(item.age.substr(0, 4)));
+                var verify = function () {
+                    if (item.isVerify === 1)
+                        return "<i class=\"btn-default-bg btn-xs fa fa-check\">认证</i>";
+                    else
+                        return "";
+                };
+                var sex = function () {
+                    if (item.sex === 1)
+                        return "xznan fa fa-mars";
+                    else
+                        return "xznv fa fa-venus";
+                };
+                var avatarSex = function () {
+                    if (item.sex === 1)
+                        return "nan";
+                    else
+                        return "nv";
+                };
+                var imageSize = function () {
+                    if (item.images.length === 1)
+                        return "10";
+
+                    if (item.images.length === 2)
+                        return "6";
+
+                    if (item.images.length >= 3)
+                        return "4";
+                };
+
+                html += "<div class=\"col-xs-12\">" +
+                    "<div class=\"feed dataItem\">" +
+                    "<div class=\"feed-hd\">" +
+                    "<div class=\"avatar\">" +
+                    "<a href=\"javascript:onClickJump('" + item.posterId + "')\">" +
+                    "<b class=\"pic loaded "+ avatarSex() +"\" style=\"background-image: " +
+                    "url(" + item.avatar.fileHost + "/100/100/" + item.avatar.fileName + item.avatar.fileType + ");\">" +
+                    "</b>" +
+                    "</a>" +
+                    "</div>" +
+                    "<div class=\"info\">" +
+                    "<p class=\"title\">" +
+                    "<span class=\"username\">" + item.posterName +
+                    "</span>" +
+                    "<i class=\"" + sex() + "\">" +
+                    "</i>" +
+                    "<span class=\"isvip\">" + dszdy.UI.formatTimestampLong(item.time) +
+                    "</span>" +
+                    "</p>" +
+                    "<p class=\"metas\">" +
+                    "<span class=\"time\">" +
+                    "<i class=\"btn-default-bg btn-xs\">" + age + "</i>\n"
+                    + verify() + "\n" +
+                    "</span>" +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"feed-bd\">" +
+                    "<p class=\"txt\">" + replaceCode2Emoji(item.content) +
+                    "</p>" +
+                    "<div class=\"images ui-img-list image-popup row\">";
+
+                $.each(item.images, function (img_index, img_item) {
+                    images += "<figure class=\"col-xs-" + imageSize() + " item\">" +
+                        "<a href=\"javascript:;\" class=\"atmode\" data-src=\"" + img_item.fileHost + "/" + img_item.fileName + img_item.fileType + "\"" +
+                        " data-cid=\"" + item.dynamicId + "\" data-num=\"" + img_index + "\">" +
+                        "<span class=\"img  loaded\" style=\"background-image: " +
+                        "url(" + img_item.fileHost + "/" + img_item.fileName + img_item.fileType + ");\">" +
+                        "</span>" +
+                        "</a>" +
+                        "</figure>";
+                });
+
+                html += images + "</div>";
+
+                praiseOrComment += "<div class=\"actions js_actions\" style=\"margin-bottom: 4px\" data-id=\"" + item.dynamicId + "\">\n" +
+                    "<button class=\"btn btn-pink btn-sm btn-custom btn-rounded waves-effect waves-light js-like\" type=\"button\">\n" +
+                    "<i class=\"fa fa-thumbs-o-up\"></i>&nbsp;赞&nbsp;\n" +
+                    "<span>" + item.praise.praiseTotal + "</span></button>\n" +
+                    "<button class=\"btn btn-pink btn-sm btn-custom btn-rounded waves-effect waves-light js-comment\" type=\"button\">\n" +
+                    "<i class=\"fa fa-edit\"></i>&nbsp;评论" +
+                    "<span>" + item.comment.commentTotal + "</span>" +
+                    "</button>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "<div class=\"feed-ft js-feedft\">\n" +
+                    "<div class=\"comments min-comments\">\n" +
+                    "<div class=\"list js-comment-list" + item.dynamicId + "\" dynamic-id=\"" + item.dynamicId + "\">";
+
+                html += praiseOrComment;
+
+                if (item.comment.commentList.length !== 0) {
+                    $.each(item.comment.commentList, function (com_index, com_item) {
+                        avatar = '<div class="comment-item" user-id="' + com_item.userId + '">' +
+                            '<div class="avatar">' +
+                            '<a href="javascript:onClickJump(' + com_item.userId + ')">' +
+                            '<b class="pic" style="background-image: url(' + com_item.avatar.fileHost + "/100/100/" + com_item.avatar.fileName + com_item.avatar.fileType + ')"></b>' +
+                            '</a>' +
+                            '</div>';
+
+                        if (com_item.commentToUserId !== 0) {
+                            reply = '<div class="mainer">' +
+                                '<div class="comment-info">' +
+                                '<p class="title">' +
+                                '<a class="username" href="javascript:onClickJump(' + com_item.userId + ')">' + com_item.username + '</a>回复:' +
+                                '<a href="javascript:onClickJump(' + com_item.commentToUserId + ')">' + com_item.commentToUserName + '</a>' +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="comment-text"> ' + replaceCode2Emoji(com_item.content) +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        } else {
+                            reply = '<div class="mainer">' +
+                                '<div class="comment-info" role="text">' +
+                                '<p class="title"><a class="username">' + com_item.username + '</a>' +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="comment-text">' + replaceCode2Emoji(com_item.content) + '</div>' +
+                                '</div>' +
+                                '</div>';
+                        }
+
+                        commentItem += (avatar + reply);
+
+                    });
+
+                    html += commentItem + "</div>\n</div>\n</div>\n</div>\n</div>";
+                }
+
+                paneProductObj.append(html);
+
+            });
+
+            paneProductObj.attr("page-now", ret.page);
+            paneProductObj.attr("page-total", ret.pageTotal);
+
+            $(".atmode").on("click", function () {
+                $("#cis_date_pics_area").removeClass("hide");
+                openPopPic($(this));
+            });
+
+            if (dynamicData.length < 7) {
+                $(".ajax_tips").text("找不到更多数据");
+            }
+
+            isLoading = false;
+        }
+
+        function formatAge(age) {
+            if (age >= 1990 && age < 2000) {
+                return "90后";
+            }
+            if (age >= 1980 && age < 1990) {
+                return "80后";
+            }
+            if (age >= 1970 && age < 1980) {
+                return "70后";
+            }
+            if (age >= 1960 && age < 1970) {
+                return "60后";
+            }
+        }
+    };
+
+</script>
+
+<script>
+    //添加表情
+    $('#login-model').on('shown.bs.modal', function () {
+        $("#editor").emoji({
+            button: "#btn",
+            showTab: false,
+            animation: 'slide',
+            icons: [{
+                name: "QQ表情",
+                path: "static/emoji/img/qq/",
+                maxNum: 100,
+                excludeNums: [41, 45, 54],
+                file: ".gif"
+            }]
+        });
+    })
+</script>
+
+</body>
+</html>

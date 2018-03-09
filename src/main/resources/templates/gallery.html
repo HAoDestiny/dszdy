@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>相册管理</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <style>
+        .feed {
+            background-color: #fff;
+            margin: 10px 0 0 0;
+            padding: 20px 0 0;
+        }
+
+        .feed, .feed-bd .img, .feed-bd .video {
+            position: relative;
+        }
+
+        .feed-bd .txt img {
+            vertical-align: text-bottom;
+        }
+
+        .feed-hd .stime {
+            padding: 0 12px;
+        }
+
+        .feed-hd .avatar {
+            padding: 0 12px;
+        }
+
+        .avatar .pic {
+            display: block;
+            width: 36px;
+            height: 36px;
+            background-color: #eee;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            background-position: 50% 50%;
+            -webkit-background-size: cover;
+            background-size: cover;
+            border: 1px solid #ddd;
+        }
+
+        .avatar .nan {
+            border: 1px solid rgba(29, 65, 236, 0.31);
+        }
+
+        .avatar .nv {
+            border: 1px solid rgba(232, 31, 99, 0.28);
+        }
+
+        .feed-hd .info {
+            -webkit-box-flex: 1;
+            -moz-box-flex: 1;
+            -webkit-flex: 1;
+            flex: 1;
+        }
+
+        .feed-hd .title .username:nth-child(1):nth-last-child(2) {
+            max-width: 78.5%;
+        }
+
+        .feed-hd .title .username {
+            display: inline-block;
+            vertical-align: middle;
+            height: 19px;
+            line-height: 19px;
+        }
+
+        .feed-hd .title .username, .ui-list-view .hide-txt, .ui-list-view .sub-txt {
+            word-wrap: normal;
+            max-width: 100%;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        /*时间*/
+        .feed-hd .info .metas {
+            color: #707070;
+            font-size: 12px;
+            margin: 2px 0 0;
+        }
+
+        /*说说*/
+        .feed-bd {
+            padding: 10px 12px 0;
+            position: relative;
+        }
+
+        .feed-bd .txt {
+            line-height: 1.333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 30;
+            -webkit-box-orient: vertical;
+        }
+
+        /*图片*/
+        .feed-bd .images {
+            margin-left: -2px;
+        }
+
+        .audio, .images, .video {
+            margin: 10px 0 0;
+        }
+
+        .images .item {
+            position: relative;
+            float: left;
+            padding: 5px;
+            margin: 0;
+            border-width: 0 0 2px 2px;
+            border-style: solid;
+            border-color: transparent;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .feed-bd .img:nth-child(1), .feed-bd .video:nth-child(1), .images:nth-child(1) {
+            margin: 0;
+        }
+
+        .images .item .img {
+            width: 100%;
+            padding-top: 100%;
+            position: relative;
+            display: block;
+            background-size: cover;
+        }
+
+        .images .item .img, .qboss-banner {
+            background-position: 50% 50%;
+            -webkit-background-size: cover;
+        }
+
+        .feed-bd .img {
+            margin: 10px 0 0;
+            background-color: #ccc;
+            background-size: cover;
+        }
+
+        .feed, .feed-bd .img, .feed-bd .video {
+            position: relative;
+        }
+
+        /*浏览量*/
+        .feed-bd .views {
+            color: #707070;
+            font-size: 14px;
+            position: absolute;
+            left: 12px;
+            bottom: 14px;
+        }
+
+        .feed .actions {
+            text-align: right;
+            padding: 3px 0;
+        }
+
+        .feed .actions .item {
+            display: inline-block;
+            position: relative;
+            width: 44px;
+            height: 44px;
+            color: transparent;
+            vertical-align: top;
+        }
+
+        button {
+            overflow: visible;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            background-color: transparent;
+        }
+        .mypic_list_box .del {
+            height: 21px;
+            width: 21px;
+            background-image: url(static/images/del_ico.png);
+            background-repeat: no-repeat;
+            position: absolute;
+            left: -5px;
+            top: -4px;
+        }
+
+        .mypic_list_box .del a {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            上传图片
+        </div>
+        <div class="col-xs-2">
+            <a href="uploadHelp.html" class="text-white"><i class="glyphicon glyphicon-question-sign"></i></a>
+        </div>
+
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content">
+            <div class="card-box" style="padding: 0px">
+
+                <div class="row mypic_list_box">
+                    <div class="col-xs-12">
+                        <div class="feed dataItem">
+                            <div class="feed-bd">
+                                <div class="images ui-img-list image-popup row">
+                                    <figure class="col-xs-6 item">
+                                        <span></span>
+                                        <span id="button_upload1" data-tag="" class="img  loaded "
+                                              style="background-image: url(static/img/empty.png);"></span>
+                                    </figure>
+                                    <figure class="col-xs-6 item">
+                                                <span class="del hide"><a href="javascript:;" class="js-delimg"
+                                                                          data-tag="2"></a>
+                                                </span>
+                                        <span id="button_upload2" data-tag="2" class="img  loaded"
+                                              style="background-image: url(static/img/empty.png);"></span>
+                                    </figure>
+                                    <figure class="col-xs-6 item">
+                                                <span class="del hide"><a href="javascript:;" class="js-delimg"
+                                                                          data-tag="3"></a>
+                                                </span>
+                                        <span id="button_upload3" data-tag="3" class="img  loaded"
+                                              style="background-image: url(static/img/empty.png);"></span>
+                                    </figure>
+                                    <figure class="col-xs-6 item">
+                                                <span class="del hide"><a href="javascript:;" class="js-delimg"
+                                                                          data-tag="4"></a>
+                                                </span>
+                                        <span id="button_upload4" data-tag="4" class="img  loaded"
+                                              style="background-image: url(static/img/empty.png);"></span>
+                                    </figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row card-box">
+                <div class="col-xs-12">
+                    <button class="btn btn-default-bg btn-rounded btn-block text-uppercase waves-effect waves-light btn-md js-go-result"
+                            type="button">
+                        下一步
+                    </button>
+                </div>
+                <br>
+                <div class="panel-body" style="padding: 20px;margin-top:20px;">
+                    <p class="modal-title">
+                        1、主图片默认展示第一张。<br>
+                        2、支持jpeg、jpg、png格式,大小限制4M<br>
+
+
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="static/js/ajaxupload.3.6.js"></script>
+
+<script>
+    $(function () {
+
+        var hasNormalAvatar = false;
+        dszdy.Business.User.getAvatarList(function (avatarIsExist) {
+            if (avatarIsExist) {
+                hasNormalAvatar = true;
+            }
+        });
+
+        initUploader();
+
+        $(".js-go-result").click(function () {
+            if (!hasNormalAvatar) {
+                dszdy.UI.Tip("请上传第一张图片");
+                return;
+            }
+            window.location.href = "home.html";
+        });
+
+        $(".js-delimg").on("click", function () {
+            var id = $(this).attr("data-tag");
+            if (id == "") {
+                dszdy.UI.Tip("请选择图片后删除");
+                return false;
+            }
+            dszdy.Business.User.removeAvatar(id, $(this));
+
+        });
+
+        function initUploader() {
+            for(var i = 1; i <= 4 ; i++) {
+                new AjaxUpload('#button_upload' + i,
+                    {
+                        action: '/api/upload/avatar?picIndex=' + i,
+                        onSubmit: function (file, extension) {
+                            dszdy.UI.loading("正在上传");
+                            return startUpload(this, extension)
+                        },
+                        callbackTag: i,
+                        onComplete: function (file, response) {
+                            reviewUploadResult(this, response);
+                        }
+                    });
+            }
+        }
+
+        function startUpload(upload_obj, extension) {
+
+            if (extension[0].toLowerCase() != "jpg" && extension[0].toLowerCase() != "jpeg" && extension[0].toLowerCase() != "png") {
+                dszdy.UI.loading(false);
+                alert('目前只支持jpeg,png和jpg格式文件');
+                return false;
+            }
+
+            var itag = true;
+
+            $("input[name='userfile']").each(function (i, item) {
+                if (item.files[0] != undefined) {
+                    if (item.files[0].size > 1024 * 1024 * 4) {
+                        dszdy.UI.Tip('大小不超过4M,请重新上传');
+                        dszdy.UI.loading(false);
+                        itag = false;
+                        return false;
+                    }
+                }
+            });
+            return itag;
+
+        }
+
+        function reviewUploadResult(upload_obj, response) {
+            dszdy.UI.loading(false);
+            var tag = upload_obj._settings.callbackTag;
+            var obj = $.parseJSON(response.replace(/<.*?>/ig,""));
+            var avatar = obj.data.fileHost + "/200/200/" + obj.data.fileName + obj.data.fileType;
+            if (obj.status  == "SUCCESS") {
+                dszdy.UI.Tip("上传成功");
+                $("#button_upload" + tag).attr("style", "background-image: url(" + avatar + ");");
+                $("#button_upload" + tag).prev().removeClass("hide");
+                if (tag == 1) {
+                    hasNormalAvatar = true;
+                }
+            }
+            else {
+                dszdy.UI.Tip(obj.message);
+            }
+        }
+
+    })
+
+</script>
+<input type="file" name="userfile"
+       style="position: absolute; margin: -5px 0px 0px -175px; padding: 0px; width: 220px; height: 30px; font-size: 14px; opacity: 0; cursor: pointer; display: none; z-index: 2147483583;">
+</body>
+</html>

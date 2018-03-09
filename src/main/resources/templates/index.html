@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>单身总动员</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <style>
+        html {
+            background-color: #080405;
+        }
+        body {
+            background: url(static/img/background.jpg) no-repeat fixed top;
+            height: 100%;
+            background-size: 100%;
+        }
+
+        .btn {
+            border-radius: 0px !important;
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+    <div class="content-page">
+        <div class="content">
+            <div class="row text-center">
+                <div class="col-xs-12" style="position: absolute; bottom: 142px; padding: 0px 15px">
+                    <a class="btn btn-pink  btn-block   waves-effect waves-light btn-lg" href="login.html">登录
+                    </a>
+                </div>
+                <div class="col-xs-12" style="position: absolute; bottom: 80px; padding: 0px 15px">
+                    <a class="btn btn-white btn-block  waves-effect waves-light btn-lg" href="register.html">
+                        注册
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+<script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+<script>
+     var dstoken = $.cookie("__dstoken");
+
+     if (dstoken !== undefined && dstoken !== null && dstoken !== "") {
+         window.location.href = "home.html";
+     }
+
+</script>
+</html>

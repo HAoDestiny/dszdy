@@ -1,0 +1,408 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>我的好友</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/zone.css" rel="stylesheet">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        body{
+            height:auto;
+        }
+    </style>
+
+    <script>
+
+        var tag = 0;
+
+        window.onload = function () {
+            getapplyList(0, 0);
+            InitTab();
+        };
+
+        function InitTab() {
+            $("#tab-apply").trigger("click");
+
+            //好友请求列表
+            $('#tab-apply').click(function () {
+                tag = 0;
+                if ($("#applyFriendsList" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    getapplyList(0, tag);
+                }
+            });
+
+            //好友列表
+            $('#tab-friends').click(function () {
+                tag = 1;
+                if ($("#applyFriendsList" + tag).html().trim() == "") {
+                    $('html,body').animate({scrollTop: 0}, 500);
+                    getapplyList(0, tag);
+                }
+            });
+        }
+
+    </script>
+
+</head>
+
+<body>
+
+<div class="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon1">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            我的好友
+        </div>
+        <div class="col-xs-12">
+            <ul class="nav nav-tabs tabs changeTitle" style="width: 100%;">
+                <li class="tab active" style="width: 25%;">
+                    <a href="#apply" data-toggle="tab" id="tab-apply" aria-expanded="true" class="active">
+                        <span class="visible-xs">请求列表</span>
+                        <span class="hidden-xs">请求列表</span>
+                    </a>
+                </li>
+                <li class="tab" style="width: 25%;">
+                    <a href="#friends" data-toggle="tab" id="tab-friends" aria-expanded="false" class="">
+                        <span class="visible-xs">好友列表</span>
+                        <span class="hidden-xs">好友列表</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <!--end topbar-->
+
+    <div class="content-page zonecontent-page">
+        <div class="content" style="padding-top: 5px;">
+            <div class="tab-content">
+                <div class="active" id="apply" style="display: block;">
+                    <div class="row feed-list zone">
+                        <div class="product-list0" id="product-list0" page-now="0" page-total="0">
+                            <div class="content-page">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-12 msgList" style="margin-top: 5px;">
+                                            <ul id="applyFriendsList0">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips0">找不到更多数据</div>
+                </div>
+                <div class="tab-pane" id="friends" style="display: none;">
+                    <div class="row feed-list zone">
+                        <div class="product-list1" id="product-list1" page-now="0" page-total="0">
+                            <div class="content-page">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-12 msgList" style="margin-top: 5px;">
+                                            <ul id="applyFriendsList1">
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+<script src="static/js/dynamic.js"></script>
+<script>
+    var isLoading = false;
+
+    $(document).ready(function () {
+
+        $(window.document).scroll(function () {
+
+            if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+                var paneProductObj = $("#product-list" + tag);
+
+                var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+
+                if (panePageNow + 1 >= panePageTotal)
+                    return;
+
+                isLoading = true;
+
+                paneProductObj.attr("page-now", panePageNow + 1);
+
+                getapplyList((panePageNow + 1), tag);
+            }
+        });
+
+    });
+
+
+    //接受请求
+    $(".content-page").delegate(".js-add-friend", "click", function () {
+
+        var applyId = parseInt($(this).parent().attr("data-id"));
+
+        $.api("applyFriends", {"applyObjectId": applyId, "type": 2, "accept": 1}, agreeRequestCallback, "user");
+
+        function agreeRequestCallback(ret) {
+            if (ret.status === "SUCCESS") {
+                $('#agree').parent().addClass("hide");
+                $('.fdlistp-' + applyId).html("已接受");
+                $('#refuse').parent().addClass("hide");
+            }
+        }
+    });
+
+    //拒绝请求
+    var applyId;
+    $(".content-page").delegate(".js-refuse-friend", "click", function () {
+
+        applyId = parseInt($(this).parent().attr("data-id"));
+
+        showSwal(applyId, "是否拒绝好友请求", 2, 2, refuseFriendCallBack);
+
+    });
+
+    //删除好友
+    $(".content-page").delegate(".js-del-friend", "click", function () {
+
+        var friendId = $(this).parent().attr("data-id");
+
+        showSwal(friendId, "是否删除好友", 3, 0, del_friendCallBack);
+    });
+
+    function showSwal(param, title, type, accept, callback) {
+        swal({
+            title: title,
+            html: true,
+            text: "",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#fe8775",
+            confirmButtonText: "确认"
+        }, function () {
+            $.api("applyFriends", {"applyObjectId": param, "type": type, "accept": accept}, callback, "user");
+        });
+    }
+
+    function refuseFriendCallBack(ret) {
+        if (ret.status == "SUCCESS") {
+            $('#agree').parent().addClass("hide");
+            $('.fdlistp-' + applyId).html("已拒绝");
+            $('#refuse').parent().addClass("hide");
+        }
+        swal.close();
+    }
+
+    function del_friendCallBack(ret) {
+        dszdy.UI.Tip(ret.message);
+        if (ret.status === "SUCCESS") {
+            window.location.reload();
+        }
+        swal.close();
+    }
+
+    function getapplyList(pageCode, tag) {
+
+        if (tag === 0) {
+            dszdy.UI.loadingReview();
+            $.api("getApplyOrRequestFriendsList", {"pageCode": pageCode, "pageSize": 8}, getApplyFriendsListCallback, "user");
+
+        } else {
+            dszdy.UI.loadingReview();
+            $.api("getFriendsList", {"pageCode": pageCode, "pageSize": 8}, getFriendsListCallback, "user");
+        }
+
+    }
+
+    function getApplyFriendsListCallback(ret) {
+        $('.ajax_tips0').hide();
+        dszdy.UI.loadingReview(false);
+        if (ret.status === "SUCCESS") {
+            if (ret.data.applyFriendsPoList === null) {
+                $('.ajax_tips0').show();
+                return;
+            }
+            var html = "";
+            var htmlHeader = "";
+            var status = "";
+            var list = ret.data.applyFriendsPoList;
+
+            $.each(list, function (index, dataItem) {
+
+                if (dataItem.userId === dataItem.applyFriendEntity.applyId) {
+                    htmlHeader = '<li class="" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                        '<a href="userProfile.html?id=' + dataItem.applyFriendEntity.applyObjectId + '\">' +
+                        '<img src="' + dataItem.avatar.fileHost + "/60/60/" + dataItem.avatar.fileName + dataItem.avatar.fileType + '" class="iconP" id="UserPic" alt=\"' + dataItem.trueName + '\">' +
+                        '</a>' +
+                        '<div class="text">';
+
+                    if (dataItem.applyFriendEntity.accept === 0) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp">正在等待对方同意</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+
+                    if (dataItem.applyFriendEntity.accept === 1) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp">已同意好友请求</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+
+                    if (dataItem.applyFriendEntity.accept === 2) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp">已拒绝好友请求</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+                } else {
+
+                    htmlHeader = '<li class="" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                        '<a href="userProfile.html?id=' + dataItem.applyFriendEntity.applyId + '\">' +
+                        '<img src="' + dataItem.avatar.fileHost + "/60/60/" + dataItem.avatar.fileName + dataItem.avatar.fileType + '" class="iconP" id="UserPic" alt=\"' + dataItem.trueName + '\">' +
+                        '<div class="text">';
+
+                    if (dataItem.applyFriendEntity.accept === 0) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp-' + dataItem.applyFriendEntity.applyId + '">请求加您好友</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '<a data-id="1" class="btn btn-sm btn-default-bg waves-effect waves-light js-add-friend"><span id="agree">接受</span></a>&nbsp;' +
+                            '<a data-id="2" class="btn btn-sm btn-danger waves-effect waves-light js-refuse-friend"><span id="refuse">拒绝</span></a>' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+                    if (dataItem.applyFriendEntity.accept === 1) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp">已接受</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+                    if (dataItem.applyFriendEntity.accept === 2) {
+                        status = '<div class="name">' + dataItem.trueName + '</div>' +
+                            '<p class="fdlistp">已拒绝</p>' +
+                            '</div>' +
+                            '<div class="time" data-id=\"' + dataItem.applyFriendEntity.applyId + '\" data-name=\"' + dataItem.trueName + '\">' +
+                            '</div>' +
+                            '<span class="clearfix"></span>' +
+                            '</li>';
+                    }
+
+                }
+
+                html += htmlHeader + status;
+            });
+
+            $('#applyFriendsList0').append(html);
+
+            $('#product-list' + tag).attr("page-now", ret.data.page);
+            $('#product-list' + tag).attr("page-total", ret.data.pageTotal);
+
+            if (list.length < 8) {
+                $('.ajax_tips0').show();
+            }
+
+        } else {
+
+            $('.ajax_tips0').show();
+        }
+
+        isLoading = false;
+    }
+
+    function getFriendsListCallback(ret) {
+
+        dszdy.UI.loadingReview(false);
+
+        if (ret.status === "SUCCESS" && ret.data.friendsPos.length > 0) {
+
+            var html = "";
+            var list = ret.data.friendsPos;
+            $.each(list, function (index, item) {
+                html += '<li class="" data-id=\"' + item.friendId + '\" data-name=\"' + item.trueName + '\">' +
+                    '<a href="userProfile.html?id=' + item.friendId + '\">' +
+                    '<img src="' + item.avatar.fileHost + "/60/60/" + item.avatar.fileName + item.avatar.fileType + '" class="iconP" id="UserPic" alt=\"' + item.trueName + '\">' +
+                    '</a>' +
+                    '<a href="privateChat.html?uid=' + item.uId + "&touid=" + item.friendId + '\">' +
+                    '<div class="text" style="margin-top: 10px;">' +
+                    '<div class="name">' + item.trueName + '</div>' +
+                    '</div>' +
+                    '</a>' +
+                    '<div class="time" data-id=\"' + item.friendId + '\" data-name=\"' + item.trueName + '\">' +
+                    '<a data-id="2" class="btn btn-sm btn-danger waves-effect waves-light js-del-friend"><span id="refuse">删除好友</span></a>' +
+                    '</div>' +
+                    '<span class="clearfix"></span>' +
+                    '</li>';
+            });
+
+            $('#applyFriendsList1').append(html);
+
+            $('#product-list' + tag).attr("page-now", ret.data.page);
+            $('#product-list' + tag).attr("page-total", ret.data.pageTotal);
+
+            if (list < 8) {
+                $('.ajax_tips1').show();
+            }
+
+        } else {
+
+            $('.ajax_tips1').show();
+        }
+
+        isLoading = false;
+    }
+
+</script>
+
+<script>
+    $(".lv-icon1 >span").on("click", function () {
+        window.location.href = "home.html";
+    });
+</script>
+</body>
+</html>

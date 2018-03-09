@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+    <title>会员查询</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <style>
+        #main {
+            margin-bottom: 40px;
+        }
+
+        #main .vip .vip-title {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #main .vip .vip-title span {
+            padding-left: 24px;
+            font-weight: 600;
+            background: url(static/images/del_ico.png) no-repeat left center;
+            background-size: auto 20px;
+        }
+
+        #main .vip .vip-title a {
+            float: right;
+            color: #fe8775;
+            font-weight: 600;
+            font-size: .9em;
+        }
+
+        #main .vip .vip-list .renwu {
+            padding: 10px 10px;
+            background-color: #fff;
+            margin-bottom: 6px;
+        }
+
+        #main .vip .vip-list .renwu .photo {
+            margin-top: 4px;
+            width: 65px;
+            text-align: center;
+            height: 65px;
+            text-align: center;
+            border-radius: 32.5px;
+            -webkit-border-radius: 32.5px;
+            -moz-border-radius: 32.5px;
+            -ms-border-radius: 32.5px;
+            -o-border-radius: 32.5px;
+            overflow: hidden;
+            float: left;
+        }
+
+        #main .vip .vip-list .renwu .photo img {
+            height: 100%;
+            width: 100%;
+        }
+
+        #main .vip .vip-list .renwu .v-xq {
+            margin-left: 75px;
+            margin-top: 5px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name {
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name span {
+            float: left;
+            display: block;
+            margin-right: 2px;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-name .sex {
+            vertical-align: bottom;
+            width: 16px;
+            height: 30px;
+            display: inline-block;
+            color: #4692F8;
+            margin-right: 2px;
+            text-indent: -9999px;
+            background: url(static/images/v1/Zhuynanhb.png) no-repeat center;
+            background-size: auto 16px;
+        }
+
+        #main .vip .vip-list .girl .v-xq .v-name .sex {
+            vertical-align: bottom;
+            width: 16px;
+            height: 30px;
+            display: inline-block;
+            color: #4692F8;
+            margin-right: 2px;
+            text-indent: -9999px;
+            background: url(static/images/v1/Zhuynvh.png) no-repeat center;
+            background-size: auto 16px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name .name {
+            font-size: .9em;
+            color: #FE0000;
+            font-weight: 600;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-name .name {
+            color: #4692F8;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name .rengzheng {
+            width: 16px;
+            height: 30px;
+            background: url(static/images/v1/Zhuyrenzhb.png) no-repeat center;
+            background-size: auto 16px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name .vp {
+            width: 22px;
+            height: 30px;
+            background: url(static/images/v1/vip.png) no-repeat center;
+            background-size: auto 12px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name .tp {
+            float: right;
+            padding-left: 26px;
+            margin-right: 0;
+            background-size: auto 16px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-xinxi .adr {
+            float: right;
+            padding-left: 26px;
+            margin-right: 0;
+            background-size: auto 16px;
+        }
+
+        #main .vip .vip-list .girl .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 4px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            background: #FFE7E3;
+            color: #FF5E3B;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-xinxi .margin-right {
+            margin-right: 6px;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 4px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            background: #E4ECFF;
+            color: #4692F8;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border-right: 1px solid #ddd;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span:nth-last-child(1) {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border: none;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span:nth-last-child(2) {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border: none;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-tj {
+            line-height: 25px;
+            margin-top: 2px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-tj span {
+            padding: 0 8px;
+            font-size: .9em;
+            border: 1px solid #7D7D7D;
+            color: #7D7D7D;
+            border-radius: 12.5px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-dubai {
+            color: #717070;
+            line-height: 20px;
+            font-size: .9em;
+            margin-top: 2px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-chat {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-chat a {
+            padding-left: 24px;
+            margin-right: 20px;
+        }
+
+        #main .vip .vip-list .girl .v-xq .v-chat .anlian {
+            background: url(static/images/v1/anlxin.png) no-repeat left center;
+            background-size: auto 20px;
+            color: #fe8775;
+        }
+
+        #main .vip .vip-list .girl .v-xq .v-chat .chat {
+            background: url(static/images/v1/lyilb.png) no-repeat left center;
+            background-size: auto 20px;
+            color: #fe8775;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-chat .anlian {
+            background: url(static/images/v1/anlianxinlanse.png) no-repeat left center;
+            background-size: auto 20px;
+            color: #4692F8;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-chat .chat {
+            background: url(static/images/v1/lyillanse.png) no-repeat left center;
+            background-size: auto 20px;
+            color: #4692F8;
+        }
+
+        #code {
+            z-index: 10;
+            width: 100%;
+            min-height: 200%;
+            margin-top: -60%;
+            position: fixed;
+            background: rgba(0, 0, 0, .5);
+            left: 0;
+            top: 0;
+        }
+
+        #code .code-bar {
+            margin-top: 80%;
+            text-align: center;
+            position: relative;
+            margin: 80% auto;
+            width: 240px;
+        }
+
+        #code .code-bar .ewcode {
+            padding: 10px;
+        }
+
+        #code .code-bar .ewcode img {
+            width: 200px;
+            height: 200px;
+            box-shadow: 1px -6px 14px #FFD929, 3px 5px 15px #FFD929, 3px 5px 7px #FFD929, -6px 5px 15px #FFD929;
+        }
+
+        #code .code-bar .ew img {
+            margin-top: 10px;
+            width: 220px;
+        }
+
+        #code .code_close {
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 30px;
+            height: 30px;
+            background: url(static/images/v1/x.png) no-repeat center;
+            background-size: auto 30px;
+        }
+
+        #main .guangao_list {
+            background: #fff;
+            width: 100%;
+            margin: 0;
+            padding: 10px 10px;
+            box-sizing: border-box;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+        }
+
+        .have {
+            margin-right: 4px;
+        }
+
+        #go-top {
+            display: block;
+            height: 50px;
+            width: 50px;
+            background: #000;
+            position: fixed;
+            right: 20px;
+            bottom: 25%;
+            z-index: 9999;
+            background: url(static/images/v1/go_top_c67a59b.png) no-repeat;
+            background-size: contain;
+            opacity: 0;
+            -webkit-transition: opacity 1s ease;
+            webkit-transition: opacity 1s ease;
+        }
+    </style>
+    <style>
+        .search-table {
+        }
+
+        .search-table .title {
+            width: 98px;
+            height: 50px;
+            text-align: center;
+            color: #252525;
+        }
+
+        .search-table select {
+            background-image: none;
+            letter-spacing: 0.1em;
+            width: 100%;
+            padding: 0.2em 0.5em;
+            border: none;
+            margin-top: -0.2em;
+            -webkit-appearance: none;
+            background: #fff;
+        }
+
+        /*加载*/
+
+        .loadingcss3 {
+            -webkit-animation: ticktock 1s linear infinite;
+            -webkit-transform-origin: 30px 30px;
+            -moz-animation: ticktock 1s linear infinite;
+            -moz-transform-origin: 30px 30px;
+            -o-animation: ticktock 1s linear infinite;
+            -o-transform-origin: 30px 30px;
+            -ms-animation: ticktock 1s linear infinite;
+            -ms-transform-origin: 30px 30px;
+            animation: ticktock 1s linear infinite;
+            transform-origin: 30px 30px;
+        }
+
+        #loadingcss3 {
+            width: 60px;
+            height: 60px;
+        }
+
+        @-webkit-keyframes ticktock {
+            0% {
+                -webkit-transform: rotate(0);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+
+        @-moz-keyframes ticktock {
+            0% {
+                -moz-transform: rotate(0);
+            }
+
+            100% {
+                -moz-transform: rotate(360deg);
+            }
+        }
+
+        @-o-keyframes ticktock {
+            0% {
+                -o-transform: rotate(0);
+            }
+
+            100% {
+                -o-transform: rotate(360deg);
+            }
+        }
+
+        @-ms-keyframes ticktock {
+            0% {
+                -ms-transform: rotate(0);
+            }
+
+            100% {
+                -ms-transform: rotate(360deg);
+            }
+        }
+
+        @keyframes ticktock {
+            0% {
+                transform: rotate(0);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        #loadingcss3 i {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -5px 0 0 -5px;
+            background: #000;
+            width: 10px;
+            height: 10px;
+            display: block;
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+        }
+
+        #loadingcss3 i:nth-child(1) {
+            -moz-transform: translate(0, -25px);
+            -webkit-transform: translate(0, -25px);
+            -o-transform: translate(0, -25px);
+            -ms-transform: translate(0, -25px);
+            transform: translate(0, -25px);
+        }
+
+        #loadingcss3 i:nth-child(2) {
+            -webkit-transform: translate(18px, -18px);
+            -moz-transform: translate(18px, -18px);
+            -webkit-transform: translate(18px, -18px);
+            -o-transform: translate(18px, -18px);
+            -ms-transform: translate(18px, -18px);
+            transform: translate(18px, -18px);
+            opacity: 0.9;
+        }
+
+        #loadingcss3 i:nth-child(3) {
+            -webkit-transform: translate(25px, 0);
+            -moz-transform: translate(25px, 0);
+            -webkit-transform: translate(25px, 0);
+            -o-transform: translate(25px, 0);
+            -ms-transform: translate(25px, 0);
+            transform: translate(25px, 0);
+            opacity: 0.8;
+        }
+
+        #loadingcss3 i:nth-child(4) {
+            -webkit-transform: translate(18px, 18px);
+            -moz-transform: translate(18px, 18px);
+            -webkit-transform: translate(18px, 18px);
+            -o-transform: translate(18px, 18px);
+            -ms-transform: translate(18px, 18px);
+            transform: translate(18px, 18px);
+            opacity: 0.7;
+        }
+
+        #loadingcss3 i:nth-child(5) {
+            -webkit-transform: translate(0, 25px);
+            -moz-transform: translate(0, 25px);
+            -webkit-transform: translate(0, 25px);
+            -o-transform: translate(0, 25px);
+            -ms-transform: translate(0, 25px);
+            transform: translate(0, 25px);
+            opacity: 0.6;
+        }
+
+        #loadingcss3 i:nth-child(6) {
+            -webkit-transform: translate(-18px, 18px);
+            -moz-transform: translate(-18px, 18px);
+            -webkit-transform: translate(-18px, 18px);
+            -o-transform: translate(-18px, 18px);
+            -ms-transform: translate(-18px, 18px);
+            transform: translate(-18px, 18px);
+            opacity: 0.5;
+        }
+
+        #loadingcss3 i:nth-child(7) {
+            -webkit-transform: translate(-25px, 0);
+            -moz-transform: translate(-25px, 0);
+            -webkit-transform: translate(-25px, 0);
+            -o-transform: translate(-25px, 0);
+            -ms-transform: translate(-25px, 0);
+            transform: translate(-25px, 0);
+            opacity: 0.4;
+        }
+
+        #loadingcss3 i:nth-child(8) {
+            -webkit-transform: translate(-18px, -18px);
+            -moz-transform: translate(-18px, -18px);
+            -webkit-transform: translate(-18px, -18px);
+            -o-transform: translate(-18px, -18px);
+            -ms-transform: translate(-18px, -18px);
+            transform: translate(-18px, -18px);
+            opacity: 0.3;
+        }
+
+        .ajax_tips {
+            height: 34px;
+            line-height: 34px;
+            margin-top: 0px;
+            margin-bottom: 40px;
+            text-align: center;
+            font-size: 14px;
+            color: #999;
+            background-color: #ededed;
+        }
+
+        .fixedloading {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            margin: -30px 0 0 -30px;
+            z-index: 9999;
+            display: none;
+        }
+
+        .fixedloadingbg {
+            background: #000;
+            position: fixed;
+            top: 0px;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0.5;
+            z-index: 9998;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon ">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            列表
+        </div>
+        <div class="col-xs-2">
+            <a href="javascript:;" class="btn text-white js-menu-where">筛选<i class="glyphicon glyphicon-filter"></i></a>
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content">
+            <!--商品列表-->
+            <section id="main" class="clearfix js_list">
+                <div class="vip">
+                    <div class="vip-list product-list">
+
+                    </div>
+                    <div class="ajax_tips">
+                        加载更多信息...
+                    </div>
+                    <div id="loadingcss3" class="fixedloading"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+                    </div>
+                    <div class="fixedloadingbg"></div>
+                </div>
+                <ul class="pager">
+                    <li><a class="js-pre" href="javascript:;">上一页</a></li>
+                    <li><span><i class="js_pageno">1</i>/<i class="js_pagecount">1</i></span></li>
+                    <li><a class="js-next" href="javascript:;">下一页</a></li>
+                </ul>
+            </section>
+        </div>
+    </div>
+
+    <div class="footerbar">
+        <div class="btn-group btn-group-justified">
+            <a class="btn btn-xs waves-effect waves-light" role="button" href="mylove.aspx"><i
+                    class="glyphicon glyphicon-user"></i>
+                <br>
+                个人中心</a>
+        </div>
+    </div>
+    <!--menu-->
+    <div class="menu">
+        <div class="wrap">
+            <div class="row search-wrap">
+                <div class="col-xs-9">
+                    <form role="search" class="app-search">
+                        <input type="text" placeholder="请输入搜索关键字..." class="form-control js-search-btn"/>
+                        <a href="#"><i class="glyphicon glyphicon-search"></i></a>
+                    </form>
+                </div>
+                <div class="col-xs-2">
+                    <a class="btn btn-icon btn-default-bg btn-sm logoleft js-btn-search-list">搜索</a>
+                </div>
+            </div>
+            <div class="js-search-rows row">
+                <div class="col-xs-12 search-table">
+
+                    <div class="table-box">
+                        <div class="table-detail title">籍&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;贯:</div>
+                        <div class="table-detail">
+                            <select name="Province"></select>
+                            <select name="City"></select>
+                            <div class="hide">
+                                <select name="Area" class="hide"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-box">
+                        <div class="table-detail title">学&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;历:</div>
+                        <div class="table-detail">
+                            <select name="Education">
+                                <option value="">不限</option>
+                                <option value="0">高中以上</option>
+                                <option value="1">中专以上</option>
+                                <option value="2">大专以上</option>
+                                <option value="3">本科以上</option>
+                                <option value="4">硕士以上</option>
+                                <option value="5">博士以上</option>
+
+                                <option value="7">海归</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-box">
+                        <div class="table-detail title">年龄范围:</div>
+                        <div class="table-detail">
+                            <select name="MetaAge" id="MetaAge">
+                                <option value="">不限</option>
+
+                                <option value="18-25">18-25</option>
+                                <option value="25-30">25-30</option>
+                                <option value="30-35">30-35</option>
+                                <option value="35-40">35-40</option>
+                                <option value="40-50">40-50</option>
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="table-box">
+                        <div class="table-detail title">身高范围:</div>
+                        <div class="table-detail">
+                            <select name="MetaUHeight" id="MetaUHeight">
+                                <option value="">不限</option>
+                                <option value="150">150以下</option>
+                                <option value="150-160">150-160</option>
+                                <option value="160-170">160-170</option>
+                                <option value="170-180">170-180</option>
+                                <option value="190">190以上</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-box hide">
+                        <div class="table-detail title"></div>
+                        <div class="table-detail">
+                            <div class="tab-inline js-interest-list">
+                                <a href="javascript:;" class=" hide">有车</a>
+                                <a href="javascript:;" class=" hide">有房</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-box">
+                        <div class="table-detail title"></div>
+                        <div class="table-detail">
+                            <button type="button" class="btn  btn-default-bg waves-effect waves-light js-reset">重置
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="arrow"></div>
+        </div>
+    </div>
+    <!--go-top-->
+    <div class="bottom-to-top" id="indexToTop"><i class="glyphicon glyphicon-circle-arrow-up text-gray"></i></div>
+</div>
+<input type="hidden" id="pageStartid" value="0"/>
+
+<input type="hidden" id="hdProvince" value="noSelect"/>
+<input type="hidden" id="hdCity" value="noSelect"/>
+<input type="hidden" id="hdEducation" value=""/>
+<input type="hidden" id="hdMetaAge" value=""/>
+<input type="hidden" id="hdcar" value="0"/>
+<input type="hidden" id="hdhome" value="0"/>
+<input type="hidden" id="hdkw" value=""/>
+
+
+<script src="static/js/address_list.js"></script>
+<script src="js/list.js"></script>
+<script>
+    //选择兴趣标签
+    $("body").delegate(".js-interest-list a", "click", function () {
+        var newstr = $(this).attr("data-id");
+        var oldstr = $("input[name='Interest']").val();
+        var currentstr = "";
+        if ($(this).hasClass("act")) {
+            $(this).removeClass("act");
+            currentstr = oldstr.replace(newstr + ",", "").replace("," + newstr, "").replace(newstr, "");
+        }
+        else {
+            $(this).addClass("act");
+            if (oldstr == "") {
+                currentstr = newstr;
+            }
+            else {
+                currentstr += oldstr + "," + newstr;
+            }
+        }
+        $("input[name='Interest']").val(currentstr);
+    });
+
+
+    //键盘回车事件
+    $(".js-search-btn").keypress(function (e) {
+        e = e || event;
+        if (e.keyCode == 13) {
+            $(".js-btn-search-list").click();
+            return false;
+        }
+    });
+</script>
+<script>
+    function getAddress(Province, City, Area, ProvinceWork, CityWork, AreaWork) {
+        function page_refresh() {
+        }
+
+        ////绑定地址下拉框
+        var prov_select = $("select[name='Province']");
+        var city_select = $("select[name='City']");
+        var area_select = $("select[name='Area']");
+        _edit_addr_selection = new address_list(prov_select, city_select, area_select,
+            {
+                callback: page_refresh,
+                init_selection: [Province, City, Area]
+            });
+    }
+    getAddress("noSelect", "noSelect", "noSelect", "noSelect", "noSelect", "noSelect");
+
+</script>
+
+<script>
+
+    function loadingcss3_open() {
+        $(".fixedloading").addClass("loadingcss3");
+        $(".fixedloading").fadeIn(300);
+        $(".fixedloadingbg").fadeIn(300);
+    }
+    ;
+    function loadingcss3_close() {
+        $(".fixedloading").removeClass("loadingcss3");
+        $(".fixedloading").fadeOut(300);
+        $(".fixedloadingbg").fadeOut(300);
+    }
+    ;
+
+    function onClickJump(str) {
+        //var scrollPos;
+        //if (typeof window.pageYOffset != 'undefined') {
+        //    scrollPos = window.pageYOffset;
+        //} else if (typeof document.compatMode != 'undefined' && document.compatMode != 'BackCompat') {
+        //    scrollPos = document.documentElement.scrollTop;
+        //} else if (typeof document.body != 'undefined') {
+        //    scrollPos = document.body.scrollTop;
+        //}
+        //$("#scrollPosid").val(scrollPos);
+        window.location.href = "userExpandProfile.aspx?id=" + str;
+    }
+</script>
+<script>
+    var start = 1;
+    var status = 0;
+    var type = "";
+    var loading = false;
+    $(".js-btn-search-list").on("click", function () {
+        $('.menu .arrow').click();
+        $("#pageStartid").val(0);
+        SetHd();
+        user_query_user_list();
+    });
+    $(".js-reset").on("click", function () {
+        getAddress("noSelect", "noSelect", "noSelect", "noSelect", "noSelect", "noSelect");
+        $("select[name='Education']").val("");
+        $("select[name='MetaAge']").val("");
+        $("select[name='MetaUHeight']").val("");
+        $(".js-interest-list a").removeClass("act");
+        $(".js-search-btn").val("");
+    });
+
+
+    $(".js-pre").on("click", function () {
+        //选择下划线
+        var pageIndex = parseInt($("#pageStartid").val()) - 1;
+        if (pageIndex < 0) {
+            pageIndex = 0;
+            return false;
+        }
+        $("#pageStartid").val(pageIndex)
+        user_query_user_list();
+    });
+
+    $(".js-next").on("click", function () {
+        //选择下划线
+        var pageIndex = parseInt($("#pageStartid").val()) + 1;
+        if (pageIndex >= parseInt($(".js_pagecount").text())) {
+            pageIndex = parseInt($(".js_pagecount").text()) - 1;
+            return false;
+        }
+        $("#pageStartid").val(pageIndex)
+        user_query_user_list();
+    });
+
+
+    function user_query_user_list() {
+        loadingcss3_open();
+        loading = true;
+        var param = [parseInt($("#pageStartid").val()),
+            $("#hdProvince").val(),//addr_select.SelectedProvinceID,
+            $("#hdCity").val(), //addr_select.SelectedCityID,
+            $("select[name='Education']").val(),
+            $("select[name='MetaAge']").val(),
+            $("select[name='MetaUHeight']").val(),
+            $(".js-interest-list a").eq(0).hasClass("act") ? "1" : "0",
+            $(".js-interest-list a").eq(1).hasClass("act") ? "1" : "0",
+            $(".js-search-btn").val()
+        ]
+        $.LT_AJAX("webuser_query_list", param, _callback, "user_acitve");
+        function _callback(data) {
+            loadingcss3_close();
+            loading = false;
+            if (data == null || data == "" || data[0] != "SUCCESS") {
+                $(".product-list").html("<p class='text-center'>没有数据</p>");
+                $(".js_pagecount").text(1);
+                $(".ajax_tips").html("没有数据");
+                return false;
+            }
+            start = parseInt($("#pageStartid").val()) + 1;
+            pageChange(start, data[2]);
+            status = 1;
+            data = data[1];
+            var str = '';
+            for (var i = 0; i < data.Rows.Count; i++) {
+                var tr_obj = data.Rows[i];
+                var userid = tr_obj["USERID"];
+                str += ' <div class="renwu clearfix">' +
+                    ' <div class="photo">' +
+                    ' <a href="javascript:onClickJump(' + userid + ')" target="_blank">' +
+                    ' <img src="' + (tr_obj["UserPic"] == null ? "" : tr_obj["UserPic"].replace(".jpg", "_1.jpg").replace(".jpeg", "_1.jpeg")).replace(".png", "_1.png") + '" />' +
+                    ' </a>' +
+                    ' </div>' +
+                    ' <div class="v-xq">' +
+                    ' <a href="javascript:onClickJump(' + userid + ')" target="_blank">' +
+                    ' <div class="v-name"><span class="name" style="padding-right: 10px;">' + tr_obj["TRUENAME"] + '</span>' + tr_obj["SEX"] + '<span class="tp">普通会员</span></div>' +
+                    ' <div class="v-xinxi"><span>' + tr_obj["Age"] + '&nbsp;</span><span>' + tr_obj["UHeight"] + '&nbsp;</span><span>' + tr_obj["UWeight"] + 'kg&nbsp;</span><span>' + tr_obj["EDUCATION"] + '</span> <span class="adr">' + (tr_obj["Pcaname"] == null ? "" : tr_obj["Pcaname"].replace("福田区", "")) + '</span></div>' +
+                    '  </a>' +
+                    ' </div>' +
+                    ' </div>';
+            }
+            $(".ajax_tips").css("display", "none");
+            $(".product-list").html(str);
+        }
+
+        function pageChange(pageno, pagecount) {
+            $(".js_pageno").text(pageno);
+            if (pagecount == 0) {
+                pagecount = 1;
+            }
+            $(".js_pagecount").text(pagecount);
+        }
+    }
+    function SetHd() {
+        $("#hdProvince").val(_edit_addr_selection.SelectedProvinceID);
+        $("#hdCity").val(_edit_addr_selection.SelectedCityID);
+        $("#hdEducation").val($("select[name='Education']").val());
+        $("#hdMetaAge").val($("select[name='MetaAge']").val());
+        $("#hdMetaUHeight").val($("select[name='MetaUHeight']").val());
+        $("#hdcar").val($(".js-interest-list a").eq(0).hasClass("act") ? "1" : "0");
+        $("#hdhome").val($(".js-interest-list a").eq(1).hasClass("act") ? "1" : "0");
+        $("#hdkw").val($(".js-search-btn").val());
+    }
+    window.onload = function () {
+        $("select[name='Education']").val($("#hdEducation").val());
+        $("select[name='MetaAge']").val($("#hdMetaAge").val());
+        $("select[name='MetaUHeight']").val($("#hdMetaUHeight").val());
+        if ($("#hdcar").val() == 1 && !$(".js-interest-list a").eq(0).hasClass("act")) {
+            $(".js-interest-list a").eq(0).addClass("act");
+        }
+        if ($("#hdhome").val() == 1 && !$(".js-interest-list a").eq(1).hasClass("act")) {
+            $(".js-interest-list a").eq(1).addClass("act");
+        }
+        $(".js-search-btn").val($("#hdkw").val());
+        getAddress($("#hdProvince").val(), $("#hdCity").val(), "noSelect", "noSelect", "noSelect", "noSelect");
+        user_query_user_list();
+    };
+</script>
+</body>
+</html>

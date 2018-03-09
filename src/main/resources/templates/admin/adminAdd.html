@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/bootstrap-responsive.css"/>
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/alert.css">
+
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/ckform.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/common.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .ajax_tips1, .ajax_tips2 {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 tr td{
+            text-align: center; vertical-align: middle
+        }
+
+    </style>
+</head>
+
+<div>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#supAdmin" data-toggle="tab" id="a_supAdmin">
+                超级管理员
+            </a>
+        </li>
+        <li>
+            <a href="#activityAdmin" data-toggle="tab" id="a_activityAdmin">
+                活动管理员
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div id="myTabContent" class="tab-content" style="width: 60%; margin: 0 auto">
+    <div class="tab-pane fade in active" id="supAdmin">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th style=" text-align: center;">管理员ID</th>
+                <th style=" text-align: center;">账号名称</th>
+                <th style=" text-align: center;">注册时间</th>
+                <th style=" text-align: center;">上次登录时间</th>
+                <th style=" text-align: center;">上次登录IP</th>
+                <th style=" text-align: center;">状态</th>
+                <th style=" text-align: center;" width="20%">权限操作</th>
+            </tr>
+            </thead>
+            <tbody id="content1">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+    </div>
+    <div class="tab-pane fade" id="activityAdmin">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th style=" text-align: center;">管理员ID</th>
+                <th style=" text-align: center;">账号名称</th>
+                <th style=" text-align: center;">注册时间</th>
+                <th style=" text-align: center;">上次登录时间</th>
+                <th style=" text-align: center;">上次登录IP</th>
+                <th style=" text-align: center;">状态</th>
+                <th style=" text-align: center;" width="20%">权限操作</th>
+            </tr>
+            </thead>
+            <tbody id="content2">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips2">找不到更多数据</div>
+    </div>
+</div>
+
+<div id="admin_page" style="text-align: center;" pagination="pagination_new" pagenumber="" totalpage="">
+
+</div>
+
+<div style=" width: 60%; margin: 100px auto;">
+    <span class="input-group-addon">管理员添加</span>
+    <form action="prove.html" method="post">
+        <table class="table table-bordered table-hover definewidth m11">
+            <tr>
+                <td width="10%" class="tableleft">管理员账号</td>
+                <td><input type="text" id="account" name="account"/></td>
+            </tr>
+            <tr>
+                <td class="tableleft">密码</td>
+                <td><input type="password" id="password" name="password"/></td>
+            </tr>
+            <tr>
+                <td class="tableleft">级别</td>
+                <td>
+                    <input type="radio" name="adminType" value="1" checked/> 超级管理员&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="adminType" value="2"/> 活动管理员
+                </td>
+            </tr>
+            <tr>
+                <td class="tableleft"></td>
+                <td>
+                    <button type="button" id="addAdmin" class="btn btn-primary" type="button">添加</button>&nbsp;&nbsp;
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+
+</body>
+</html>
+<script>
+
+    var tag = 1;
+    window.onload = function () {
+
+        $('#a_supAdmin').click(function () {
+            tag = 1;
+            getAdminUserList(tag, 0);
+
+        });
+
+        $('#a_activityAdmin').click(function () {
+            tag = 2;
+            getAdminUserList(tag, 0);
+
+        });
+    };
+
+    getAdminUserList(1, 0);
+
+    function getAdminUserList(tag, pageCode) {
+        $.api("getAdminUserList", {"type": tag, "pageCode": pageCode, "pageSize": 6}, getAdminUserListCallback, "admin");
+    }
+
+    function userOperation(userId, operationType) {
+
+        $.api("userOperation", {"userId":userId, "operationType":operationType}, userOperationCallback, "admin");
+    }
+
+    $('#addAdmin').click(function () {
+        addAdmin();
+    });
+
+    function addAdmin() {
+        var account = $('#account').val();
+        var password = $('#password').val();
+        var type = parseInt($("input[name='adminType']:checked").val());
+
+        if (account == "") {
+            tips("管理员账号不能空");
+            return;
+        }
+        if (password == "") {
+            tips("密码不能为空");
+            return;
+        }
+
+        $.api("register", {"account":account, "password":password, "type":type}, adminRegisterCallback, "admin");
+    }
+
+    function getAdminUserListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            var data = ret.data.adminUserPo;
+
+            if (data !== null && data.length > 0) {
+
+                var pageCode = ret.data.page;
+                var pageTotal = ret.data.pageTotal;
+                var html = "";
+                var prefix = "";
+                var but = "";
+
+                $.each(data, function (index, item) {
+
+                    var status = function () {
+                        if (item.deleteTag != 0) {
+                            return "已被封号";
+                        }
+                        return "正常使用";
+                    };
+
+                    var lastLoginTime = function () {
+
+                        if (item.registerTime === 0) {
+                            return "尚未登录过";
+                        }
+                        return dszdy.UI.formatTimestampLongDet(item.lastLoginTime);
+                    };
+
+                    var lastLoginIp = function () {
+
+                        if (item.lastLoginIp === "0") {
+                            return "尚未登录过";
+                        }
+                        return item.lastLoginIp;
+                    };
+
+                    prefix = ' <tr>' +
+                        '<td>'+ item.userId +'</td>' +
+                        '<td>'+ item.account +'</td>' +
+                        '<td>'+ dszdy.UI.formatTimestampLong(item.registerTime) +'</td>' +
+                        '<td>'+ lastLoginTime() +'</td>' +
+                        '<td>'+ lastLoginIp() +'</td>' +
+                        '<td>'+ status() +'</td>' +
+                        '<td class="sub">';
+
+                    if (item.deleteTag === 1) {
+
+                        but = '<button onclick="userOperation(' + item.userId + "," + 3 + ')" class="btn btn-success">解封</button></td></tr>';
+                    }
+
+                    else {
+                        if (tag === 1) {
+
+                            but = '<button onclick="userOperation(' + item.userId + "," + 4 + ')" class="btn btn-warning" style="margin-right: 10px;">限制权限</button>' +
+                                '<button onclick="userOperation(' + item.userId + "," + 2 + ')" class="btn btn-danger">封号</button></td></tr>';
+                        }
+
+                        if (tag === 2) {
+
+                            but = '<button onclick="userOperation(' + item.userId + "," + 1 + ')" class="btn btn-warning" style="margin-right: 10px;">提升权限</button>' +
+                                '<button onclick="userOperation(' + item.userId + "," + 2 + ')" class="btn btn-danger">封号</button></td></tr>';
+                        }
+                    }
+
+                    html += prefix + but;
+
+
+                });
+
+                $('#content' + tag).html('');
+                $('#content' + tag).append(html);
+                $('.ajax_tips' + tag).hide();
+
+                page(pageCode, pageTotal);
+
+            } else {
+
+                $('#content' + tag).html('');
+                $('.ajax_tips' + tag).show();
+            }
+        }
+    }
+
+    function userOperationCallback(ret) {
+
+        tips(ret.message);
+        if (ret.status === "SUCCESS") {
+            getAdminUserList(tag, 0)
+        }
+
+    }
+
+    function adminRegisterCallback(ret) {
+        tips(ret.message);
+        if (ret.status === "SUCCESS") {
+            getAdminUserList(tag, 0)
+        }
+
+    }
+
+    function page(pageCode, pageTotal) {
+        $('#admin_page').attr('pagenumber', pageCode + 1);
+        $('#admin_page').attr('totalpage', pageTotal);
+        $('#admin_page').attr('paginationMaxLength', '5');
+        initPagination($('#admin_page'));
+    }
+
+    //page li onclick
+    function paginationClick(pagination_id, pageCode){
+        if (pagination_id === "admin_page") {
+            getAdminUserList(tag, pageCode - 1);
+        }
+    }
+
+    var M = {};
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content' : tip,
+            'closeTime' : 3000,
+        })
+    }
+
+</script>

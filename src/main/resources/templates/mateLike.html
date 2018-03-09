@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<title>线上互选</title>
+<link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+<link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+<script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+<script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <style>
+        body {
+            background: #eee;
+            height: auto;
+        }
+
+        .img-responsive, .thumbnail a > img, .thumbnail > img {
+            display: block;
+            width: 100%;
+            height: 188px;
+        }
+
+        html {
+            background: #eee;
+        }
+
+        .footerbar a {
+            color: #fff;
+        }
+    </style>
+    <link href="static/css/list.css" rel="stylesheet">
+</head>
+<body>
+    <div id="wrapper">
+        <!--start topbar-->
+        <div class="topbar row">
+            <div class="col-xs-2 lv-icon1">
+                <span></span>
+            </div>
+            <div class="col-xs-8 bar-title">
+                我选择的
+            </div>
+        </div>
+        <!--end topbar-->
+        <div class="content-page">
+            <div class="content"  page-now="0" page-total="0">
+                <!--列表-->
+                <div class="row text-center product-list">
+
+                </div>
+
+                <div class="col-xs-12  col-md-12 text-center m-t-40">
+                    <h2>
+                        <p class="title ajax_tips">您还没有选择喜欢的人</p>
+                    </h2>
+                </div>
+
+                <!--正在加载-->
+                <!--<div id="loading" style="display: none;">-->
+                    <!--<img src="images/loading.gif">-->
+                <!--</div>-->
+
+                <!--找不到更多数据-->
+                <div class="ajax_tips ajax_tips_l">找不到更多数据</div>
+            </div>
+        </div>
+
+        <div class="footerbar">
+            <div class="btn-group btn-group-justified">
+                
+                <a class="btn btn-md waves-effect waves-light js-my-select" role="button" href="javascript:;">我喜欢的</a>
+
+                   
+                <a class="btn btn-md waves-effect waves-ligh" role="button" href="home.html" style="border-left: 1px solid #ffffff">个人中心</a>
+                
+            </div>
+        </div>
+        <!--go-top-->
+        <div class="bottom-to-top" id="indexToTop"><i class="glyphicon glyphicon-circle-arrow-up text-gray"></i></div>
+    </div>
+
+    <script src="static/js/jquery.scrollpage.js"></script>
+    <script>
+
+        getCollectionList(0);
+
+        var isLoading = false;
+        $(document).ready(function () {
+
+            $(window.document).scroll(function () {
+
+                if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+                    var paneProductObj = $(".content");
+
+                    var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                    var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+
+                    if (panePageNow + 1 >= panePageTotal)
+                        return;
+
+                    isLoading = true;
+
+                    paneProductObj.attr("page-now", panePageNow + 1);
+
+                    getActivityUserList((panePageNow + 1));
+                }
+            });
+
+        });
+
+        //remove Collection
+        $(".text-center").delegate(".js-del-like", "click", function () {
+
+            var userId = $(this).attr("data-id");
+            var activityId = $(this).attr("data-activityid");
+            showSwal(userId, activityId);
+        });
+
+        function getCollectionList(pageCode) {
+            dszdy.UI.loadingReview();
+            $.api("getCollectionList", {"type":0, "pageCode":pageCode, "pageSize":4}, getCollectionListCallback, "user");
+        }
+
+        function getCollectionListCallback(ret) {
+            dszdy.UI.loadingReview(false);
+            if (ret.status === "SUCCESS") {
+
+                activityId = ret.data.activityId;
+                var list = ret.data.activityPersonPo;
+
+                var html = "";
+                if (list.length > 0) {
+
+                    $('.m-t-40').hide();
+
+                    $.each(list, function (index, item) {
+
+                        html += '<div class="col-xs-6">' +
+                            '<div class="feed dataItem">' +
+                            '<div class="feed-bd">' +
+                            '<div class="images ui-img-list image-popup row">' +
+                            '<figure class="col-xs-12 item">' +
+                            '<a href="userProfile.html?id=' + item.userId + '\" class="atmode">' +
+                            '<span class="img  loaded" style="background-image: url(' + item.avatar.fileHost + "/" + item.avatar.fileName + item.avatar.fileType + ');"></span>' +
+                            '</a>' +
+                            '</figure>' +
+                            '</div>' +
+                            '<div class="actions js_actions">' +
+                            '<p>' + item.nickname + '</p>' +
+                            '<p>' +
+                            '<button type="button" class="btn btn-inverse btn-xs btn-rounded waves-effect waves-light js-del-like" data-activityid=\"'+ item.activity +'\" data-id=\"' + item.userId + '\">不喜欢</button>' +
+                            '</p>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>' +
+                            '</div>';
+                    });
+                }
+
+                else {
+                    $('.m-t-40').show();
+                }
+
+                if (list.length < 10) {
+                    $('.ajax_tips_l').show();
+                }
+
+                $('.product-list').append(html);
+
+                $('.content').attr("page-now", ret.data.page);
+                $('.content').attr("page-total", ret.data.pageTotal);
+                isLoading = false;
+            }
+        }
+
+        function showSwal(userId, activityId) {
+            swal({
+                title: "是否取消喜欢",
+                text: "",
+                showCancelButton: true,
+                closeOnConfirm: true,
+                cancelButtonText: "取消",
+                confirmButtonColor: "#fe8775",
+                confirmButtonText: "确定"
+            }, function () {
+                $.api("collectionOperation", {"operationType": 2, "collectionObjectId": userId,"activityId": activityId}, collectionOperationCallback, "user");
+            });
+        }
+
+        function collectionOperationCallback(ret) {
+
+            dszdy.UI.Tip(ret.message);
+            if (ret.status === "SUCCESS") {
+                $('.product-list').html("");
+                getCollectionList(0);
+            }
+        }
+
+        $(".lv-icon1 >span").on("click", function () {
+            window.history.go(-1);
+        });
+
+//        $(".js-my-select").on("click", function () {
+//            var protype = GET["sid"];
+//            var proseries = GET["id"];
+//            window.location.href = "mateLike.html?s=0&id=" + proseries + "&sid=" + protype
+//        });
+//        //选择我的
+//        $(".js-select-my").on("click", function () {
+//            var protype = GET["sid"];
+//            var proseries = GET["id"];
+//            window.location.href = "mateLike.html?s=1&id=" + proseries + "&sid=" + protype
+//        });
+//        $(".js-huxuan-select").on("click", function () {
+//            var protype = GET["sid"];
+//            var proseries = GET["id"];
+//            window.location.href = "mateLike.html?s=2&id=" + proseries + "&sid=" + protype
+//        });
+//        $(".js-yuanfengqiang").on("click", function () {
+//            var protype = GET["sid"];
+//            var proseries = GET["id"];
+//            window.location.href = "mateList.html?s=2&id=" + proseries + "&sid=" + protype
+//        });
+//        $(".js-del-like").on("click", function () {
+//            var obj = $(this);
+//            var id = obj.attr("data-id");
+//            user_vote(id);
+//        });
+//        function user_vote(userid) {
+//            $.api("del_love_userId", userid, bind_love_userIdCallBack, "user_acitve");
+//            function bind_love_userIdCallBack(data) {
+//                if (data[0] == "SUCCESS") {
+//                    window.location.reload();
+//                }
+//                else {
+//                    swal(data[0]);
+//                }
+//            }
+//        }
+//
+//        var id = GET["id"];
+//        var Point = '0';
+//
+//        $("#wrapper").delegate(".js-who-select-meta", "click", function (event) {
+//            SelectByPoint("6")
+//        });
+//
+//        function SelectByPoint(protype) {
+//            $.api("SelectByPoint", protype, SelectByPointCallBack, "user_acitve");
+//            function SelectByPointCallBack(data) {
+//                if (data[0] == "SUCCESS") {
+//                    if (protype == "6") {
+//                        window.location.href = "mateLike.html?s=1&sid=" + protype + "&id=" + id
+//                    }
+//                    else if (protype == "7") {
+//                        window.location.href = "activerecord.htmlsid=" + protype + "&id=" + id;
+//                    }
+//                } else {
+//                    swal({ title: "将花费" + Point + "个种子", text: "", showCancelButton: true, closeOnConfirm: false, cancelButtonText: "取消", confirmButtonColor: "#fe8775", confirmButtonText: "确定" }, function () {
+//                        selectlovemy_bypoint();
+//                        function selectlovemy_bypoint() {
+//                            $.api("selectlovemy_bypoint_lianliankan", [protype, id], selectlovemy_bypointCallBack, "user_acitve");
+//                            function selectlovemy_bypointCallBack(data) {
+//                                if (data[0] == "SUCCESS") {
+//                                    if (protype == "6") {
+//                                        window.location.href = "mateLike.html?s=1&sid=" + protype + "&id=" + id;
+//                                    }
+//                                    else if (protype == "7") {
+//                                        window.location.href = "activerecord.htmlsid=" + protype + "&id=" + id;
+//                                    }
+//                                }
+//                                else {
+//                                    swal({ title: "", html: true, text: "<span>您的种子不足" + Point + "个，无法查看!<a href='mypoint.html' class='text-pink'>点击推荐好友</a></span>", showConfirmButton: false });
+//                                }
+//                            }
+//                        }
+//                    });
+//                }
+//            }
+//        }
+    </script>
+
+
+<script>
+    var sex = '1';
+    if (sex == "0") {
+        $(".topbar,.footerbar").attr("style", "background-color:#3ad4ca");
+    }
+</script>
+</body>
+</html>

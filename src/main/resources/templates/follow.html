@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title></title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/zone.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <style type="text/css">
+        body{
+            height:auto;
+        }
+    </style>
+
+    <style>
+
+        #main .vip .vip-title span {
+            padding-left: 24px;
+            font-weight: 600;
+            background-size: auto 20px;
+        }
+
+        #main .vip .vip-title a {
+            float: right;
+            color: #fe8775;
+            font-weight: 600;
+            font-size: .9em;
+        }
+
+        #main .vip .vip-list .renwu .photo img {
+            height: 100%;
+            width: 100%;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-name span {
+            float: left;
+            display: block;
+            margin-right: 2px;
+        }
+
+        #main .vip .vip-list .girl .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 4px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            background: #FFE7E3;
+            color: #FF5E3B;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+        }
+
+        #main .vip .vip-list .boy .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 4px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            background: #E4ECFF;
+            color: #4692F8;
+            border-radius: 4px;
+            -webkit-border-radius: 4px;
+            -moz-border-radius: 4px;
+            -ms-border-radius: 4px;
+            -o-border-radius: 4px;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border-right: 1px solid #ddd;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span:nth-last-child(1) {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border: none;
+        }
+
+        #main .vip .vip-list .v-xq .v-xinxi span:nth-last-child(2) {
+            display: inline-block;
+            padding: 0 1px;
+            margin: 4px 2px 0 0;
+            font-size: .8em;
+            border: none;
+        }
+
+        #main .vip .vip-list .renwu .v-xq .v-tj span {
+            padding: 0 8px;
+            font-size: .9em;
+            border: 1px solid #7D7D7D;
+            color: #7D7D7D;
+            border-radius: 12.5px;
+        }
+
+        #code .code-bar .ewcode img {
+            width: 200px;
+            height: 200px;
+            box-shadow: 1px -6px 14px #FFD929, 3px 5px 15px #FFD929, 3px 5px 7px #FFD929, -6px 5px 15px #FFD929;
+        }
+
+        #code .code-bar .ew img {
+            margin-top: 10px;
+            width: 220px;
+        }
+
+    </style>
+    <style>
+        .feed {
+            background-color: #fff;
+            margin: 0 0 0 0;
+            padding: 10px 0 0;
+        }
+
+        .feed-ft:before {
+            top: 8px;
+        }
+
+        .feed-ft {
+            padding: 5px 12px;
+        }
+
+        .isvip {
+            font-size: 10px;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon1">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+
+        </div>
+        <div class="col-xs-2">
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="tab-pane" id="friends" style="display: none;">
+        <div class="row feed-list zone">
+            <div class="product-list1" id="product-list1" page-now="0" page-total="0">
+
+            </div>
+        </div>
+        <div class="ajax_tips ajax_tips">找不到更多数据</div>
+    </div>
+    <div class="content-page">
+        <div class="content"  page-now="0" page-total="0" style="margin-bottom: 50px;">
+
+        </div>
+        <div class="ajax_tips ajax_tips">找不到更多数据</div>
+        <div class="feed-ft js-feedft" style="margin-top: -50px;"></div>
+    </div>
+
+    <!--<div class="footerbar">-->
+        <!--<div class="btn-group btn-group-justified">-->
+            <!--<a class="btn btn-xs waves-effect waves-light" role="button" href="home.html"><i-->
+                    <!--class="glyphicon glyphicon-user"></i>-->
+                <!--<br>-->
+                <!--个人中心</a>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="bottom-to-top" id="indexToTop"><i class="glyphicon glyphicon-circle-arrow-up text-gray"></i></div>
+</div>
+
+<script>
+
+    var type = parseInt(GET["type"]);
+
+    if (type === 1) {
+        $("title").html("我的粉丝");
+        $('.bar-title').html("我的粉丝");
+    }
+
+    if (type === 2) {
+        $("title").html("我的关注");
+        $('.bar-title').html("我的关注");
+    }
+
+    getList(type, 0);
+
+    var isLoading = false;
+    $(document).ready(function () {
+
+        $(window.document).scroll(function () {
+
+            if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+                var paneProductObj = $(".content");
+
+                var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+
+                if (panePageNow + 1 >= panePageTotal)
+                    return;
+
+                isLoading = true;
+
+                paneProductObj.attr("page-now", panePageNow + 1);
+
+                getList(type, (panePageNow + 1));
+            }
+        });
+
+    });
+
+    //关注
+    $(".content").delegate("#sp_attention", "click", function () {
+        var obj = $(this);
+        var userId = parseInt($(this).attr("data-id"));
+
+        if ($(this).text() === "关注") {
+
+            $.api("attention", {"toAttentionId": userId, "type": 1}, function (ret) {
+                AddAttentionCallBack(ret, obj);
+            }, "user");
+        } else {
+
+            $.api("attention", {"toAttentionId": userId, "type": 2}, function (ret) {
+                refuseAttentionCallBack(ret, obj);
+            }, "user");
+        }
+
+        function AddAttentionCallBack(ret, obj) {
+
+            dszdy.UI.Tip(ret.message);
+
+            if (ret.status === "SUCCESS") {
+                if(type === 1) {
+                    obj.text("互相关注");
+                }
+                if(type === 2) {
+                    obj.text("取消关注");
+                }
+            }
+        }
+
+        function refuseAttentionCallBack(ret, obj) {
+
+            dszdy.UI.Tip(ret.message);
+
+            if (ret.status === "SUCCESS") {
+                obj.text("关注");
+            }
+        }
+    });
+
+    function getList(type, pageCode) {
+        dszdy.UI.loadingReview();
+        $.api("getFansOrAttentionList", {"type": type, "pageCode":pageCode, "pageSize":8}, getFansOrAttentionListCallback, "user");
+    }
+
+    function getFansOrAttentionListCallback(ret) {
+
+        dszdy.UI.loadingReview(false);
+
+        if (ret.status === "SUCCESS") {
+
+            var content = "";
+            var list = ret.data.fansOrAttentionPo;
+
+            $.each(ret.data.fansOrAttentionPo, function (index, item) {
+
+                var avatarSex = function () {
+                    if (item.sex === 1)
+                        return "nan";
+                    else
+                        return "nv";
+                };
+
+                var sex = function () {
+                    if (item.sex === 1)
+                        return "xznan fa fa-mars";
+                    else
+                        return "xznv fa fa-venus";
+                };
+
+                var age = formatAge(parseInt(item.age.substr(0, 4)));
+
+                content += '<div class="feed dataItem">' +
+                    '<div class="feed-hd">' +
+                    '<div class="avatar">' +
+                    '<a href="javascript:onClickJump(' + item.fansId + ')">' +
+                    '<b class="pic loaded /"' + avatarSex() + ' style="background-image: url(' + item.avatar.fileHost + "/60/60/" + item.avatar.fileName + item.avatar.fileType + ');"></b>' +
+                    '</a>' +
+                    '</div>' +
+                    '<div class="info">' +
+                    '<p class="title">' +
+                    '<span class="username">' + item.fansName + '</span>' +
+                    '<i class=\"' + sex() + '\"></i>' +
+                    '<span class="isvip">' + dszdy.UI.formatTimestampLong(item.time) + '</span>' +
+                    '</p>' +
+                    '<p class="metas">' +
+                    '<span class="time">' +
+                    '<i class="btn-default-bg btn-xs">' + age + '</i>' +
+//                    '<i class="btn-default-bg btn-xs fa fa-check">认证</i>' +
+                    '</span>' +
+                    '<span class="time" style="float: right; margin-right: 20px;">' +
+                    '<i class="btn-default-bg btn-xs"><span id="sp_attention" data-id=\"' + item.fansId + '\">' + item.attentionStatus + '</span></i>' +
+                    '</span>' +
+                    '</p>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="feed-ft js-feedft"></div>' +
+                    '</div>';
+            });
+
+            $('.content').append(content);
+
+            $('.content').attr("page-now", ret.data.page);
+            $('.content').attr("page-total", ret.data.pageTotal);
+
+            if (list.length < 8) {
+                $('.ajax_tips').show();
+            }
+
+            function formatAge(age) {
+                if (age >= 1990 && age < 2000) {
+                    return "90后";
+                }
+                if (age >= 1980 && age < 1990) {
+                    return "80后";
+                }
+                if (age >= 1970 && age < 1980) {
+                    return "70后";
+                }
+                if (age >= 1960 && age < 1970) {
+                    return "60后";
+                }
+            }
+        } else {
+            $('.ajax_tips').show();
+        }
+
+        isLoading = false;
+    }
+
+    $(".lv-icon1").on("click", function () {
+        window.location.href = "home.html";
+    });
+
+    function onClickJump(str) {
+
+        window.location.href = "userProfile.html?id=" + str;
+    }
+</script>
+
+</body>
+</html>
+

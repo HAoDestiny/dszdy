@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>个人中心</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/home.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js?v=141" charset="utf-8"></script>
+    <style>
+        body {
+            background: #eee;
+        }
+
+        .content-page > .content {
+            padding-top: 0px;
+
+        }
+        .lovecontent .badgenumred {
+            position: absolute;
+            margin-left: 40px;
+            border-radius: 100%;
+        }
+
+        .badgered {
+            width: 20px;
+            height: 20px;
+            line-height: 20px;
+            font-size: 12px;
+            color: #fff;
+            background-color: #fe8775;
+        }
+
+        .lovecontent p {
+            line-height: 0.6;
+            font-size: 13px;
+        }
+
+        /*.topbar {*/
+        /*border-bottom: 1px solid #eee;*/
+        /*background-color: #ffffff;*/
+        /*color: #000;*/
+        /*}*/
+
+        .topbar .glyphicon {
+            color: #FFFFFF;
+
+        }
+
+        .topbar .glyphicon:hover {
+            color: #FFFFFF;
+
+        }
+
+        .lovetopleft a {
+            color: #797979;
+        }
+
+        .btn-custom {
+            font-weight: 400;
+        }
+
+        .loveflower {
+            border-bottom: 1px solid #eee;
+        }
+
+        .lovecontent .btn.focus, .btn:focus, .btn:hover {
+            color: #9e9e9e;
+        }
+
+        .btn-custom.btn-warning {
+            color: #fe8775 !important;
+
+            border: 1px solid #fe8775 !important;
+        }
+
+        .badgered-fixed {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background: rgb(255, 30, 0);
+            position: fixed;
+            right: 46px;
+            bottom: 36px;
+            z-index: 10000;
+        }
+
+        .verify-status {
+            color: #fe8775 !important;
+        }
+
+    </style>
+</head>
+<body>
+<!--开始页面加载-->
+<div id="wrapper">
+    <div class="content-page">
+        <div class="content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="card-box p-0">
+                        <div style="padding-top: 15px;">
+                            <div class="table-box-nb loveinfo">
+                                <div class="table-detail lovetopleft">
+                                    <a href="userProfile.html">
+                                        <div class="pic">
+                                            <img src="" class=" lazy" id="UserPic">
+                                        </div>
+                                        <p id="trueName" style="padding-top: 5px">加载中</p>
+                                    </a>
+                                </div>
+                                <div id="userInfo" class="table-detail">
+                                    <p style="width: 121px;">家乡:加载中</p>
+                                    <p>学历:加载中</p>
+                                    <p>出生:加载中</p>
+                                    <p>身高:加载中</p>
+                                </div>
+                                <div class="table-detail lovetopright" style="padding-top: 37px;">
+                                    <p>
+                                        <a class="btn btn-xs btn-warning btn-custom waves-effect waves-light" href="wallet.html">
+                                            <i class="glyphicon glyphicon-credit-card"></i>&nbsp;&nbsp;钱包&nbsp;</a>
+                                    </p>
+                                    <p>
+                                        <a class="btn btn-xs btn-warning btn-custom waves-effect waves-light" href="setting.html">
+                                            <i class="glyphicon glyphicon-cog"></i>&nbsp;&nbsp;设置&nbsp;</a>
+                                    </p>
+                                </div>
+                            </div>
+                            <ul class="list-inline row loveflower">
+                                <li class="col-xs-3 text-left" style="padding-top: 14px;">
+                                    <a class="btn btn-xs btn-warning btn-custom waves-effect waves-light" href="wallet.html" style="
+    margin-left: 10px;
+    /* padding-left: 10px; */
+">
+                                        <i class="fa fa-user" style="
+    font-size: 14px;
+"></i><span id="vipType">&nbsp;&nbsp;普通会员&nbsp;</span></a>
+                                </li>
+                                <li class="col-xs-3">
+                                    <p>
+                                        <a href="wallet.html">
+                                                <span id="flowerTotals" style="font-size: 17px">
+                                                    0</span>
+                                            <br>
+                                            鲜花数
+                                        </a>
+                                    </p>
+                                </li>
+                                <li class="col-xs-3">
+                                    <span class="loveline"></span>
+                                    <p>
+                                        <a href="follow.html?type=1">
+                                                <span id="m_formAttentionTotal" style="font-size: 17px">
+                                                    0</span>
+                                            <br>
+                                            我的粉丝
+                                        </a>
+                                    </p>
+                                </li>
+                                <li class="col-xs-3">
+                                    <span class="loveline"></span>
+                                    <p>
+                                        <a href="follow.html?type=2">
+                                                <span id="m_toAttentionTotal" style="font-size: 17px">
+                                                    0</span>
+                                            <br>
+                                            我的关注
+                                        </a>
+                                    </p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pull-in-card row widget-bg-color-icon lovecheck">
+                            <div class="col-xs-2">
+                                <a href="javascript:;" id="verify-people">
+                                    <i class="fa fa-street-view"></i>
+                                    <br>
+                                    真人认证
+                                </a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="checkId.html?picIndex=1" id="verify-identity">
+                                    <i class="fa fa-credit-card-alt"></i>
+                                    <br>
+                                    身份认证
+                                </a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="checkId.html?picIndex=2" id="verify-education">
+                                    <i class="fa fa-graduation-cap"></i>
+                                    <br>
+                                    学历认证
+                                </a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="checkId.html?picIndex=3" id="verify-car">
+                                    <i class="fa fa-car"></i>
+                                    <br>
+                                    车辆认证
+                                </a>
+                            </div>
+                            <div class="col-xs-2">
+                                <a href="checkId.html?picIndex=4" id="verify-house">
+                                    <i class="fa fa-university"></i>
+                                    <br>
+                                    房产认证
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row lovecontent">
+                <div class="col-xs-12">
+                    <table class="table table-bordered m-0 card-box" style="text-align: center;">
+                        <tbody>
+                        <tr>
+                            <th colspan="3">我的资料
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="userExpandProfile.html">
+                                    <img src="static/images/man.png">
+                                    <p>详细资料</p>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="mate.html">
+                                    <img src="static/images/mate.png">
+                                    <p>择偶标准</p>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="gallery.html">
+                                    <img src="static/images/photo.png">
+                                    <p>头像和照片</p>
+                                </a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">我的社交
+                            </th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <a href="dynamic.html">
+                                    <span class="badgered badgenumred js-post hide">0</span>
+                                    <img src="static/images/moment.png">
+                                    <p>动态</p>
+                                </a>
+
+                            </td>
+                            <td>
+
+                                <a href="chatList.html">
+                                    <span class="badgered badgenumred js-siliao hide">0</span>
+                                    <img src="static/images/privatechat.png">
+                                    <p>私聊</p>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="friendRequestList.html">
+                                    <span class="badgered badgenumred js-addfd hide">0</span>
+                                    <img src="static/images/friendrequest.png">
+                                    <p>好友</p>
+                                </a>
+
+                            </td>
+                        </tr>
+                        <tr>
+                            <th colspan="3">活动专区
+                            </th>
+                        </tr>
+                        <tr>
+                            <!--<td style="text-align: center;">-->
+                                <!--<a class="js-go-indexlove" href="mateList.html">-->
+                                    <!--<img src="static/images/lovemstching.png">-->
+                                    <!--<p>爱情对对碰</p>-->
+                                <!--</a>-->
+                            <!--</td>-->
+                            <td>
+                                <a href="mateLikeCollect.html">
+                                    <img src="static/images/offlinespecial.png">
+                                    <p>线上互选</p>
+                                </a>
+                            </td>
+                            <!--<td>-->
+                                <!--<a href="invite.html">-->
+                                    <!--<img src="static/images/homeinvite.png">-->
+                                    <!--<p>有奖分享</p>-->
+                                <!--</a>-->
+                            <!--</td>-->
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-12 card-box inbox-widget">
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footerbar footerbar_f">
+        <div class="btn-group btn-group-justified" style="margin-top: 5px; margin-bottom: 2px;">
+            <a class="btn btn-xs waves-effect waves-light js-go-xzone" role="button" href="singletons.html">
+                <i class="fa fa-street-view"></i>
+                <br>
+                单身圈</a>
+            <a class="btn btn-xs  waves-effect waves-light js-go-event" role="button" href="event.html">
+                <i class="fa fa-heartbeat"></i>
+                <br>
+                活动</a>
+            <a class="btn btn-xs  waves-effect waves-light act" role="button" href="home.html">
+                <i class="fa fa-user"></i>
+                <br>
+                个人中心</a>
+        </div>
+        <div class="badgered-fixed hide"></div>
+    </div>
+</div>
+<script language="javascript" type="text/javascript" src="static/js/notify.js" charset="utf-8"></script>
+<script>
+    dszdy.Business.User.getUserInfo();
+
+    $.api("getAttentionMessage", {}, getAttentionMessageCallback, "user");
+
+    function getAttentionMessageCallback(ret) {
+        if (ret.status === "SUCCESS") {
+            $("#m_formAttentionTotal").text(ret.data.formAttentionTotal);
+            $("#m_toAttentionTotal").text(ret.data.toAttentionTotal);
+
+        }
+    }
+
+    $('#verify-people').click(function () {
+        dszdy.UI.Tip("参与线下活动将自动认证！");
+    })
+
+</script>
+</body>
+</html>

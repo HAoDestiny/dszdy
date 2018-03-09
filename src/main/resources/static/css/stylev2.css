@@ -1,0 +1,376 @@
+.body {
+    color: #666;
+    font-family: microsoft yahei;
+    background: #f8f8f8;
+}
+/*头部*/
+.topbar {
+    font: 18px/42px microsoft yahei;
+    background: none;
+    width: 100%;
+    left: 0px;
+    right: 0;
+    top: 0px;
+    position: fixed;
+    background-size: 100% 44px;
+    min-height: 44px;
+    color: #ffffff;
+    text-align: center;
+    z-index: 20;
+    background-color: #6a0cab;
+}
+
+    .topbar .bar-title {
+        padding-top: 2px;
+        font-weight: normal;
+    }
+/*底部*/
+.footerbar {
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: none;
+    background-color: #6a0cab;
+}
+/*按钮*/
+.btn-default-bg {
+    background: none;
+    background-color: #6a0cab;
+    color: #ffffff !important;
+    background-size: 100%;
+}
+
+    .btn-default-bg,
+    .btn-default-bg:hover,
+    .btn-default-bg:focus,
+    .btn-default-bg:active,
+    .btn-default-bg.active,
+    .btn-default-bg.focus,
+    .btn-default-bg:active,
+    .btn-default-bg:focus,
+    .btn-default-bg:hover,
+    .open > .dropdown-toggle.btn-default-bg {
+        background-color: #6a0cab !important;
+        border: 1px solid #6a0cab !important;
+    }
+
+.userProfileinfo p {
+    font: 13px/14px microsoft yahei;
+    line-height: 2.0;
+}
+
+.loveinfo p {
+    font: 13px/14px microsoft yahei;
+}
+
+.lovetopleft {
+    width: 130px;
+    text-align: center;
+}
+
+    .lovetopleft a {
+        display: block;
+        margin-right: auto;
+        margin-left: auto;
+        text-align: center;
+        color: #ffffff;
+    }
+
+    .lovetopleft .pic {
+        border-radius: 100%;
+        height: 84px;
+        width: 84px;
+        overflow: hidden;
+        display: inline-block;
+        border: 1px solid #eee;
+    }
+     .lovetopleft .pic img{
+        height: 84px;
+        width: 84px;
+        overflow: hidden;
+    }
+    .lovetopleft .nan {
+        border: 1px solid #96c8dc;
+    }
+
+    .lovetopleft .nv {
+        border: 1px solid #e8c7d2;
+    }
+/*.lovetopleft img {
+        width: initial !important;
+    }*/
+
+.lovetopright {
+    top: -36px;
+    position: relative;
+}
+
+.loveflower {
+    text-align: center;
+    padding: 0 10px;
+}
+
+    .loveflower .loveline {
+        border-left: 1px solid #ddd;
+        width: 1px;
+        height: 45px;
+        display: block;
+        float: left;
+        margin: 0px !important;
+    }
+
+.lovecheck {
+        margin: 0;
+    text-align: center;
+    padding: 0 10px;
+    font-size: 12px;
+    color: #AEA9A9;
+    padding-bottom: 10px;
+}
+
+.selfcheck {
+    margin: 0;
+    text-align: center;
+    padding: 6px 10px !important;
+    font-size: 12px;
+}
+
+    .selfcheck a {
+        color: #AEA9A9;
+    }
+/*底部btnn*/
+
+.lovecontent .btn.focus, .btn:focus, .btn:hover {
+    color: #ffffff;
+}
+.footerbar_f .btn.focus, .btn:focus, .btn:hover {
+    color: #9E9E9E;
+}
+.lovecontent {
+    padding-bottom: 14px;
+}
+
+    .lovecontent img {
+        display: -webkit-inline-box;
+        height: 64px;
+        width: 64px;
+    }
+
+    .lovecontent .badgenum {
+        background-color: rgb(235, 4, 156);
+        position: absolute;
+        margin-left: 40px;
+        border-radius: 100%;
+    }
+
+
+.selfinfo {
+    padding: 10px;
+    color: white;
+    font-size: 12px;
+}
+
+.selfinfodu {
+    border-radius: 30px;
+    background-color: rgba(0, 0, 0, 0.14);
+    padding: 5px;
+}
+
+/*互选结果*/
+.actcontain .table-box .table-detail {
+    padding-top: 8px;
+    text-align: center;
+}
+
+/*消息*/
+.msginput {
+    position: fixed;
+    z-index: 5;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+
+
+.msgList {
+    font: 12px/16px microsoft yahei;
+    background: #fff;
+}
+
+    .msgList ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        text-align: left;
+    }
+
+        .msgList ul li {
+            position: relative;
+            padding: 10px 12px 8px 67px;
+            overflow: hidden;
+            border-bottom: 1px solid #e9e9e9;
+            clear: both;
+        }
+
+            .msgList ul li .iconP {
+                float: left;
+                width: 45px;
+                height: 45px;
+                margin-left: -55px;
+                border-radius: 100%;
+                border: 1px solid #ddd;
+            }
+
+            .msgList ul li .text {
+                float: left;
+                width: 100%;
+            }
+
+                .msgList ul li .text .name {
+                    width: 68%;
+                    font: 16px/22px microsoft yahei;
+                    color: #000;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+                .msgList ul li .text p {
+                    width: 80%;
+                    font: 12px/21px microsoft yahei;
+                    color: #999;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                    overflow: hidden;
+                }
+
+        .msgList ul li {
+            position: relative;
+            padding: 10px 12px 8px 67px;
+            overflow: hidden;
+        }
+
+            .msgList ul li .time {
+                position: absolute;
+                top: 12px;
+                right: 12px;
+                font: 12px/16px microsoft yahei;
+                color: #999;
+            }
+
+
+            .msgList ul li .num {
+                position: absolute;
+                top: 4px;
+                left: 38px;
+                padding: 0 4px;
+                height: 15px;
+                font: 12px/14px microsoft yahei;
+                color: #fafafa;
+                text-align: center;
+                border-radius: 49px;
+                background: #f74c31;
+            }
+
+.reportedtype ul li {
+    position: relative;
+    padding: 10px 12px 8px 27px;
+    overflow: hidden;
+    border-bottom: 1px solid #e9e9e9;
+    clear: both;
+}
+
+.fdlistp {
+    width: 50% !important;
+}
+/*聊天*/
+
+.conversation-list .odd .ctext-wrap {
+    background: rgba(246, 72, 123, 0.5);
+}
+
+    /*.conversation-list .odd .ctext-wrap:after {
+        border-left-color: rgb(246, 72, 123) !important;
+        border-top-color: rgb(246, 72, 123) !important;
+    }*/
+
+
+
+/*动态公告*/
+.blog-box-first {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.blog-box-font {
+    font-size: 12px;
+}
+
+    .blog-box-font .tit {
+        font-size: 16px;
+        font-weight: 400;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        word-break: break-all;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1.2;
+        color: #1a1a1a;
+    }
+
+    .blog-box-font .info {
+        width: 100%;
+        height: .16rem;
+        line-height: 1.2;
+        color: #ababab;
+    }
+
+.feed .actions button {
+    border-width: 1px !important;
+}
+
+/*紫色下划线*/
+.tabs li.tab a.active {
+    color: #6A0CAB !important;
+}
+
+.tabs .indicator {
+    background-color: #6A0CAB;
+    bottom: 0;
+    height: 2px;
+    position: absolute;
+    will-change: left, right;
+}
+
+/*好友邀请*/
+.inbox-widget .inbox-item {
+    border-bottom: 1px solid #f1f1f1;
+    overflow: hidden;
+    padding: 21px 0;
+    position: relative;
+}
+
+
+/*弹出提示*/
+#alert_bg,#confirm_bg{width:100%;height:100%;position:fixed;top:0;left:0;background-color:rgba(0,0,0,0.5);z-index:100001;}
+#alert_content,#confirm_content{width:300px;margin:0 auto;color:#333;text-align:center;font-size:14px;position:relative;display:none;background-color:#fff;-webkit-background-clip:padding-box;background-clip:padding-box;border:1px solid #999;border:1px solid rgba(0, 0, 0, .2);border-radius:6px;outline:0;-webkit-box-shadow:0 3px 9px rgba(0, 0, 0, .5);box-shadow:0 3px 9px rgba(0, 0, 0, .5);}
+#alert_content{padding:15px;top:30%;}
+#alert_content i.glyphicon{font-size:25px;padding-right:10px;color:#666;vertical-align:middle;}
+#alert_content i.glyphicon-ok-sign{color:#080;}
+#alert_content i.glyphicon-remove-sign{color:#D03;}
+#alert_content i.glyphicon-info-sign{color:#EA3;}
+#alert_content i.glyphicon-question-sign{color:#37B;}
+#alert_content span{vertical-align:middle;line-height:25px;}
+#alert_content img{margin-right:10px;}
+#confirm_content{padding:0;top:25%;font-size:14px}
+#confirm_text{padding:20px;}
+#confirm_btnW{width:100%;height:46px;line-height:46px;border-top:#e3e3e3 solid 1px;margin:0 auto;}
+#confirm_btnA,#confirm_btnB{width:49%;height:100%;font-size:16px;cursor:pointer}
+#confirm_btnA{float:left;border-right:#e3e3e3 solid 1px;}
+#confirm_btnB{float:right;}
+#confirm_btnA a,#confirm_btnB a{color:#333}

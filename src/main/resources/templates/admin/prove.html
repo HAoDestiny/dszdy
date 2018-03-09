@@ -1,0 +1,398 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="/m/static/admin/css/alert.css">
+
+    <script type="text/javascript" src="/m/static/admin/js/jquery.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/jquery.sorted.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/bootstrap.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/ckform.js"></script>
+    <script type="text/javascript" src="/m/static/admin/js/common.js"></script>
+    <script type="text/javascript" src='/m/static/admin/js/alert.js'></script>
+    <script type="text/javascript" src="/m/static/admin/js/pagination.js"></script>
+
+    <script language="javascript" type="text/javascript" src="/m/static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="/m/static/js/base.js" charset="utf-8"></script>
+
+    <style type="text/css">
+        body {
+            padding-bottom: 40px;
+        }
+
+        .sweet-alert .sa-icon.sa-custom {
+            background-size: contain;
+            border-radius: 0;
+            border: none;
+            background-position: center center;
+            background-repeat: no-repeat;
+        }
+
+        .sidebar-nav {
+            padding: 9px 0;
+        }
+
+        @media (max-width: 980px) {
+            /* Enable use of floated navbar text */
+            .navbar-text.pull-right {
+                float: none;
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+
+        .ajax_tips1, .ajax_tips2, .ajax_tips3, .ajax_tips4 {
+            background-color: #d0d0d0;
+            text-align: center;
+        }
+
+        .m10 tr th {
+            text-align: center;
+        }
+
+        .m10 tr td {
+            text-align: center;
+        }
+
+        .table th {
+            background-color: #eaeaea;
+        }
+
+        .m10 {
+            text-align: center;
+        }
+
+        .tx {
+            vertical-align: middle;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--<form class="form-inline definewidth m20" actiprove.htmlhtml" method="get">-->
+<!--机构名称：-->
+<!--<input type="text" name="rolename" id="rolename"class="abc input-default" placeholder="" value="">&nbsp;&nbsp;  -->
+<!--<button type="submit" class="btn btn-primary">查询</button>&nbsp;&nbsp; <button type="button" class="btn btn-success" id="addnew">新增机构</button>-->
+<!--</form>-->
+<div>
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="active">
+            <a href="#identity" data-toggle="tab" id="a_identity">
+                身份审核
+            </a>
+        </li>
+        <li>
+            <a href="#education" data-toggle="tab" id="a_education">
+                学历审核
+            </a>
+        </li>
+        <li>
+            <a href="#car" data-toggle="tab" id="a_car">
+                车审核
+            </a>
+        </li>
+        <li>
+            <a href="#house" data-toggle="tab" id="a_house">
+                房产审核
+            </a>
+        </li>
+    </ul>
+</div>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active" id="identity">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户名称</th>
+                <th>手机号码</th>
+                <th width="16%">证件</th>
+                <th>状态</th>
+                <th width="7%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content1">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips1">找不到更多数据</div>
+    </div>
+    <div class="tab-pane fade" id="education">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户名称</th>
+                <th>手机号码</th>
+                <th width="16%">证件</th>
+                <th>状态</th>
+                <th width="7%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content2">
+                 
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips2">找不到更多数据</div>
+    </div>
+    <div class="tab-pane fade" id="car">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户名称</th>
+                <th>手机号码</th>
+                <th width="16%">证件</th>
+                <th>状态</th>
+                <th width="7%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content3">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips3">找不到更多数据</div>
+    </div>
+    <div class="tab-pane fade" id="house">
+        <table class="table table-bordered table-hover definewidth m10">
+            <thead>
+            <tr>
+                <th>用户ID</th>
+                <th>用户名称</th>
+                <th>手机号码</th>
+                <th width="16%">证件</th>
+                <th>状态</th>
+                <th width="7%">管理操作</th>
+            </tr>
+            </thead>
+            <tbody id="content4">
+
+            </tbody>
+        </table>
+        <div class="ajax_tips ajax_tips4">找不到更多数据</div>
+    </div>
+</div>
+
+
+<div id="prove_page" style="text-align: center;" pagination="pagination_new" pagenumber="" totalpage="">
+
+</div>
+
+</body>
+</html>
+<script>
+
+    var tag = 1;
+    window.onload = function () {
+
+        $('#a_identity').click(function () {
+            tag = 1;
+            if ($('#content' + tag).html().trim() === "") {
+                getUserProveList(tag, 0);
+            }
+        });
+
+        $('#a_education').click(function () {
+            tag = 2;
+            if ($('#content' + tag).html().trim() === "") {
+                getUserProveList(tag, 0);
+            }
+        });
+
+        $('#a_car').click(function () {
+            tag = 3;
+            if ($('#content' + tag).html().trim() === "") {
+                getUserProveList(tag, 0);
+            }
+        });
+
+        $('#a_house').click(function () {
+            tag = 4;
+            if ($('#content' + tag).html().trim() === "") {
+                getUserProveList(tag, 0);
+            }
+        });
+    };
+
+    getUserProveList(1, 0);
+
+    function getUserProveList(type, pageCode) {
+
+        $.api("getUserProveList", {"type": type, "pageCode": pageCode, "pageSize": 5}, getProveListCallback, "admin")
+    }
+
+    function getProveListCallback(ret) {
+
+        if (ret.status === "SUCCESS") {
+            var data = ret.data.adminProveListPo;
+
+            if (data !== null && data.length > 0) {
+
+                var pageCode = ret.data.page;
+                var pageTotal = ret.data.pageTotal;
+                var html = "";
+                var userInfoHtml = "";
+                var proveType = "";
+                var fileHtml = "";
+
+                $.each(data, function (index, item) {
+
+                    userInfoHtml = '<tr>' +
+                        '<td style="font-size: 20px;text-align: center">' + item.userId + '</td>' +
+                        '<td style="font-size: 20px;text-align: center">' + item.trueName + '</td>' +
+                        '<td style="font-size: 20px;text-align: center">' + item.mobile + '</td>' +
+                        '<td style="text-align: center;"><img onclick="showImage(this.src);" style="width:200px; height:100px;" src="' + item.provePic.fileHost + "/" + item.provePic.fileName + item.provePic.fileType + '"></td>';
+
+                    if (tag === 1) {
+                        proveType = '<td>身份审核</td>';
+                    }
+
+                    if (tag === 2) {
+                        proveType = '<td>学历审核</td>';
+                    }
+
+                    if (tag === 3) {
+                        proveType = '<td>车审核</td>';
+                    }
+
+                    if (tag === 4) {
+                        proveType = '<td>房产审核</td>';
+                    }
+
+
+                    fileHtml = '<td class="sub" style="text-align: center; vertical-align: middle">' +
+                        '<button onclick="pas(' + item.userId + ');" class="btn btn-success">通过审核</button>' +
+                        '<button onclick="refuse(' + item.userId + ');" style="margin-top: 10px;" class="btn btn-danger">拒绝通过</button>' +
+                        '</td>' +
+                        '</tr>';
+
+
+                    html += userInfoHtml + proveType + fileHtml;
+
+                });
+                $('#content' + tag).html('');
+                $('#content' + tag).append(html);
+                $('.ajax_tips' + tag).hide();
+
+                page(pageCode, pageTotal);
+
+            } else {
+                page(0, 0);
+                $('#content' + tag).html('');
+                $('.ajax_tips' + tag).show();
+            }
+        }
+    }
+
+    var M = {};
+    function pas(userId) {
+
+        alertTip(userId);
+    }
+
+    function refuse(userId) {
+
+        refuseTip(userId);
+    }
+
+    function checkCallback(ret) {
+        tips(ret.message);
+        if (ret.status === "SUCCESS") {
+            M.dialog9.close();
+            M.dialog1 = jqueryAlert({
+                'content': ret.message,
+                'closeTime': 2000,
+            });
+            getUserProveList(tag, 0);
+        }
+    }
+
+    function page(pageCode, pageTotal) {
+        $('#prove_page').attr('pagenumber', pageCode + 1);
+        $('#prove_page').attr('totalpage', pageTotal);
+        $('#prove_page').attr('paginationMaxLength', '6');
+        initPagination($('#prove_page'));
+    }
+
+    function paginationClick(pagination_id, pageCode){
+        //alert(pagination_id);
+        if (pagination_id === "prove_page") {
+            getUserProveList(tag, pageCode - 1);
+        }
+    }
+
+    function alertTip(userId) {
+        M.dialog9 = jqueryAlert({
+            'style': 'pc',
+            'title': '是否确定通过审核',
+            'width': "300",
+            'height': "150",
+            'content': '',
+            'modal': true,
+            'contentTextAlign': 'center',
+            'animateType': 'scale',
+            'bodyScroll': 'true',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog9.close();
+                },
+                '确定': function () {
+
+                    $.api("check", {'type': 0, 'tag': tag, 'userId': userId, 'content': ''}, checkCallback, 'admin');
+                }
+            }
+        })
+    }
+
+    var alertContent = '<p>请填写拒绝通过的理由</p><div class="form-group"><textarea id="refuse_content" class="form-control" rows="3"></textarea></div>';
+    function refuseTip(userId) {
+        M.dialog9 = jqueryAlert({
+            'style': 'pc',
+            'title': '是否拒绝通过审核',
+            'content': alertContent,
+            'modal': true,
+            'contentTextAlign': 'left',
+            'width': '300',
+            'height': '200',
+            'animateType': 'linear',
+            'buttons': {
+                '关闭': function () {
+                    M.dialog9.close();
+                },
+                '确定': function () {
+                    $.api("check", {
+                        'type': 1,
+                        'tag': tag,
+                        'userId': userId,
+                        'content': $('#refuse_content').val()
+                    }, checkCallback, 'admin');
+                }
+            }
+        })
+    }
+
+    function tips(tip) {
+        M.dialog1 = jqueryAlert({
+            'content' : tip,
+            'closeTime' : 3000,
+        })
+    }
+
+    function showImage(source) {
+        M.dialog7 = jqueryAlert({
+            'style'   : 'pc',
+            'title'   : '图片',
+            'content' :  '<img src="'+ source +'">',
+            'modal'   : true,
+            'contentTextAlign' : 'left',
+            'animateType' : 'linear',
+            'buttons' :{
+                '关闭' : function(){
+                    M.dialog7.close();
+                },
+            }
+        })
+    }
+</script>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>线上互选</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/iconfont/iconfont.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+
+    <link href="static/css/jqpagination.css" rel="stylesheet">
+    <script src="static/js/jquery.jqpagination.js"></script>
+    <link href="static/css/list.css" rel="stylesheet">
+    <style>
+        body {
+            background: #eee;
+            height: auto;
+        }
+
+        .footerbar a {
+            color: #fff;
+        }
+
+        html {
+            background: #eee;
+        }
+
+        .push-fixed i.iconfont, .refresh-fixed i.iconfont {
+            color: #fff;
+            font-size: 20px;
+        }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 16px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -webkit-text-stroke-width: 0.2px;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .push-fixed, .refresh-fixed {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            -webkit-border-radius: 50%;
+            background: rgba(254, 135, 117, 0.73);
+            position: fixed;
+            right: 15px;
+            z-index: 10000;
+        }
+        .icon-all {
+            display: -webkit-box;
+            -webkit-box-orient: horizontal;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            display: box;
+            box-orient: horizontal;
+            box-pack: center;
+            box-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon1">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title">
+            线上互选
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content" page-now="0" page-total="0" list-type="1">
+            <!--列表-->
+
+            <div class="row text-center product-list" style="padding-bottom: 50px;">
+
+            </div>
+            <div class="ajax_tips ajax_tips">找不到更多数据</div>
+        </div>
+    </div>
+
+    <!--按钮-->
+    <div class="refresh-fixed icon-all" id="icon-refresh" style="bottom: 160px;">
+        <i class="iconfont icon-shuaxin"></i>
+    </div>
+    <div class="push-fixed icon-all" id="screen-man" style="bottom: 110px;">
+        <i class="iconfont icon-nan"></i>
+    </div>
+    <div class="push-fixed icon-all" id="screen-girl" style="bottom: 60px;">
+        <i class="iconfont icon-nv"></i>
+    </div>
+
+    <div class="footerbar">
+        <div class="btn-group btn-group-justified">
+            <a class="btn btn-md waves-effect waves-light js-my-select" role="button" href="mateLike.html">我选择的</a>
+            <a class="btn btn-md waves-effect waves-ligh" role="button" href="home.html"
+               style="border-left: 1px solid #ffffff">个人中心</a>
+        </div>
+    </div>
+    <!--go-top-->
+    <div class="bottom-to-top" id="indexToTop"><i class="glyphicon glyphicon-circle-arrow-up text-gray"></i></div>
+</div>
+
+<script>
+
+    var activityId;
+
+    getActivityUserList(1, 0);
+
+    var isLoading = false;
+    $(document).ready(function () {
+
+        $(window.document).scroll(function () {
+
+            if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+                var paneProductObj = $(".content");
+
+                var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+                var listType = parseInt(paneProductObj.attr("list-type"));
+
+                if (panePageNow + 1 >= panePageTotal)
+                    return;
+
+                isLoading = true;
+
+                paneProductObj.attr("page-now", panePageNow + 1);
+
+                getActivityUserList(listType, (panePageNow + 1));
+            }
+        });
+
+    });
+
+    //全部
+    $("#icon-refresh").click(
+        function () {
+            $('.product-list').html('');
+            getActivityUserList(1, 0);
+        }
+    );
+
+    //男
+    $("#screen-man").click(
+        function () {
+            $('.product-list').html('');
+            getActivityUserList(2, 0);
+        }
+    );
+
+    //女
+    $("#screen-girl").click(
+        function () {
+            $('.product-list').html('');
+            getActivityUserList(3, 0);
+        }
+    );
+
+    function getActivityUserList(type, pageCode) {
+        dszdy.UI.loadingReview();
+        $.api("getActivityUserList", {
+            "type": type,
+            "pageCode": pageCode,
+            "pageSize": 10
+        }, getActivityUserListCallback, "user");
+    }
+
+    function getActivityUserListCallback(ret) {
+        dszdy.UI.loadingReview(false);
+        if (ret.status === "SUCCESS") {
+
+            activityId = ret.data.activityId;
+            var list = ret.data.activityPersonPo;
+
+            var html = "";
+            if (list.length > 0) {
+
+                $('.ajax_tips').hide();
+
+                $.each(list, function (index, item) {
+
+                    var sex_icon = function () {
+                        if (item.sex === 0) {
+                            return 'xznv fa fa-venus';
+                        }
+                        if (item.sex === 1) {
+                            return 'xznan fa fa-mars';
+                        }
+                    };
+
+                    html += '<div class="col-xs-6">' +
+                        '<div class="feed dataItem">' +
+                        '<div class="feed-bd">' +
+                        '<div class="images ui-img-list image-popup row">' +
+                        '<figure class="col-xs-12 item">' +
+                        '<a href="userExpandProfile.html?id=' + item.userId + '\" class="atmode">' +
+                        '<div>' +
+                        '<img class="img  loaded" style="background-image: url(' + item.avatar.fileHost + "/" + item.avatar.fileName + item.avatar.fileType + ');" />' +
+                        '</div>' +
+                        '</a>' +
+                        '</figure>' +
+                        '</div>' +
+                        '<div class="actions js_actions">' +
+                        '<p>' + item.nickname + '</span><i class="'+ sex_icon() +'" style="font-weight:bolder;"></i></p>' +
+                        '<p>' +
+                        '<button type="button" class="btn btn-pink btn-xs btn-rounded waves-effect waves-light js-add-like m-r-15 " data-id=\"' + item.userId + '\">喜欢</button>' +
+                        '<button type="button" class="btn btn-inverse btn-xs btn-rounded waves-effect waves-light js-del-like" data-id=\"' + item.userId + '\">取消</button>' +
+                        '</p>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                });
+
+            } else {
+
+                if (ret.data.page === 0) {
+                    dszdy.UI.Tip("参与线下活动后即可进行互选");
+                }
+
+                $('.ajax_tips').show();
+            }
+
+            if (list.length < 10) {
+                $('.ajax_tips').show();
+            }
+
+            $('.product-list').append(html);
+
+            $('.content').attr("page-now", ret.data.page);
+            $('.content').attr("page-total", ret.data.pageTotal);
+            $('.content').attr("list-type", ret.data.userListType);
+
+            isLoading = false;
+        }
+    }
+
+</script>
+
+<script>
+
+    $(".lv-icon1 >span").on("click", function () {
+        window.history.go(-1);
+    });
+
+    //love
+    $(".product-list").delegate(".js-add-like", "click", function () {
+
+        var userId = $(this).attr("data-id");
+
+        showSwal("是否赠送鲜花喜欢该用户", 1, userId);
+
+    });
+
+    //removeLove
+    $(".product-list").delegate(".js-del-like", "click", function () {
+
+        var userId = $(this).attr("data-id");
+
+        showSwal("是否取消喜欢", 2, userId);
+    });
+
+    function showSwal(title, operationType, userId) {
+        swal({
+            title: title,
+            text: "",
+            showCancelButton: true,
+            closeOnConfirm: true,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#fe8775",
+            confirmButtonText: "确定"
+        }, function () {
+            $.api("collectionOperation", {"operationType": operationType,"collectionObjectId": parseInt(userId),"activityId": activityId}, function (ret) {
+                collectionOperationCallback(ret, operationType);
+            }, "user");
+        });
+    }
+
+    function collectionOperationCallback(ret, type) {
+
+        dszdy.UI.Tip(ret.message);
+        if (ret.status === "SUCCESS") {
+
+        }
+    }
+
+
+</script>
+
+
+<script>
+    var sex = '1';
+    if (sex == "0") {
+        $(".topbar,.footerbar").attr("style", "background-color:#3ad4ca");
+    }
+</script>
+</body>
+</html>

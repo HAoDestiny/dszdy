@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>个人动态</title>
+    <link href="static/css/bootstrap/bootstrap.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/base.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/components.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/responsive.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/bootstrap/fontawesome.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/stylev2.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/dszdy.css" rel="stylesheet" type="text/css" charset="utf-8"/>
+    <link href="static/css/iconflower/font-flower.css" rel="stylesheet" type="text/css" charset="utf-8">
+    <script language="javascript" type="text/javascript" src="static/js/jquery.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/bootstrap.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/waves.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/validator.js" charset="utf-8"></script>
+    <script language="javascript" type="text/javascript" src="static/js/base.js" charset="utf-8"></script>
+    <link href="static/css/zone.css" rel="stylesheet"/>
+    <link href="static/emoji/css/jquery.mCustomScrollbar.min.css" rel="stylesheet"/>
+    <link href="static/emoji/css/railscasts.css" rel="stylesheet"/>
+    <link href="static/emoji/css/jquery.emoji.css" rel="stylesheet"/>
+    <style>
+        .footerbar a {
+            color: #fff;
+        }
+
+        .likelist {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            background-color: #eee;
+            -webkit-border-radius: 100%;
+            -moz-border-radius: 100%;
+            border-radius: 100%;
+            background-position: 50% 50%;
+            -webkit-background-size: cover;
+            background-size: cover;
+            border: 1px solid #999;
+        }
+
+        .list-inline > li {
+            display: inline-block;
+            padding-right: 0px;
+            padding-left: 5px;
+        }
+    </style>
+    <link href="static/css/swiper.css" rel="stylesheet" type="text/css" charset="utf-8" media="all">
+    <link href="static/css/style.css" rel="stylesheet" type="text/css" charset="utf-8" media="all">
+    <script language="javascript" type="text/javascript" src="static/js/swiper.min.js" charset="utf-8"></script>
+</head>
+<body>
+<!--开始页面加载-->
+<div id="wrapper">
+    <!--start topbar-->
+    <div class="topbar row">
+        <div class="col-xs-2 lv-icon1">
+            <span></span>
+        </div>
+        <div class="col-xs-8 bar-title" id="trueName-title">
+        </div>
+        <div class="col-xs-2 bar-title" id="spam-title">
+
+            <a class="text-white" data-toggle="modal" id="userProfile_oper">•••</a>
+
+        </div>
+    </div>
+    <!--end topbar-->
+    <div class="content-page">
+        <div class="content">
+            <div class="row zone">
+                <div class="col-xs-12">
+                    <div class="card-box p-0">
+                        <div class="table-box-nb userProfileinfo">
+                            <div class="table-detail lovetopleft">
+                                <div class="pic">
+                                    <img src="static/images/face.png" class=" lazy" id="UserPic"/>
+                                </div>
+
+                            </div>
+                            <div id="userInfo" class="table-detail">
+                                <p style="width: 121px;">家乡:加载中</p>
+                                <p class="hide">学历:加载中</p>
+                                <p>出生:加载中</p>
+                                <p>身高:加载中</p>
+                            </div>
+                            <div class="table-detail" id="follow"
+                                 style="padding-top: 0px; vertical-align: top; text-align: center;">
+                                <p style="padding-top: 15px;">
+                                    <a class="btn btn-xs btn-default-bg waves-effect waves-light js-guanzhu"
+                                       style="width: 55px;" href="javascript:;"><span id="attentionTx">关注TA</span></a>
+                                </p>
+                                <p style="padding-left: 10px;"><a id="toExpandProfile" href=""
+                                                                  style="font-size: 35px; color: #fe8775">> </a></p>
+                            </div>
+                        </div>
+                        <ul class="list-inline row loveflower">
+                            <li class="col-xs-3 js-query-guanzhu">
+                                <p>
+                                        <span id="fansTotal" style="font-size: 17px" class="js-get-guanzhu">
+                                            0</span>
+                                    <br/>
+                                </p>
+                                <p style="font-size: 13px;padding-bottom: 13px;">TA的粉丝</p>
+                            </li>
+                            <li class="col-xs-3">
+                                <span class="loveline"></span>
+                                <p class="">
+                                        <span id="attentionTotal" style="font-size: 17px">
+                                            0</span>
+                                    <br/>
+                                </p>
+                                <p style="font-size: 13px;padding-bottom: 13px;">收到的花</p>
+                            </li>
+                            <li class="col-xs-6">
+                                <span class="loveline"></span>
+                                <a id="a_userProfile" href="">
+                                    <div class="col-xs-4 text-right">
+                                        TA的<br/>
+                                        资料
+                                    </div>
+                                    <div style="padding-top: 3px;">
+                                        <img id="UserImg" src=""
+                                             style="display: inline-block; width: 35px; height: 35px; background-color: #eee; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; background-position: 50% 50%; -webkit-background-size: cover; background-size: cover;border: 1px solid #999;"/>
+                                        <span style="padding-left: 10px;">查看</span>
+                                    </div>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row feed-list product-list" page-now="0" page-total="0">
+            </div>
+            <div class="ajax_tips">
+                加载更多信息...
+            </div>
+        </div>
+    </div>
+    <!--私聊-->
+    <div class="footerbar" style="background-color: #ffffff;">
+
+        <div class="row font-13  m-b-30 js-addlike" style="padding: 5px;margin-bottom: -30px !important;">
+            <button class="btn btn-md btn-pink btn-block btn-rounded waves-effect waves-light js-add-like m-b-30"
+                    data-id="" type="button">送 <i class="nc nc-xianhua"></i> 加好友私聊
+            </button>
+        </div>
+    </div>
+
+    <div class="modal fade modaltop" id="activityModal" tabindex="-1" role="dialog"
+         aria-labelledby="activityModalLabel">
+        <div class="modal-dialog modal-down" role="document">
+            <div class="modal-content text-center" style="padding: 0px">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title" style="line-height: 0; padding-left: 15px; padding-top: 20px;">操作</h4>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <table class="table table-bordered">
+                                <tr>
+                                    <td>
+                                        <button type="button" data-id="11761"
+                                                class="btn-block text-primary js-add-shield">屏蔽
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <a id="toReported" href="" class="btn-block text-primary">举报</a></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <button type="button" class="btn-block text-primary js-cancel-go">取消</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="login-model" tabindex="-1" role="dialog" aria-labelledby="activityModalLabel">
+    <div class="modal-dialog modal-down" role="document">
+        <div id="form-1" class="form-pop">
+            <div class="nav-wrap fixed">
+                <div class="row  ui-top-nav">
+                    <div class="col-xs-2">
+                        <a class="btn js-close" href="javascript:;"><span class="txt" id="form-1-cancel">取消</span></a>
+                    </div>
+                    <div class="col-xs-8 text-center js-title-name">评论</div>
+                    <div class="col-xs-2">
+                        <button class="btn btn-xs btn-default-bg waves-effect waves-light" onclick="SendContent()"><span
+                                class="txt">发送</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="form-wrap" style="position: relative; width: 100%; min-height: 436px;">
+                <div class="write-form j-write">
+                    <div class="write-text J_textareaWrapper">
+                        <div id="editor" class="dtextarea" contenteditable="true"></div>
+
+                    </div>
+                    <div class="write-plugin">
+                        <button class="item icon-emoji" id="btn" data-textoper="emoji">插入表情</button>
+                        <span class="counter" data-form="limit">600</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="cis_date_pics_area" class="showpagearea showpage_show hide">
+    <div class="bodyarea">
+        <div class="wrap">
+            <div class="headerarea">
+            </div>
+            <div class="mainarea">
+                <div class="body_main body_np cis_date_viewpic">
+
+                    <div class="cis_date_swiper">
+                        <div class="swiper-wrapper">
+                        </div>
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    function openPopPic(obj) {
+        var id = obj.attr("data-cid");
+        var num = parseInt(obj.attr("data-num"));
+        var arrya = $("a[data-cid='" + id + "']");
+        $(".body_main").remove();
+        $(".mainarea").append('<div class="body_main body_np cis_date_viewpic"><div class="cis_date_swiper"><div class="swiper-wrapper"></div><div class="swiper-pagination"></div></div>');
+        if (arrya.length > 0) {
+            for (var i = 0; i < arrya.length; i++) {
+                var img = arrya.eq(i).attr("data-src");
+                $(".swiper-wrapper").append('<div class="swiper-slide">' +
+                    '<div class="swiper-zoom-container">' +
+                    '<img src="' + img + '" />' +
+                    '</div>' +
+                    '</div>');
+            }
+        }
+
+        var cis_date_pics = new Swiper('.body_main .cis_date_swiper', {
+            zoom: true,
+            initialSlide: num,
+            pagination: '.body_main  .cis_date_swiper .swiper-pagination ',
+            paginationType: 'fraction',
+            spaceBetween: 20,
+            onClick: function (swiper) {
+                closepage('#cis_date_pics_area');
+            }
+        });
+    }
+
+    /*closepage*/
+    function closepage(id) {
+        $(id).addClass("hide");
+    }
+</script>
+
+<script src="static/js/dynamic.js"></script>
+
+<script>
+
+    $(".lv-icon1 >span").on("click", function () {
+//        history.go(-1);
+        window.location.href = "home.html";
+    });
+    $("#userProfile_oper").on("click", function () {
+        $("#activityModal").modal();
+    });
+
+    var userId;
+
+    $(function () {
+        var api = {"self": "getUserInfo", "other": "getUserProfile"};
+
+        if (GET["id"] == undefined) {
+            api = api["self"];
+            $("#follow").addClass("hide");
+            $("#spam-title").addClass("hide");
+            $(".js-add-like").addClass("hide");
+            $("#a_userProfile").attr("href", "userExpandProfile.html");
+        } else {
+            api = api["other"];
+            userId = parseInt(GET["id"]);
+            $("#toExpandProfile").attr("href", "userExpandProfile.html?id=" + userId);
+            $("#toReported").attr("href", "reported.html?id=" + userId);
+
+            //资料
+            $("#a_userProfile").attr("href", "userExpandProfile.html?id=" + userId);
+
+        }
+
+        $.api(api, {"userId": userId}, function (ret) {
+            if (ret.status == "SUCCESS") {
+                var data = ret.data;
+                if (userId == null || userId == undefined) {
+                    userId = data.userId;
+                }
+                var avatarSex = function () {
+                    if (data.sex === 1)
+                        return "nan";
+                    else
+                        return "nv";
+                };
+                var avatar = data.avatar.fileHost + "/200/200/" + data.avatar.fileName + data.avatar.fileType;
+                $("#UserPic").attr('src', avatar);
+
+                $(".pic").addClass(avatarSex());
+                $("#trueName-title").text(ret.data.trueName);
+                $("#userInfo").html(
+                    "<p style=\"width: 121px;\">家乡：" + data.province + data.city +
+                    "</p><p>学历：" + data.education + "</p><p>出生：" + data.birth + "</p><p>身高：" + data.height + "</p>"
+                );
+
+                //资料
+                $("#UserImg").attr('src', avatar);
+            }
+        }, "user");
+
+        loadDynamic(0, userId);
+    });
+
+    //关注
+    var attention = $(".js-guanzhu");
+    $(".js-guanzhu").on("click", function () {
+
+        if (attention.text() === "关注TA") {
+
+            $.api("attention", {"toAttentionId":userId, "type":1}, attentionCallBack, "user");
+        } else {
+
+            $.api("attention", {"toAttentionId":userId, "type":2}, attentionCallBack, "user");
+        }
+
+        function attentionCallBack(ret) {
+
+            dszdy.UI.Tip(ret.message);
+
+            if (ret.status === "SUCCESS") {
+
+                var val;
+                if (attention.text() === "已关注") {
+
+                    attention.html("关注TA");
+                    val = parseInt( $(".js-get-guanzhu").text()) - 1; //取消关注
+                } else {
+
+                    attention.html("已关注");
+                    val = parseInt($(".js-get-guanzhu").text()) + 1; //关注
+                }
+
+                $(".js-get-guanzhu").text(val);
+            }
+        }
+    });
+</script>
+
+<script>
+    var id = GET["id"];
+
+    $(function () {
+        if (!id) {
+
+            $.api("getAttentionMessage", {"userId": 0}, getAttentionMessageCallback, "user");
+        } else {
+
+            $.api("getAttentionMessage", {"userId": parseInt(id)}, getAttentionMessageCallback, "user");
+        }
+
+        function getAttentionMessageCallback(ret) {
+            if (ret.status === "SUCCESS") {
+                $("#fansTotal").text(ret.data.formAttentionTotal);
+                $("#attentionTotal").text(ret.data.flowerTotal);
+
+                var attentionTx = ret.data.attentionStatus;
+
+                if (attentionTx === null || attentionTx === "") {
+                    $("#attentionTx").text("关注TA");
+                    return;
+                }
+
+                $("#attentionTx").text(attentionTx);
+            }
+        }
+    });
+
+</script>
+
+<script src="static/emoji/script/highlight.pack.js"></script>
+<script src="static/emoji/script/jquery.mousewheel-3.0.6.min.js"></script>
+<script src="static/emoji/script/jquery.mCustomScrollbar.min.js"></script>
+<script src="static/emoji/script/jquery.emoji.min.js"></script>
+<script>
+    $('#login-model').on('shown.bs.modal', function () {
+        hljs.initHighlightingOnLoad();
+        $("#editor").emoji({
+            button: "#btn",
+            showTab: false,
+            animation: 'slide',
+            icons: [{
+                name: "QQ表情",
+                path: "static/emoji/img/qq/",
+                maxNum: 100,
+                excludeNums: [41, 45, 54],
+                file: ".gif"
+            }]
+        });
+    })
+</script>
+
+<script>
+
+    function onClickJump(str) {
+        window.location.href = "userProfile.html?id=" + str;
+    }
+
+    $(".js-cancel-go").on("click", function () {
+        $("#activityModal").modal('hide');
+    });
+
+    function loadDynamic(pageCode, userId) {
+
+        dszdy.UI.loadingReview();
+        $.api("show", {'pageCode': pageCode, 'pageSize': 7, "tag": 3, "userId": userId}, showCallback, "dynamic");
+
+        function showCallback(ret) {
+
+            dszdy.UI.loadingReview(false);
+
+            if (ret.status === "SUCCESS") {
+                show(ret.data);
+            } else {
+                $(".ajax_tips").html("找不到更多数据");
+            }
+        }
+
+        function replaceCode2Emoji(str) {
+            var patt = /\[(.*?):(.*?)\]/g;
+            return str.replace(patt, "<img class=\"emoji_icon\" src=\"static\/img\/$1\/$2.gif\">");
+        }
+
+        function show(ret) {
+            var dynamicData = ret.dynamic;
+            var paneProductObj = $('.product-list');
+
+            $.each(dynamicData, function (index, item) {
+                var html = "";
+                var images = "";
+                var commentItem = "";
+                var avatar = "";
+                var reply = "";
+                var praiseOrComment = "";
+                var age = formatAge(parseInt(item.age.substr(0, 4)));
+                var verify = function () {
+                    if (item.isVerify === 1)
+                        return "<i class=\"btn-default-bg btn-xs fa fa-check\">认证</i>";
+                    else
+                        return "";
+                };
+                var sex = function () {
+                    if (item.sex === 1)
+                        return "xznan fa fa-mars";
+                    else
+                        return "xznv fa fa-venus";
+                };
+                var avatarSex = function () {
+                    if (item.sex === 1)
+                        return "nan";
+                    else
+                        return "nv";
+                };
+                var imageSize = function () {
+                    if (item.images.length === 1)
+                        return "10";
+
+                    if (item.images.length === 2)
+                        return "6";
+
+                    if (item.images.length >= 3)
+                        return "4";
+                };
+
+                html += "<div class=\"col-xs-12\">" +
+                    "<div class=\"feed dataItem\">" +
+                    "<div class=\"feed-hd\">" +
+                    "<div class=\"avatar\">" +
+                    "<a href=\"javascript:onClickJump('" + item.posterId + "')\">" +
+                    "<b class=\"pic loaded " + avatarSex() + "\" style=\"background-image: " +
+                    "url(" + item.avatar.fileHost + "/100/100/" + item.avatar.fileName + item.avatar.fileType + ");\">" +
+                    "</b>" +
+                    "</a>" +
+                    "</div>" +
+                    "<div class=\"info\">" +
+                    "<p class=\"title\">" +
+                    "<span class=\"username\">" + item.posterName +
+                    "</span>" +
+                    "<i class=\"" + sex() + "\">" +
+                    "</i>" +
+                    "<span class=\"isvip\">" + dszdy.UI.formatTimestampLong(item.time) +
+                    "</span>" +
+                    "</p>" +
+                    "<p class=\"metas\">" +
+                    "<span class=\"time\">" +
+                    "<i class=\"btn-default-bg btn-xs\">" + age + "</i>\n"
+                    + verify() + "\n" +
+                    "</span>" +
+                    "</p>" +
+                    "</div>" +
+                    "</div>" +
+                    "<div class=\"feed-bd\">" +
+                    "<p class=\"txt\">" + replaceCode2Emoji(item.content) +
+                    "</p>" +
+                    "<div class=\"images ui-img-list image-popup row\">";
+
+                $.each(item.images, function (img_index, img_item) {
+                    images += "<figure class=\"col-xs-" + imageSize() + " item\">" +
+                        "<a href=\"javascript:;\" class=\"atmode\" data-src=\"" + img_item.fileHost + "/" + img_item.fileName + img_item.fileType + "\"" +
+                        " data-cid=\"" + item.dynamicId + "\" data-num=\"" + img_index + "\">" +
+                        "<span class=\"img  loaded\" style=\"background-image: " +
+                        "url(" + img_item.fileHost + "/" + img_item.fileName + img_item.fileType + ");\">" +
+                        "</span>" +
+                        "</a>" +
+                        "</figure>";
+                });
+
+                html += images + "</div>";
+
+                praiseOrComment += "<div class=\"actions js_actions\" style=\"margin-bottom: 4px\" data-id=\"" + item.dynamicId + "\">\n" +
+                    "<button class=\"btn btn-pink btn-sm btn-custom btn-rounded waves-effect waves-light js-like\" type=\"button\">\n" +
+                    "<i class=\"fa fa-thumbs-o-up\"></i>&nbsp;赞&nbsp;\n" +
+                    "<span>" + item.praise.praiseTotal + "</span></button>\n" +
+                    "<button class=\"btn btn-pink btn-sm btn-custom btn-rounded waves-effect waves-light js-comment\" type=\"button\">\n" +
+                    "<i class=\"fa fa-edit\"></i>&nbsp;评论" +
+                    "<span>" + item.comment.commentTotal + "</span>" +
+                    "</button>\n" +
+                    "</div>\n" +
+                    "</div>\n" +
+                    "<div class=\"feed-ft js-feedft\">" +
+                    "<div class=\"likes j-likelist\">";
+
+                if (item.praise.praiseList.length !== 0) {
+
+                    praiseOrComment +=
+                        "<div class=\"btn btn-pink btn-sm btn-custom btn-rounded waves-effect waves-light\" style='background-color: #fe8775 !important;'>" +
+                        "<i class=\"fa fa-thumbs-o-up\" style='color: #ffffff;'></i>" +
+                        "</div>";
+
+                    $.each(item.praise.praiseList, function (like_index, like_item) {
+                        var avatar = like_item.avatar.fileHost + "/100/100/" + like_item.avatar.fileName + like_item.avatar.fileType;
+                        praiseOrComment += "<a class=\"username\" href=\"javascript:onClickJump('" + like_item.userId + "')\">" +
+                            "<img class='likelist' src=\"" + avatar + "\">" +
+                            "</a>";
+
+                    });
+
+                }
+
+                praiseOrComment += "</div>";
+
+                html += praiseOrComment;
+
+                html += "<div class=\"comments min-comments\">" +
+                    "<div class=\"list js-comment-list" + item.dynamicId + "\" dynamic-id=\"" + item.dynamicId + "\">";
+
+                if (item.comment.commentList.length !== 0) {
+                    $.each(item.comment.commentList, function (com_index, com_item) {
+                        avatar = '<div class="comment-item" user-id="' + com_item.userId + '">' +
+                            '<div class="avatar">' +
+                            '<a href="javascript:onClickJump(' + com_item.userId + ')">' +
+                            '<b class="pic" style="background-image: url(' + com_item.avatar.fileHost + "/100/100/" + com_item.avatar.fileName + com_item.avatar.fileType + ')"></b>' +
+                            '</a>' +
+                            '</div>';
+
+                        if (com_item.commentToUserId !== 0) {
+                            reply = '<div class="mainer">' +
+                                '<div class="comment-info">' +
+                                '<p class="title">' +
+                                '<a class="username" href="javascript:onClickJump(' + com_item.userId + ')">' + com_item.username + '</a>回复:' +
+                                '<a href="javascript:onClickJump(' + com_item.commentToUserId + ')">' + com_item.commentToUserName + '</a>' +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="comment-text"> ' + replaceCode2Emoji(com_item.content) +
+                                '</div>' +
+                                '</div>' +
+                                '</div>';
+                        } else {
+                            reply = '<div class="mainer">' +
+                                '<div class="comment-info" role="text">' +
+                                '<p class="title"><a class="username">' + com_item.username + '</a>' +
+                                '</p>' +
+                                '</div>' +
+                                '<div class="comment-text">' + replaceCode2Emoji(com_item.content) + '</div>' +
+                                '</div>' +
+                                '</div>';
+                        }
+
+                        commentItem += (avatar + reply);
+
+                    });
+
+                    html += commentItem + "</div>\n</div>\n</div>\n</div>\n</div>";
+                }
+
+                paneProductObj.append(html);
+
+            });
+
+            paneProductObj.attr("page-now", ret.page);
+            paneProductObj.attr("page-total", ret.pageTotal);
+
+            $(".atmode").on("click", function () {
+                $("#cis_date_pics_area").removeClass("hide");
+                openPopPic($(this));
+            });
+
+            if (dynamicData.length < 7) {
+                $(".ajax_tips").text("找不到更多数据");
+            }
+
+            isLoading = false;
+        }
+
+        function formatAge(age) {
+            if (age >= 1990 && age < 2000) {
+                return "90后";
+            }
+            if (age >= 1980 && age < 1990) {
+                return "80后";
+            }
+            if (age >= 1970 && age < 1980) {
+                return "70后";
+            }
+            if (age >= 1960 && age < 1970) {
+                return "60后";
+            }
+        }
+    };
+
+</script>
+
+<script>
+    var isLoading = false;
+
+    $(document).ready(function () {
+        $(window.document).scroll(function () {
+            if ($(document).scrollTop() + $(window).height() + 200 >= $(document).height() && !isLoading) {
+                var paneProductObj = $(".product-list");
+                var panePageNow = parseInt(paneProductObj.attr("page-now"));
+                var panePageTotal = parseInt(paneProductObj.attr("page-total"));
+
+                if (panePageNow + 1 > panePageTotal)
+                    return;
+
+                isLoading = true;
+                paneProductObj.attr("page-now", panePageNow + 1);
+
+                loadDynamic((panePageNow + 1), userId);
+            }
+        });
+    });
+</script>
+
+<script>
+    //好友请求
+    $('.js-addlike').click(function () {
+        swal({
+            title: "你即将赠送一朵鲜花加好友",
+            html: true,
+            text: "",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#fe8775",
+            confirmButtonText: "确认"
+        }, function () {
+            $.api("applyFriends", {"applyObjectId":userId, "type":1}, applyFriendCallback, "user");
+        });
+
+    });
+
+    function applyFriendCallback(ret) {
+        swal.close();
+        dszdy.UI.Tip(ret.message);
+    }
+
+    function showSwal(param, title, type, accept, callback) {
+        swal({
+            title: title,
+            html: true,
+            text: "",
+            showCancelButton: true,
+            closeOnConfirm: false,
+            cancelButtonText: "取消",
+            confirmButtonColor: "#fe8775",
+            confirmButtonText: "确认"
+        }, function () {
+            $.api("applyFriends", {"applyObjectId": param, "type": type, "accept": accept}, callback, "user");
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+header, footer, main {
+    display: block;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+footer {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding:9px;
+    background: rgba(158, 158, 158, 0.16);
+    border-top: 1px solid rgba(158, 158, 158, 0.39);
+    border-bottom: 1px solid rgba(158, 158, 158, 0.39);
+}
+
+footer input {
+    height: 38px;
+    float: left;
+    padding-left: 10px;
+    width: 71%;
+    font-size: 16px;
+    border: 1px solid rgba(158, 158, 158, 0.39);
+}
+
+footer button {
+    background: #fe8775;
+    border: none;
+    width: 25%;
+    height: 35px;
+    color: #fff;
+    font-size: 16px;
+    margin-top: 1px;
+    float: right;
+}
+
+main {
+    /* main绝对定位，进行内部滚动 */
+    position: absolute;
+    top: 40px;
+    width: 100%;
+    bottom: 40px;
+    /* 使之可以滚动 */
+    overflow-y: scroll;
+    /* 增加该属性，可以增加弹性，是滑动更加顺畅 */
+    -webkit-overflow-scrolling: touch;
+}
